@@ -1,6 +1,31 @@
 
-// custom script field custpage with custom drop down selections example code:
+// fieldchanged roberts approach to app setting on client
 
+
+if ((context.fieldId === 'custrecord89' || context.fieldId === 'custrecord_esn_final_news_date')) {
+	var custrecordesnapproval = REC.getValue('custrecordesnapproval')
+	if (custrecordesnapproval == 4) {
+		var fieldLookUp = search.lookupFields({
+			type: 'customrecord_pri_app_setting',
+			id: '377',
+			columns: ['custrecord_pri_as_value']
+		}).custrecord_pri_as_value;
+		var employeesAllowedForDateEdit = fieldLookUp.split(",");
+
+		var currentUser = runtime.getCurrentUser().id;
+
+		if (employeesAllowedForDateEdit.indexOf(currentUser.toString()) == -1) {
+			return false;
+		} else { }
+
+	}
+}
+
+
+
+
+
+// custom script field custpage with custom drop down selections example code:
 
 {
 	evaluateClientReleaseFundApproverGroup();
