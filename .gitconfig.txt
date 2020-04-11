@@ -1,0 +1,24 @@
+[user]
+	email = marquezini.brunno@gmail.com
+	name = profuscadriver
+[alias]
+	st = status
+	cm = commit
+	cmm = commit -m
+	br = branch
+	co = checkout
+	unstage = reset --hard
+	last = log -1 HEAD
+	visual = !gitk
+        cob = checkout -b
+	undo = reset HEAD~1 --mixed
+	logg = log --oneline --graph --color --decorate # short log
+	stt = status -s # short status
+	localdel = branch -D
+
+[filesystem "Oracle Corporation|1.8.0_201|/dev/disk1s5"]
+	timestampResolution = 1001 milliseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|1.8.0_241|/dev/disk1s1"]
+	timestampResolution = 1001 milliseconds
+	minRacyThreshold = 0 nanoseconds
