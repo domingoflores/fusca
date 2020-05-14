@@ -1,4 +1,446 @@
 
+
+
+if (savedCurrencies.forEach(function (item, index) {
+	var currentsavedID = [item]
+	log.debug("currentSavedID: ", currentsavedID)
+}) == pb_currencies_result[i].internalid)
+	
+var customrecord_payment_bankSearchObj = search.create({
+	type: "customrecord_payment_bank",
+	filters:
+		[
+		],
+	columns:
+		[
+			search.createColumn({ name: "custrecord_pb_settlement_currencies", label: "Settlement Currencies" }),
+			search.createColumn({
+				name: "name",
+				sort: search.Sort.ASC,
+				label: "Name"
+			}),
+			search.createColumn({
+				name: "name",
+				join: "CUSTRECORD_PB_SETTLEMENT_CURRENCIES",
+				label: "Name"
+			}),
+			search.createColumn({
+				name: "internalid",
+				join: "CUSTRECORD_PB_SETTLEMENT_CURRENCIES",
+				label: "Internal ID"
+			})
+		]
+});
+var searchResultCount = customrecord_payment_bankSearchObj.runPaged().count;
+log.debug("customrecord_payment_bankSearchObj result count", searchResultCount);
+customrecord_payment_bankSearchObj.run().each(function (result) {
+	// .run().each has a limit of 4,000 results
+	return true;
+});
+
+
+
+//old REcord New Record notes
+
+//The newRecord for beforeSubmit is the new data that will be going into the database.The oldRecord is the data that is currently there.
+
+//The newRecord for afterSubmit is the new data that is now in the database.The oldRecord is the data that was there.afterSubmit is read - only.
+
+//For beforeLoad, it's a new record - so it's named newRecord for consistency.
+
+//Add additional code
+...
+var configRecObj = config.load({
+	type: config.Type.COMPANY_INFORMATION
+});
+configRecObj.setText({
+	fieldId: 'fiscalmonth',
+	text: 'July'
+});
+configRecObj.save();
+...
+//Add additional code
+
+var searchoutput = { "custrecord_pb_settlement_currencies": [{ "value": "2", "text": "British pound" }, { "value": "3", "text": "Canadian Dollar" }, { "value": "4", "text": "Euro" }, { "value": "1", "text": "USD" }] }
+
+var searchoutputcustom = searchoutput['custrecord_pb_settlement_currencies'];
+
+
+[
+	{
+		name: "3D Robotics_B-1",
+		internalid: "96"
+	}
+	,
+	{
+		name: "A Place For Mom",
+		internalid: "18"
+	}
+	,
+	{
+		name: "Afterlive.tv_Twitter",
+		internalid: "97"
+	}
+	,
+	{
+		name: "AirPatrol",
+		internalid: "90"
+	}
+	,
+	{
+		name: "AirPatrol Sysorex",
+		internalid: "91"
+	}
+	,
+	{
+		name: "Akros Silicon Kinetic Technologies",
+		internalid: "141"
+	}
+	,
+	{
+		name: "Aliphcom Series 5 Preferred Stock",
+		internalid: "57"
+	}
+]
+
+for (var i = 0, len = searchoutputcustom.length; i < len; i++) {
+	//writeln(searchoutputcustom[i]);
+	writeln(searchoutputcustom[i].value);
+	//writeln(searchoutputcustom[i].text);
+	writeln(searchoutputcustom[i]['text']);
+}
+
+
+
+if (context.type == context.UserEventType.EDIT || context.type == context.UserEventType.COPY || context.type == context.UserEventType.CREATE) {
+	evaluateClientReleaseFundApproverGroup();
+
+	var form = context.form;
+	var savedCurrency = context.newRecord.getValue('custrecord_crf_trk_currency');
+
+	var crf_currency = form.addField({
+		id: 'custpage_crf_currency',
+		type: serverWidget.FieldType.SELECT,
+		label: 'CURRENCY',
+		type: 'select'
+	});
+
+	form.insertField({
+		field: crf_currency,
+		nextfield: 'custrecord_crf_trk_pay_from_acc'
+	});
+	for (var i = 1; i <= currencies_and_balances.length; i++) {
+		crf_currency.addSelectOption({
+			value: currencies_and_balances[i - 1].currencyID,
+			text: currencies_and_balances[i - 1].currency
+		});
+	}
+	crf_currency.isMandatory = true;
+
+}
+
+
+
+
+fixes atp1564
+
+//initiate amount available for release equals to gl account balance field
+var custrecord_ead_account_balance = REC.getValue("custrecord_ead_account_balance");
+REC.setValue({
+	fieldId: 'custrecord_ead_amnt_avail_release',
+	value: custrecord_ead_account_balance,
+	ignoreFieldChange: true
+});
+
+
+node - cli 
+
+alias sc = 'suitecloud'
+alias scd = 'sc project:deploy'
+alias scv = 'sc project:validate -s'
+
+// clear and set records for ready states via console
+
+require(["N/record"], function (record) {
+	var REC = record.load({
+		type: 'customrecord_escrow_agent_disbursement',
+		id: 219
+	});
+	REC.setValue("custrecord_ead_credit_memo", "");
+	REC.setValue("custrecord_ead_cust_refund", "");
+	REC.setValue("custrecord_ead_first_journal", "");
+	REC.setValue("custrecord_ead_second_journal", "");
+	REC.setValue("custrecord_ead_third_journal", "");
+	REC.setValue("custrecord_ead_credit_memo", "");
+	REC.setValue("custrecord_ead_status", 1);
+	REC.setValue("custrecord_ead_processing_summary", "");
+	REC.save();
+
+
+});
+
+
+//DOCKET
+//NLAPI
+nlapiSubmitField('customrecord_escrow_agent_disbursement', 171, 'custrecord_ead_status', '1'); 
+
+nlapiSubmitField('customer', '995904', 'custentity_docket_entered_dt', ‘')
+
+ nlapiSubmitField('customer', '995904', 'custentity_docket_reviewed_by', ‘')
+
+  nlapiSubmitField('customer', '995904', 'custentity_docket_sent_for_entry_by', ‘')
+
+//create journal 2 and 3
+
+
+
+
+
+/*
+// JE # 2   stage example id = 4636814
+// for the overage account (GL ACCOUNT #200001 ACQUIOM ESCROW AGENT: ACQUOIM CLEARINHOUSE EA - INTEREST OVERAGE). Internal ID = 13002
+try {
+	// header & line fields
+	log.debug('creating JE#2...', '');
+
+	var JE = record.create({
+		type: "journalentry",
+		isDynamic: true,
+	});
+	//body fields
+	var journalEntryFields = {
+		customform: customForm,             // SRS Esceow Agent Form
+		custbody1: escrowTransaction,      // escrow transaction = Investment Earnings
+		custbody2: escrow,                 // escrow
+		custbody4: 'Investment Earnings',  // memo
+		custbody_esc_tx_status: 'RELEASED',// req field
+		custbodyacq_deal_link: dealLink,
+		custbody_deal_escrow: dealEscrow,
+		custbody_je_accrual_dt: todaysDate
+	};
+	for (prop in journalEntryFields) {
+		JE.setValue({
+			fieldId: prop,
+			value: journalEntryFields[prop]
+		});
+	}
+
+	// line items
+
+	// line 1
+	JE.selectNewLine({ sublistId: "line" });
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "account",
+		value: lineAccount1,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "department",
+		value: lineDepartment,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "class",
+		value: lineClass,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "memo",
+		value: lineMemo,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "entity",
+		value: lineEntity,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "credit",
+		value: JEobj.accruedInterestAmount,	//lineCredit
+		ignoreFieldChange: true
+	});
+	JE.commitLine({ sublistId: "line" });
+
+
+	// line 2
+	JE.selectNewLine({ sublistId: "line" });
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "account",
+		value: lineAccount2,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "department",
+		value: lineDepartment,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "memo",
+		value: lineMemo,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "class",
+		value: lineClass,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "entity",
+		value: lineEntity,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "debit",
+		value: JEobj.accruedInterestAmount,	//lineDebt
+		ignoreFieldChange: true
+	});
+	JE.commitLine({ sublistId: "line" });
+	//console.log('JE#2 - line 1 accnt='+ lineAccount2 +' debit='+JEobj.accruedInterestAmount);
+
+
+	//console.log("JE="+ JSON.stringify(JE) );
+
+	JE.save();
+	log.debug('CREATED JE#2 id=' + JE.id, 'date=' + todaysDate + ' JE=' + JE.id);
+} catch (e) {
+	log.error('JE #2 Error', e.message);
+}
+
+
+
+
+
+
+// JE #3
+// Forward date the entry to the 1st day of the following month.
+// This is to deposit into the interest overage account (deposit $$$ of interest) into
+// the (GL Acct #200001 Acquiom Escrow Agent : Acquiom Clearinghouse EA - Interest Overage Internal ID = 13002) to make it whole again.
+// I.e. the opposite of the debit/credit from the journal out of the Overage account (I.e. Journal #2)
+try {
+	// header & line fields
+	log.debug('creating JE #3...', 'JE#3 lastDayThisMonth=' + lastDayThisMonth + ' firstDayNextMonth=' + firstDayNextMonth);
+
+	var date = new Date();
+	var firstDayNextMonth = new Date(date.getFullYear(), 11 + 1, 1);
+	var lastDayThisMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+	// get the overage
+	//
+
+
+	var JE = record.create({
+		type: "journalentry",
+		isDynamic: true,
+	});
+	//body fields
+	var journalEntryFields = {
+		customform: customForm,             // SRS Esceow Agent Form
+		custbody1: escrowTransaction,      // escrow transaction = Investment Earnings
+		custbody2: escrow,                 // escrow
+		custbody4: 'Investment Earnings',  // memo
+		custbody_esc_tx_status: 'RELEASED',// req field
+		custbodyacq_deal_link: dealLink,
+		custbody_deal_escrow: dealEscrow,
+		custbody_je_accrual_dt: lastDayThisMonth,
+		trandate: firstDayNextMonth
+	};
+	for (prop in journalEntryFields) {
+		JE.setValue({
+			fieldId: prop,
+			value: journalEntryFields[prop]
+		});
+	}
+
+	// line items
+	JE.selectNewLine({ sublistId: "line" });
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "account",
+		value: lineAccount1,
+		ignoreFieldChange: true
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "department",
+		value: lineDepartment
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "class",
+		value: lineClass
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "memo",
+		value: lineMemo
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "entity",
+		value: lineEntity
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "debit",
+		value: JEobj.accruedInterestAmount	//lineDebt
+	});
+	JE.commitLine({ sublistId: "line" });
+
+	// line 2
+	JE.selectNewLine({ sublistId: "line" });
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "account",
+		value: lineAccount2
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "department",
+		value: lineDepartment
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "memo",
+		value: lineMemo
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "class",
+		value: lineClass
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "entity",
+		value: lineEntity
+	});
+	JE.setCurrentSublistValue({
+		sublistId: "line",
+		fieldId: "credit",
+		value: JEobj.accruedInterestAmount	//lineCredit
+	});
+	JE.commitLine({ sublistId: "line" });
+
+	JE.save();
+	log.debug('CREATED JE#3 id=' + JE.id, 'date=' + todaysDate + ' JE=' + JE.id);
+} catch (e) {
+	log.error('JE #3 Error', e.message);
+}
+
+*/
+
+
+
 // fieldchanged roberts approach to app setting on client
 
 
