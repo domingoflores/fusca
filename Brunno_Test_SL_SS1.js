@@ -3,7 +3,7 @@
 //=========================================================================================================================
 function ExecuteRequest(request, response) {
 	"use strict";
-	var Scriptname = "Alex_Test_SL_SS1.js";
+	var Scriptname = "Brunno_Test_SL_SS1.js";
     //nlapiLogExecution("DEBUG", Scriptname, "started");
 	//response.write("<br/><br/>request: " +  JSON.stringify( request ) );
 	
@@ -15,9 +15,9 @@ function ExecuteRequest(request, response) {
 	filters[0] = new nlobjSearchFilter('internalid', null, 'anyof', [rcdId]);
 	columns[0] = new nlobjSearchColumn('custentity_acq_deal_fx_settle_currencies');
 	
-	var searchresults = nlapiSearchRecord('customer', null, filters, columns );//10pts
+	var searchresults = nlapiSearchRecord('customer', null, filters, columns );
 	
-	//response.write("<br/><br/>" + "searchresults: "  +  JSON.stringify(searchresults[0].columns()) );
+    response.write("<br/><br/>" + "searchresults object: " + JSON.stringify(searchresults));
 	
 	
 	var fieldValue = searchresults[0].getValue('custentity_acq_deal_fx_settle_currencies');
@@ -38,9 +38,6 @@ function ExecuteRequest(request, response) {
 	columns[1] = new nlobjSearchColumn('internalid' ,"custentity_acq_deal_fx_settle_currencies");
 	columns[2] = new nlobjSearchColumn('internalid' ,"custentity_acq_deal_fx_level");
 	var searchresults = nlapiSearchRecord('customer', null, filters, columns );//10pts
-
-	
-	//response.write("<br/><br/>" + "fieldText: "  +  JSON.stringify(searchresults) );
 	
 	
 	response.write("<br/><br/>" + "SEARCH WITH JOIN "  );

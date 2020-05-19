@@ -1,9 +1,3 @@
-//-----------------------------------------------------------------------------------------------------------
-// Copyright 2016, All rights reserved, Prolecto Resources, Inc.
-//
-// No part of this file may be copied or used without express, written permission of Prolecto Resources, Inc.
-//-----------------------------------------------------------------------------------------------------------
-
 /**
  * @NApiVersion 2.x
  * @NScriptType Suitelet
@@ -28,7 +22,7 @@ define(['N/record' ,'N/url' ,'N/runtime', 'N/search' ,'N/task' ,'N/crypto' ,'N/e
 		  ,SFTPLibrary
 		  ) {
  
-		var scriptName = "Alex_Test_SL.js";
+		var scriptName = "Brunno_Test_SL_SS2.js";
 		var AlexEmployeeId = 1047697;
 
  //==========================================================================================================================================================
@@ -61,13 +55,8 @@ define(['N/record' ,'N/url' ,'N/runtime', 'N/search' ,'N/task' ,'N/crypto' ,'N/e
 		context.response.write("<br/><br/>fieldValue: " + JSON.stringify(fieldValue) );
         
         
-		
-		
-	    
 		context.response.write("<br/><br/>ok " );
 	    return;
-	    
-	    
 	    
 	    
 	    
