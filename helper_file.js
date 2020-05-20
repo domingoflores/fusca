@@ -1,5 +1,26 @@
 
+//how to prevent imports to specific fields
 
+function beforeSubmit(context) {
+	var REC = context.newRecord;
+
+	var donotimportfields = " FX SETTLEMENT CURRENCIES ALLOWED, FX LEVEL, FX PROVIDER, FX SETTLEMENT CURRENCIES."
+
+	if (runtime.executionContext == runtime.ContextType.CSV_IMPORT) {
+		if (context.newRecord.getValue("custentity_acq_deal_fx_curr_cbox") != context.oldRecord.getValue("custentity_acq_deal_fx_level")) {
+			throw "CSV Importing of the following fields is not permitted." + donotimportfields + " Please remove them from the import and retry.";
+		}
+		if (context.newRecord.getValue("custentity_acq_deal_fx_level") != context.oldRecord.getValue("custentity_acq_deal_fx_level")) {
+			throw "CSV Importing of the following fields is not permitted." + donotimportfields + " Please remove them from the import and retry.";
+
+		}
+		if (context.newRecord.getValue("custentity_acq_deal_fx_provider") != context.oldRecord.getValue("custentity_acq_deal_fx_provider")) {
+			throw "CSV Importing of the following fields is not permitted." + donotimportfields + " Please remove them from the import and retry.";
+		}
+		if (context.newRecord.getValue("custentity_acq_deal_fx_settle_currencies") != context.oldRecord.getValue("custentity_acq_deal_fx_settle_currencies")) {
+			throw "CSV Importing of the following fields is not permitted." + donotimportfields + " Please remove them from the import and retry.";
+		}
+	}
 
 if (savedCurrencies.forEach(function (item, index) {
 	var currentsavedID = [item]
