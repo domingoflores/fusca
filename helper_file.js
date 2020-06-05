@@ -1,3 +1,96 @@
+//save file to cabinet folder -- must import n/file module
+var myFile = file.create({
+//					 		name: "context",
+//					 		fileType: file.Type.PLAINTEXT,
+//					 		contents: JSON.stringify(context),
+//					 		folder: '350982'
+//					 	});
+//					 	 myFile.save();
+
+
+//compare arrays
+
+/*
+// compare two arrays, return the number of differences
+function compareArrays(array1, array2) {
+	var len = Math.min(array1.length, array2.length),
+		lengthDi
+		
+		ff = Math.abs(array1.length - array2.length),
+		diffs = 0,
+		i;
+	for (i = 0; i < len; i++) {
+		if (~~array1[i] !== ~~array2[i]) {
+			diffs++;
+		}
+	}
+	return diffs + lengthDiff;
+}
+*/
+
+
+// two object structures matching saved items to another list in array
+var savedCurrencies = context.newRecord.getValue('custentity_acq_deal_fx_settle_currencies');
+log.debug('previously savedCurrencies from actual field: ', savedCurrencies);
+
+var fxcheckbox = context.newRecord.getValue('custentity_acq_deal_fx_curr_cbox');
+log.debug('fxcurrencies allowed checkbox value: ', fxcheckbox);
+
+var form = context.form;
+
+var fx_settlement_currencies = form.addField({
+	id: 'custpage_acq_deal_fx_settle_currencies',
+	label: 'FX SETTLEMENT CURRENCIES',
+	type: 'multiselect'
+});
+fx_settlement_currencies.isMandatory = true;
+
+form.insertField({
+	field: fx_settlement_currencies,
+	nextfield: 'custentity_acq_deal_fx_settle_currencies'
+});
+
+if (Boolean(paymentBankID)) {
+
+	var pb_currencies_result = cuDealLibrary.paymentBankCurrencies(paymentBankID);
+	log.debug("currencyList from PaymentBankCurrencies() SEARCH: ", JSON.stringify(pb_currencies_result));
+//CORE OF THE LOOPING AND MATCHING
+	for (var i = 0, len = pb_currencies_result.length; i < len; i++) {
+		isSelected = false;
+		for (var z = 0; z < savedCurrencies.length; z++) {
+			if (savedCurrencies[z] == pb_currencies_result[i].internalid)
+				isSelected = true;
+		}
+
+		fx_settlement_currencies.addSelectOption({
+			text: pb_currencies_result[i].name,
+			value: pb_currencies_result[i].internalid,
+			isSelected: isSelected
+		});
+	}
+}
+
+//sourcing to real field on fieldchange
+
+case 'custpage_pay_file_final_approver':
+	finalApprover = context.currentRecord.getValue({
+		fieldId: "custpage_pay_file_final_approver"
+	});
+	context.currentRecord.setValue({
+		fieldId: "custrecord_pay_file_final_approver",
+		value: finalApprover
+	});
+	break;
+	
+
+// if this form set a field
+if (REC.getValue("customform") == 120 && context.type == context.UserEventType.CREATE) {
+	REC.setValue("category", srsConstants.CUSTOMER_CATEGORY.DEAL)
+}
+//copy
+if (REC.getValue("customform") == srsConstants.CUSTOM_FORMS.CUSTOMER_DEAL && context.type == context.UserEventType.CREATE) {
+	REC.setValue("category", srsConstants.CUSTOMER_CATEGORY.DEAL)
+}
 
 //how to prevent imports to specific fields
 

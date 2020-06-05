@@ -40,7 +40,25 @@ define(['N/record' ,'N/url' ,'N/runtime', 'N/search' ,'N/task' ,'N/crypto' ,'N/e
 	    
 		var rcdId;
         var objValues = {};
-        objValues[""]     = 0; 
+       objValues[""] = 0; 
+       
+       pftrcdId = 4;
+       //        record.submitFields({ type:"customer" ,id:rcdId ,values:objValues });
+       //        
+
+       var objPFTfinra = search.lookupFields({
+           type: 'customrecord_pay_file_type', id: pftrcdId
+           , columns: ["custrecord_pft_finra_lic_app_req"
+           ]
+       });
+
+       var PFTfieldValue = objPFTfinra.custrecord_pft_finra_lic_app_req;
+       context.response.write("<br/><br/>fieldValue: " + JSON.stringify(PFTfieldValue));
+
+
+       context.response.write("<br/><br/>ok ");
+       return;
+
         //
         rcdId = 538328;
 //        record.submitFields({ type:"customer" ,id:rcdId ,values:objValues });
