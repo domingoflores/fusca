@@ -15,10 +15,3 @@
 	logg = log --oneline --graph --color --decorate # short log
 	stt = status -s # short status
 	localdel = branch -D
-
-[filesystem "Oracle Corporation|1.8.0_201|/dev/disk1s5"]
-	timestampResolution = 1001 milliseconds
-	minRacyThreshold = 0 nanoseconds
-[filesystem "Oracle Corporation|1.8.0_241|/dev/disk1s1"]
-	timestampResolution = 1001 milliseconds
-	minRacyThreshold = 0 nanoseconds
