@@ -3,7 +3,7 @@
  * @NScriptType Suitelet
  */
 
-define(['N/record' ,'N/url' ,'N/runtime', 'N/search' ,'N/task' ,'N/crypto' ,'N/email' ,'N/encode' ,'N/error' ,'N/file' ,'N/format' ,'N/https' ,'N/ui/serverWidget'
+define(['N/encode','N/crypto','N/record' ,'N/url' ,'N/runtime', 'N/search' ,'N/task' ,'N/crypto' ,'N/email' ,'N/encode' ,'N/error' ,'N/file' ,'N/format' ,'N/https' ,'N/ui/serverWidget'
 	, '/SuiteScripts/Pristine/libraries/toolsLibrary.js'
     ,'/SuiteScripts/Pristine/libraries/TINCheckLibrary.js'
     ,'/.bundle/132118/PRI_AS_Engine'
@@ -16,7 +16,7 @@ define(['N/record' ,'N/url' ,'N/runtime', 'N/search' ,'N/task' ,'N/crypto' ,'N/e
 	,'/SuiteScripts/Pristine/libraries/paymtInstrListLibrary.js'
 	,'/SuiteScripts/Pristine/libraries/sftpLibrary'
 	],    //  
-	function (record ,url ,runtime, search ,task ,crypto ,email ,encode ,error ,file ,format ,https ,serverWidget
+	function (encode,crypto,record ,url ,runtime, search ,task ,crypto ,email ,encode ,error ,file ,format ,https ,serverWidget
 		  ,tools ,tinCheck ,appSettings ,qmEngine ,searchResultsLibrary ,searchLib ,subsequentPaymentsLibrary ,ExRecAlphaPI 
 		  ,paymtInstrLight ,piListLib
 		  ,SFTPLibrary
