@@ -1,4 +1,22 @@
+{
+    "type": "error.SuiteScriptError",
+    "name": "SSS_MISSING_REQD_ARGUMENT",
+    "message": "search.lookupFields: Missing a required argument: id",
+    "stack": ["createError(N/error)", "hasMatchingCurrency(/SuiteScripts/Pristine/userEvents/ExchangeRecord_UE.js:239)", "beforeSubmit(/SuiteScripts/Pristine/userEvents/ExchangeRecord_UE.js:731)", "createError(N/error)"],
+    "cause": {
+        "name": "SSS_MISSING_REQD_ARGUMENT",
+        "message": "search.lookupFields: Missing a required argument: id"
+    },
+    "id": "",
+    "notifyOff": false,
+    "userFacing": true
+}
+
+
+
 //buggy 1 (custrecord_exrec_fx_conv_currency is FX_FIELDS.CURRENCY.VALUE = SETTLEMENT CURRENCY )
+
+
 
 
 log.debug('inside hasMatchingCurrency fucntion: FXCurrency (on the contract): ', fxCurrency);

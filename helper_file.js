@@ -1,11 +1,11 @@
 //save file to cabinet folder -- must import n/file module
 var myFile = file.create({
-//					 		name: "context",
-//					 		fileType: file.Type.PLAINTEXT,
-//					 		contents: JSON.stringify(context),
-//					 		folder: '350982'
-//					 	});
-//					 	 myFile.save();
+					 		name: "context",
+					 		fileType: file.Type.PLAINTEXT,
+					 		contents: JSON.stringify(context),
+					 		folder: '350982'
+					 	});
+					 	 myFile.save();
 
 
 //compare arrays
