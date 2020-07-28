@@ -1,3 +1,49 @@
+
+					/* ATP-1735 - start
+					
+	Add “Create FX Currency Contract” button to DER form.
+
+Enabled when:
+DEAL. FX SETTLEMENT CURRENCIES ALLOWED = YES
+DEAL. FX LEVEL = DEAL
+User Department = Operations and Technology: Client Operations: Acquiom Operations
+User Role = SRS Operations Analyst and SRS Operations Manager
+
+    				const FX_LEVEL_IS_DEAL = "2";
+    				
+    				if (REC.getValue("custrecord_pay_import_deal")) {
+    					
+        	        	if (srsFunctions.userIsAdmin() || 
+        	        			(runtime.getCurrentUser().department == srsConstants.DEPT.ACQUIOM_OPERATIONS 
+        	        		&& (runtime.getCurrentUser().role == srsConstants.USER_ROLE.SRS_OPERATIONS_MANAGER 
+        	        				|| runtime.getCurrentUser().role == srsConstants.USER_ROLE.SRS_OPERATIONS_ANALYST))) {
+        	        		
+        					var dealFields = search.lookupFields({type: record.Type.CUSTOMER, id: REC.getValue("custrecord_pay_import_deal"), columns: ["custentity_acq_deal_fx_curr_cbox", "custentity_acq_deal_fx_level"]});
+        					
+        					log.debug(funcName, dealFields); 
+        					if (dealFields.custentity_acq_deal_fx_curr_cbox && dealFields.custentity_acq_deal_fx_level && dealFields.custentity_acq_deal_fx_level[0].value == FX_LEVEL_IS_DEAL) {
+        						
+                				var recURL = url.resolveRecord({
+                                    recordType:			"customrecord_fx_conv_contract", 
+                                    params:{
+                                    		"record.custrecord_fx_conv_der":				REC.id 
+                                    		}
+                				});
+
+                                var scr = "null; window.location.href='" + recURL + "'; console.log";
+
+                				context.form.addButton({
+                					id : "custpage_fx_k",
+                					label : "Create FX Currency Contract",
+                					functionName: scr
+                				});    				                    	
+        						
+        					}
+        	        	}
+    				}
+    				*/// ATP-1735 - end
+
+
 //save file to cabinet folder -- must import n/file module
 var myFile = file.create({
 					 		name: "context",
