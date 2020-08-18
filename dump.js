@@ -1,3 +1,14 @@
+
+
+//pri message library module and usage
+/*mesgText = "Deal";
+				priMessage.prepareMessage("Not able to remove currency for there is at least one Exchange Record with the currency currently assigned",
+				mesgText, priMessage.TYPE.ERROR, null, "customer", context.newRecord.id);
+								    		}
+				priMessage.showPreparedMessage(context);
+				*/
+
+
 {
     "type": "error.SuiteScriptError",
     "name": "SSS_MISSING_REQD_ARGUMENT",

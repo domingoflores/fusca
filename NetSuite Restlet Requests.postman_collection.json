@@ -1,0 +1,672 @@
+{
+	"info": {
+		"_postman_id": "2b279920-7fc6-26b9-bcf8-5652b2f58688",
+		"name": "NetSuite Restlet Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "exrec by contactid",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1&module=clearinghouse&restlet=exchangeRecord&contactId={{contact_id}}",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						},
+						{
+							"key": "module",
+							"value": "clearinghouse"
+						},
+						{
+							"key": "restlet",
+							"value": "exchangeRecord"
+						},
+						{
+							"key": "contactId",
+							"value": "{{contact_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exrec by hash",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1&module=clearinghouse&restlet=exchangeRecord&exchangeHash={{exchange_hash}}",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						},
+						{
+							"key": "module",
+							"value": "clearinghouse"
+						},
+						{
+							"key": "restlet",
+							"value": "exchangeRecord"
+						},
+						{
+							"key": "exchangeHash",
+							"value": "{{exchange_hash}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?recordtype=customer&id={{customer_id}}&restlet=crud&module=generic&deploy=1&script=customscript_master_restlet",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "recordtype",
+							"value": "customer"
+						},
+						{
+							"key": "id",
+							"value": "{{customer_id}}"
+						},
+						{
+							"key": "restlet",
+							"value": "crud"
+						},
+						{
+							"key": "module",
+							"value": "generic"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						},
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						}
+					]
+				},
+				"description": "Generic Customer Get"
+			},
+			"response": []
+		},
+		{
+			"name": "customer by id Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?recordtype=customer&id={{customer_id}}&restlet=crud&module=generic&deploy=1&script=customscript_master_restlet",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "recordtype",
+							"value": "customer"
+						},
+						{
+							"key": "id",
+							"value": "{{customer_id}}"
+						},
+						{
+							"key": "restlet",
+							"value": "crud"
+						},
+						{
+							"key": "module",
+							"value": "generic"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						},
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						}
+					]
+				},
+				"description": "Generic Customer Get"
+			},
+			"response": []
+		},
+		{
+			"name": "exrec by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?recordtype=customrecord_acq_lot&id={{exchange_record_id}}&restlet=crud&module=generic&deploy=1&script=customscript_master_restlet",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "recordtype",
+							"value": "customrecord_acq_lot"
+						},
+						{
+							"key": "id",
+							"value": "{{exchange_record_id}}"
+						},
+						{
+							"key": "restlet",
+							"value": "crud"
+						},
+						{
+							"key": "module",
+							"value": "generic"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						},
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						}
+					]
+				},
+				"description": "Generic Exchange Record Get"
+			},
+			"response": []
+		},
+		{
+			"name": "reset exrec statuses",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "38997afe-9d81-434c-8aa7-919f5da77d95",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "57557a01-e46a-432e-8393-4e97ac3f1138",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n   \"recordtype\": \"customrecord_acq_lot\",\n   \"records\": [\n       {\n           \"id\": \"{{exchange_record_id}}\",\n           \"custrecord_acq_loth_zzz_zzz_login_status\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_lockout_stas\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_vrfy_hldngs\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_cntct_info\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_tax_doc_stas\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_pay_info\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_mdlin_status\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_docs4sign\": \"\",\n           \"custrecord_acq_loth_6_de1_medallion\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_esign_status\": \"\",\n           \"custrecord_ch_status\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_rcvdtimestmp\": \"\",\n           \"custrecord_acq_loth_zzz_zzz_add_doc_stat\": \"\",\n           \"custrecord_acq_loth_1_de1_shrhldemail\": \"\",\n           \"custrecord_ch_completed_datetime\": \"\"\n       }\n   ],\n   \"module\": \"generic\",\n   \"restlet\": \"crud\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer record",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n   \"recordtype\": \"customer\",\n   \"records\": [\n       {\n           \"id\":\"{{customer_id}}\",\n           \"entitystatus\": 20,\n           \"custentity_acq_deal_fx_settle_currencies\": [\"1,2,3,4\"]\n       }\n   ],\n   \"module\": \"generic\",\n   \"restlet\": \"crud\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clear document record",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n   \"recordtype\": \"customrecord_document_management\",\n   \"records\": [\n       {\n           \"id\":\"{{document_id}}\",\n           \"custrecord_doc_signed_status\": \"\",\n           \"custrecord_doc_signed_datetime\":\"\",\n           \"custrecord_doc_esign_link\":\"\",\n           \"custrecord_doc_backup_link\":\"\",\n           \"custrecord_echosign_json\":\"\",\n           \"custrecord_doc_esign_widget_id\":\"\"\n       }\n   ],\n   \"module\": \"generic\",\n   \"restlet\": \"crud\"\n}"
+				},
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create document record",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n   \"recordtype\": \"customrecord_document_management\",\n   \"records\": [\n       {\n       \t   \"\"\n           \"custrecord_doc_signed_status\": \"\",\n           \"custrecord_doc_signed_datetime\":\"\",\n           \"custrecord_doc_esign_link\":\"\",\n           \"custrecord_doc_backup_link\":\"\",\n           \"custrecord_echosign_json\":\"\",\n           \"custrecord_doc_esign_widget_id\":\"\"\n       }\n   ],\n   \"module\": \"generic\",\n   \"restlet\": \"crud\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clear exrec document status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n   \"recordtype\": \"customrecord_acq_lot\",\n   \"records\": [\n       {\n           \"id\":\"27704\",\n           \"custrecord_acq_loth_zzz_zzz_docs4sign\":\"\",\n           \"custrecord_ch_status\":\"\",\n           \"custrecord_acq_loth_zzz_zzz_rcvdtimestmp\":\"\",\n           \"custrecord_ch_completed_datetime\":\"\"\n       }\n   ],\n   \"module\": \"generic\",\n   \"restlet\": \"crud\"\n}"
+				},
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer record",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n   \"recordtype\": \"customer\",\n   \"records\": [\n       {\n           \"companyname\": \"test john fowler 4\",\n           \"customform\": 15,\n           \"entitystatus\": [\n               {\n                 \"internalid\": \"20\",\n                 \"name\": \"PROSPECT-Lead - Qualified Prospect\"\n               }\n             ]\n       }\n   ],\n   \"module\": \"generic\",\n   \"restlet\": \"crud\"\n}"
+				},
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exrec - save tax info",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "NLAuth nlauth_account={{account_id}},nlauth_email={{user}},nlauth_signature={{password}},nlauth_role={{role_id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n   \"recordtype\": \"customrecord_acq_lot\",\n   \"records\": [\n       {\n           \"id\": \"27704\",\n           \"custrecordacq_loth_2_de1_taxidmethod\": \"9\"\n       }\n   ],\n   \"module\": \"generic\",\n   \"restlet\": \"crud\"\n}"
+				},
+				"url": {
+					"raw": "https://{{subdomain}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_master_restlet&deploy=1",
+					"protocol": "https",
+					"host": [
+						"{{subdomain}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "customscript_master_restlet"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

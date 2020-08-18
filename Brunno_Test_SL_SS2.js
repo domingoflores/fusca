@@ -42,14 +42,11 @@ define(['N/encode','N/crypto','N/record' ,'N/url' ,'N/runtime', 'N/search' ,'N/t
         var objValues = {};
        objValues[""] = 0; 
        
-       pftrcdId = 4;
-       //        record.submitFields({ type:"customer" ,id:rcdId ,values:objValues });
-       //        
+       pftrcdId = 4;      
 
        var objPFTfinra = search.lookupFields({
            type: 'customrecord_pay_file_type', id: pftrcdId
-           , columns: ["custrecord_pft_finra_lic_app_req"
-           ]
+           , columns: ["custrecord_pft_finra_lic_app_req"]
        });
 
        var PFTfieldValue = objPFTfinra.custrecord_pft_finra_lic_app_req;
@@ -57,21 +54,18 @@ define(['N/encode','N/crypto','N/record' ,'N/url' ,'N/runtime', 'N/search' ,'N/t
 
 
        context.response.write("<br/><br/>ok ");
-       return;
-
-        //
+	   //return;
+	   
         rcdId = 538328;
-//        record.submitFields({ type:"customer" ,id:rcdId ,values:objValues });
-//        
-        
-        
+     
 		var objCustomerFields = search.lookupFields({type:'customer' ,id:rcdId 
             ,columns: ["custentity_acq_deal_fx_settle_currencies" 
                       ]});
 		
 		var fieldValue = objCustomerFields.custentity_acq_deal_fx_settle_currencies;
 		context.response.write("<br/><br/>fieldValue: " + JSON.stringify(fieldValue) );
-        
+	    context.response.write("<br/><br/>fieldValue: " + JSON.stringify(objCustomerFields));
+
         
 		context.response.write("<br/><br/>ok " );
 	    return;

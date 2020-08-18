@@ -1,5 +1,49 @@
+(['N/ui/message'],
+	function (msg) {
+		function showErrorMessage(msgText) {
+			var myMsg = msg.create({
+				title: "Cannot Save Record",
+				message: msgText,
+				type: msg.Type.ERROR
+			});
+			myMsg.show({
+				duration: 5000
+			});
+var customrecord_acq_lotSearchObj = search.create({
+	type: "customrecord_acq_lot",
+	filters:
+		[
+			["custrecord_acq_loth_zzz_zzz_deal", "anyof", "538328"],
+			"AND",
+			["custrecord_exrec_shrhldr_settle_curr", "anyof", "1", "31"]
+		],
+	columns:
+		[
+			search.createColumn({
+				name: "id",
+				sort: search.Sort.ASC,
+				label: "ID"
+			}),
+			search.createColumn({ name: "custrecord_exrec_shrhldr_settle_curr", label: "Shareholder Settlement Currency" }),
+			search.createColumn({ name: "custrecord_acq_loth_zzz_zzz_deal", label: "Deal" })
+		]
+});
+var searchResultCount = customrecord_acq_lotSearchObj.runPaged().count;
+log.debug("customrecord_acq_lotSearchObj result count", searchResultCount);
+customrecord_acq_lotSearchObj.run().each(function (result) {
+	// .run().each has a limit of 4,000 results
+	return true;
+});
 
-					/* ATP-1735 - start
+submit nlapi fields
+nlapiSubmitField('customrecord_acq_lot_cert_entry', 254944, 'custrecord_acq_lotce_zzz_zzz_payment', 500);
+
+11: 25: 06.061 
+
+
+
+
+/* ATP-1735 - start
 					
 	Add “Create FX Currency Contract” button to DER form.
 

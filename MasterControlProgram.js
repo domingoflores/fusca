@@ -218,6 +218,9 @@ var mcp = (function(){
 
 			public.addExecutionTime('loaded:' + call );
 
+			nlapiLogExecution('DEBUG', 'function', private._callFunction);
+			nlapiLogExecution('DEBUG', '_dataIn', JSON.stringify(private._dataIn));
+
 			response = code[ private._callFunction ]( private._dataIn );
 
 			nlapiLogExecution('DEBUG', 'response', response);
@@ -1057,6 +1060,7 @@ var mcp = (function(){
 						custentity_qx_acq_deal_domesticcheck: deal.custentity_qx_acq_deal_domesticcheck,
 						custentity_qx_acq_deal_internationalchec: deal.custentity_qx_acq_deal_internationalchec
 					},
+					paying_bank: deal.custentity_acq_deal_financial_bank_compa, // Paying Bank Company
 					lot_uuid: exchangeRecord.getId(),
 					letter_of_transmittal_certificates: [],
 					letter_of_transmittal_payments: []
@@ -2269,7 +2273,8 @@ var mcp = (function(){
 					'custentity_qx_acq_deal_internationalchec',
 					'custentity_acq_deal_lot_send_lots',
 					'custentity_acq_deal_fx_level',
-                    'custentity_acq_deal_fx_curr_cbox'
+                    'custentity_acq_deal_fx_curr_cbox',
+                    'custentity_acq_deal_financial_bank_compa'
                 ];
 
                 for (var i = 0; i < searchColumnFields.length; i++) {
@@ -2302,6 +2307,13 @@ var mcp = (function(){
 							//Convert field to true/false boolean
 							if (searchColumnFields[j] == 'custentity_acq_deal_fx_level') {
 								_deal[searchColumnFields[j]] = searchResults[0].getValue(searchColumnFields[j]) || 0;
+							}
+							//Get the Paying Bank name/title[value] and it's corresponding id
+							if (searchColumnFields[j] == 'custentity_acq_deal_financial_bank_compa'){
+								var _payingBank = {'value': searchResults[0].getText(searchColumnFields[j]) || '',
+										'id': searchResults[0].getValue(searchColumnFields[j]) || 0
+								};
+								_deal[searchColumnFields[j]] = _payingBank;
 							}
 						}
 
@@ -2477,12 +2489,17 @@ function generic_crud() {
 			} // Record fields loop
 
 			try {
-
-				nlapiLogExecution('DEBUG','BEFORE SAVE','BEFORE SAVE');
-
-				public.addExecutionTime( 'startSubmitRecord: ' + recordItem );
+				//we get the log below 
+				nlapiLogExecution('DEBUG', 'BEFORE SAVE', 'BEFORE SAVE Confirm');
+				//but never reaches this log
+				nlapiLogExecution('DEBUG','testme', 'string');
+				// nlapiLogExecution('DEBUG','testme', JSON.stringify(public));
+				// public.addExecutionTime( 'startSubmitRecord: ' + recordItem );
+				
 				recordId = nlapiSubmitRecord(record, false, true);
+				nlapiLogExecution('__submit record','id='+recordId);
 				recordIds.push( recordId );
+				nlapiLogExecution('__push','id='+recordId);
 				public.addExecutionTime( 'finishSubmitRecord: ' + recordItem );
 				nlapiLogExecution('DEBUG','id='+recordId);
 
