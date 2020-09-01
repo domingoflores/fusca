@@ -1,3 +1,74 @@
+//how to break out of a try in a try/catch
+
+
++	fromTry:
+try {
+	+		if (certsTotal != 0 && dealEventRecord["payoutType"] == derPayoutType_DataCollectionOnly) {
+		+			msg.setStatusError();
+		+			msg.addMessage("DER indicates Transaction is for data collection only but the certificate payment amount is greater than $0.00");
+		+			output.error = 'error';
+		+			output.msg = msg.getMessages();
+		+			return output;
+		+		}
+	+
+		+		if (glAccounts.length == 0 && !dealEventRecord["glAccount"]) {
+			+			// if we are here it means that there is no GL Account assigned.
+				+			// There is a special case where if all certs total zero and DER payout Type is "Data Collection Only"
+				+			// then no GL Account is required for this exchange record
+				+
+				+			if (certsTotal == 0 && dealEventRecord["payoutType"] == derPayoutType_DataCollectionOnly) { break fromTry; }
+			+
+				+			// if we are here then it is an error that there is no GL Account assigned 
+				+			msg.setStatusError();
+			+			msg.addMessage("This Exchange record is missing a GL Account on the DER record");
+			+			output.error = 'error';
+			+			output.msg = msg.getMessages();
+			+			return output;
+			+		}
+
+//postman call to create contact rec
+
+
+{
+	"recordtype": "contact",
+		"records": [
+			{
+				"entityid": "test contact bputnam 123",
+				"customform": 24,
+				"email": "bputnam@srsacquiom.com",
+				"custentity58": 2
+			}
+		],
+			"module": "generic",
+				"restlet": "crud"
+}
+
+
+
+//double for loop to identified removed values from array
+
+function haveCurrenciesBeenRemoved(newRecCurrencies, oldRecCurrencies) {
+	var removedCurrencies = [];
+	for (ix in oldRecCurrencies) {
+		var found = false;
+		for (jx in newRecCurrencies) {
+			if (newRecCurrencies[jx] == oldRecCurrencies[ix]) {
+				found = true;
+			}
+		}
+		if (!found) {
+			removedCurrencies.push(oldRecCurrencies[ix])
+		}
+		//removing USD from the removed fx currencies list
+		var index = removedCurrencies.indexOf("1");
+		if (index > -1) {
+			removedCurrencies.splice(index, 1);
+		}
+	}
+	return removedCurrencies;
+}
+
+
 (['N/ui/message'],
 	function (msg) {
 		function showErrorMessage(msgText) {
