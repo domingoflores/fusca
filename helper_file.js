@@ -1,5 +1,103 @@
-//how to break out of a try in a try/catch
+//Case switch statement for fieldchanged client functions example with try catch
+function fieldChanged(context) {
+	var REC = context.currentRecord;
+	var fieldId = context.fieldId;
+	var selectedValues = [];
+	var unfilteredIndex = null;
+	try {
+		switch (fieldId) {
+			case 'deal':
+			case 'transactiontype':
+				//for both deal and transaction type, 
+				//do not allow Unfiltered to be selected
+				//with other choices. This doubles up results incorrectly.
+				selectedValues = REC.getValue(fieldId);
+				if (selectedValues.length > 1) {	//if there are at least two selections, apply this logic 
+					unfilteredIndex = selectedValues.indexOf("Unfiltered");
+					if (unfilteredIndex >= 0) {
+						REC.setValue(
+							{
+								fieldId: fieldId
+								, value: selectedValues.splice(unfilteredIndex, 1)
+								, ignoreFieldChange: true
+							}
+						);
+					}
+				}
+				//console.log("selectedValues " + selectedValues);
+				break;
+		}
+	}
+	catch (e) {
+		log.error("PaymentFileCreation_SL_CL field changed error ", e.toString());
+		//console.log(e);
+	}
+}
 
+
+//Marko msg examples ui
+function showErrorMessage(title, msgText) {
+	myMsg = msg.create({
+		title: title,
+		message: msgText,
+		type: msg.Type.ERROR
+	});
+	myMsg.show();
+	window.scrollTo(0, 0);
+}
+if (allExcluded) {
+	showErrorMessage("Payment File Cannot be Created", "All lines are excluded.");
+	return false;
+}
+
+
+//error handling from restlet post calls
+function RecordHelper() {
+
+	// Publicly available methods
+	var module = {
+
+		/**
+		 * Writes error log message
+		 * and sends an error code to requestor
+		 * @param  {object} e Caught exception
+		 * @return {null}   void
+		 */
+		handleError: function (e) {
+			var msg = '';
+
+			if (e instanceof nlobjError) {
+
+				msg = e.getCode() + '\n' + e.getDetails();
+				nlapiLogExecution('ERROR', 'system error', e.getCode() + '\n' + e.getDetails());
+
+			} else {
+
+				for (var prop in e) {
+					msg += "Property: " + prop + ", Value: [" + e[prop] + "] -- ";
+				}
+				nlapiLogExecution('DEBUG', 'unexpected error', e);
+			}
+
+			public.setStatus('ERROR');
+			public.addMessage(1999, "System Error: " + msg);
+		},
+
+	} catch (err) {
+		var error = handleError(err);
+		nlapiLogExecution('ERROR', 'createRecord', JSON.stringify(error));
+
+		//var error = public.libraries.global.handleError( err, 'createError' );
+		//nlapiLogExecution('ERROR','createRecord',err);
+		public.setStatus('ERROR');
+		public.addMessage(1999, JSON.stringify(error));
+		nlapiLogExecution('DEBUG', 'There was an error', JSON.stringify(err));
+
+	}
+
+
+
+//how to break out of a try in a try/catch
 
 +	fromTry:
 try {
