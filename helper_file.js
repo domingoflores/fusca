@@ -36,6 +36,28 @@ function fieldChanged(context) {
 
 
 //Marko msg examples ui
+//call
+if (e_mail && !is_inactive) {
+	var dupEmailSearch = contactlib.duplicateEmailSearch(e_mail);
+
+	if (!dupEmailSearch) {
+		if (myMsg) {
+			myMsg.hide();
+		}
+//funcation
+function showErrorMessage(title, msgText) {
+	if (myMsg) {
+		myMsg.hide();
+	}
+	myMsg = msg.create({
+		title: title,
+		message: msgText,
+		type: msg.Type.ERROR
+	});
+	myMsg.show();
+	window.scrollTo(0, 0);
+}
+
 function showErrorMessage(title, msgText) {
 	myMsg = msg.create({
 		title: title,
