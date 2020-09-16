@@ -1,3 +1,49 @@
+
+//building search filters dynamically
+define(['N/search'],
+
+    function (search) {
+
+        function duplicateEmailSearch(email, contactID) {
+            var filters = [];
+
+            filters.push(search.createFilter({ name:'isinactive' ,operator:"is" ,values: "F" }));
+            filters.push(search.createFilter({ name:'email' ,operator:"is" ,values: email }));
+
+            if(contactID){
+                filters.push(search.createFilter({ name:'internalid' ,operator:"noneof" ,values:[contactID] }));
+            }
+
+            var contactSearchObj = search.create({
+                type: "contact",
+                filters: filters
+            });
+            var searchResultCount = contactSearchObj.runPaged().count;
+            log.debug("contactSearchObj result count", searchResultCount);
+            return searchResultCount;
+        }
+
+        return {
+            duplicateEmailSearch: duplicateEmailSearch
+        };
+    });
+
+//Give Access to Non-Administrators
+
+var e = nlapiLoadRecord("employee", -5);
+var roleid = 46;
+var roleCount=e.getLineItemCount('roles');
+e.setLineItemValue('roles','selectedrole',roleCount+1,roleid);
+e.setFieldValue("giveaccess", "T")
+nlapiSubmitRecord(e)
+
+//Remove Access to any user
+
+var e = nlapiLoadRecord("employee", -5);
+e.setFieldValue("giveaccess", "F")
+nlapiSubmitRecord(e)
+
+
 //Case switch statement for fieldchanged client functions example with try catch
 function fieldChanged(context) {
 	var REC = context.currentRecord;
