@@ -1,4 +1,6 @@
 
+//this is the lastest version of my helper
+
 //building search filters dynamically
 define(['N/search'],
 
