@@ -1,0 +1,7 @@
+[core]
+	editor = \"C:\\Users\\marqu\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" --wait
+[user]
+	email = bputnam@shareholderrep.com
+	name = brunno putnam
+[alias]
+	diffm = diff master --name-only
