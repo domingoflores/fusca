@@ -1,0 +1,201 @@
+CeligoUtil = {};
+CeligoUtil.getURLParameter = function(_url, _name){ //String
+    var regexS;
+    var regex;
+    var results;
+    _name = _name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    regexS = "[\\?&]" + _name + "=([^&#]*)";
+    regex = new RegExp(regexS);
+    results = regex.exec(_url);
+    if (results === null) {
+        return "";
+    }
+    else {
+        return results[1];
+    }
+}
+
+Ext.onReady(function(){
+    try {
+    
+        if (!CeligoCurrencies || !CeligoCurrencies.get607()) 
+            alert('Currencies not configured, please contact your SRS administrator.');
+        
+        var usdIndex;
+        for (var i = 0; i < CeligoCurrencies.get607().length; i++) 
+            if (CeligoCurrencies.get607()[i].internalid === '3') 
+                usdIndex = i;
+        
+        var usd = CeligoCurrencies.get607()[usdIndex];
+        
+        var url = 'https://checkout.netsuite.com/app/site/hosting/scriptlet.nl?script=38&deploy=10&compid=772390&custpage_search_type=customrecord18&custpage_search_id=542';
+        
+        if (CeligoUtil.getURLParameter(window.location.href, 'custpage_acct_type')) 
+            url += '&custpage_acct_type=' + CeligoUtil.getURLParameter(window.location.href, 'custpage_acct_type');
+        if (CeligoUtil.getURLParameter(window.location.href, 'custpage_shareholder_id')) 
+            url += '&custpage_shareholder_id=' + CeligoUtil.getURLParameter(window.location.href, 'custpage_shareholder_id');
+        if (CeligoUtil.getURLParameter(window.location.href, 'custpage_escrow_id')) 
+            url += '&custpage_escrow_id=' + CeligoUtil.getURLParameter(window.location.href, 'custpage_escrow_id');
+        
+		//alert(url);
+		
+        Ext.QuickTips.init();
+        
+        var reader = new Ext.data.JsonReader({
+            idProperty: 'id',
+            fields: [{//Date
+                name: 'custrecord65_GROUP_0',
+                //type: 'auto',
+                type: 'string',
+                dateFormat: 'm/d/Y'
+            }, {//Shareholder
+                name: 'formulatext_val_9',
+                type: 'string'
+            }, {//Escrow
+                name: 'formulatext_val_8',
+                type: 'string'
+            }, {//Account Type
+                name: 'formulatext_val_10',
+                type: 'string'
+            }, {//Lot
+                name: 'custrecord71_GROUP_4',
+                type: 'string'
+            }, {//Amount
+                name: 'custrecord70_val_5',
+                type: 'float'
+            }, {//Denomination
+                name: 'custrecord85_GROUP_6',
+                type: 'string'
+            }, {//Memo
+                name: 'custrecord72_GROUP_7',
+                type: 'string'
+            }]
+        });
+        
+        var store = new Ext.data.Store({
+            reader: reader,
+            autoDestroy: true,
+            sortInfo: {
+                field: 'custrecord65_GROUP_0',
+                direction: 'ASC'
+            },
+            autoLoad: true,
+            proxy: new Ext.data.HttpProxy({
+                url: url
+            }),
+        })
+        
+        // Basic mask:
+        var mask = new Ext.LoadMask(Ext.get('celigo-grid'), {
+            msg: "Loading...",
+            store: store
+        });
+        mask.show();
+        
+        new Ext.grid.GridPanel({
+        
+            ds: store,
+            
+            columns: [{
+                id: 'date',
+                header: 'Date',
+                width: 100,
+                sortable: true,
+                groupable: true,
+                dataIndex: 'custrecord65_GROUP_0',
+                renderer: function(v){
+                    return Ext.util.Format.date(v, 'm/d/Y');
+                }
+            }, {
+                id: 'shareholder',
+                header: 'Shareholder',
+                width: 274,
+                sortable: true,
+                groupable: true,
+                dataIndex: 'formulatext_val_9',
+                renderer: function(v){
+                    return v.substring(v.indexOf(':') + 2);
+                }
+            }, {
+                id: 'escrow',
+                header: 'Escrow',
+                width: 150,
+                sortable: true,
+                groupable: true,
+                dataIndex: 'formulatext_val_8',
+            }, {
+                id: 'escrow_acct',
+                header: 'Escrow Account',
+                width: 150,
+                sortable: true,
+                groupable: true,
+                dataIndex: 'formulatext_val_10'
+            }            /*, {
+             id: 'lot',
+             header: 'Lot',
+             width: 50,
+             sortable: true,
+             groupable: true,
+             dataIndex: 'custrecord71_GROUP_4',
+             }*/
+            , {
+                header: 'Amount',
+                width: 100,
+                sortable: true,
+                groupable: true,
+                dataIndex: 'custrecord70_val_5',
+                summaryType: 'sum',
+                renderer: function(value, metaData, record, rowIndex, colIndex, store){
+                    if (record.data.custrecord85_GROUP_6 === '1') 
+                        return Ext.util.Format.usMoney(value);
+                    
+                    return value;
+                }
+            }, {
+                id: 'denom',
+                header: 'Denomination',
+                width: 100,
+                sortable: true,
+                groupable: true,
+                dataIndex: 'custrecord85_GROUP_6',
+                renderer: function(value, metaData, record, rowIndex, colIndex, store){
+                    for (var i = 0; i < CeligoCurrencies.get607().length; i++) 
+                        if (CeligoCurrencies.get607()[i].custrecord_ticker_currency_val_1 === value) 
+                            return CeligoCurrencies.get607()[i].name_val_0;
+                }
+            }, {
+                id: 'memo',
+                header: 'Memo',
+                width: 150,
+                sortable: true,
+                dataIndex: 'custrecord72_GROUP_7',
+            }],
+            
+            frame: true,
+            width: 1024,
+            collapsible: true,
+            animCollapse: false,
+            trackMouseOver: true,
+            title: 'Transaction Details',
+            iconCls: 'icon-grid',
+            enableDragDrop: true,
+            stripeRows: true,
+            autoHeight: true,
+            shadow: true,
+            renderTo: 'celigo-grid',
+            deferRowRender: true
+        });
+        
+        //hide loader
+        document.getElementById('loader').style.display = 'none';
+        
+    } 
+    catch (e) {
+        //hide loader
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('message').innerHTML = '<p>No transactions found.</p>';
+    }
+    
+});
+
+

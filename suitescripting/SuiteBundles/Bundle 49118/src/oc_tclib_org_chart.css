@@ -1,0 +1,242 @@
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+
+.org-chart td {
+    xtext-align: center;
+    vertical-align: top;
+    xborder: 1px solid silver;
+    border: 0px solid transparent;
+}
+
+.upperLeft {
+    dbg_background-color: #CCFFFF;
+}
+
+.parent-line-left {
+    dbg_background-color: #FFCCFF;
+}
+
+.org-chart .node-selected {
+    background-color: LightSkyBlue;
+}
+
+.org-chart .node {
+    border: 1px solid silver;
+    padding: 3px;
+    display: inline-block;
+    background-color: #efefef;
+    width: 90px;
+    heightx: 110px;
+    font-size: 11px;
+    font-family: tahoma;
+    border-radius: 5px;
+    border-color: #6699FF;
+    text-align: center;
+}
+
+.org-chart-node-td {
+    padding: 0;
+}
+
+.org-chart .nodeContainer {
+    margin-left: 6px;
+    margin-right: 5px;
+    margin-top: 0px;
+    width: 90px;
+    border: 0px dotted red;
+    xposition: inline-block;
+    text-align: center;
+    dbg_background-color: #FFAAFF
+}
+
+.org-chart-drag-background {
+    background-color: silver;
+    border-radius: 5px;
+    margin-bottom: 1px;
+}
+
+.xnode:hover {
+    background-color: #99CCFF;
+}
+
+.org-chart .top {
+    border-top: 1px solid gray;
+}
+
+.org-chart .right {
+    border-right: 1px solid gray;
+}
+
+#tmpTable {
+    padding: 0px;
+    border: none;
+    widthx: 100%;
+}
+
+.org-chart-expand-or-collapse {
+    border: 1px dotted silver;
+    overflow: hidden;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: none;
+    font-size: 1.0em;
+    color: dimgray;
+    margin-left: 0px;
+    background-color: white;
+    visibility: hidden;
+}
+
+.org-chart-expand-or-collapse:hover {
+    background-color: #99CCFF;
+}
+
+.org-chart-table {
+    xmargin: 10px;
+}
+
+.org-chart-view-supervisor {
+    font-size: 20px;
+    margin-left: 0px;
+    position: relative;
+    padding-left: 5px;
+    padding-right: 5px;
+    top: 31px;
+    text-decoration: none;
+    borderx: 1px solid silver;
+    background-color: transparent;
+    color: dimgray;
+}
+
+.org-chart-show-subordinates {
+    font-size: 20px;
+    top: 0px;
+    margin-left: 3px;
+    position: relative;
+    text-decoration: none;
+    borderx: 1px solid silver;
+    background-color: white;
+    color: dimgray;
+    display: none;
+}
+
+.org-chart-view-supervisor:hover,.org-chart-show-subordinates:hover {
+    background-color: #99CCFF;
+}
+
+.emplabel {
+    font: Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.empdetail {
+    font: Tahoma;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.org-chart-avatar {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.org-chart-details {
+    height: 100%;
+    clear: both;
+    background-color: transparent;
+}
+
+.org-chart-menu {
+    background-color: #D3E1F1;
+    border-style: solid;
+    border-width: thin;
+    border-color: #99BBE8;
+}
+
+.org-chart-menu-label {
+    font-family: Tahoma;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.org-chart-menu-search-employee input {
+    font-family: Tahoma;
+    font-size: 11px;
+    font-weight: normal;
+    padding-right: 15px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #99BBE8;
+}
+
+.org-chart-menu-search-employee a {
+    overflow: visible;
+    position: relative;
+    float: right;
+    cursor: pointer;
+    font: bold 11px 'Tahoma';
+    left: -10px;
+    top: 3px;
+}
+
+/* Needed to prevent wrapping of contents. */
+.truncate {
+    width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.org-chart-page {
+    background-color: transparent;
+    display: none;
+}
+
+.clear_input {
+    width: 12px;
+    height: 12px;
+    display: inline;
+    position: absolute;
+    left: 412px;
+    top: 2px;
+    text-align: center;
+    color: black;
+    font-size: 11px;
+    font-family: tahoma;
+    cursor: pointer;
+}
+
+#org-chart-menu-table div {
+    white-space: nowrap;
+}
+
+#org-chart-menu td {
+    padding: 0px;
+}
+
+#org-chart-menu div,#org-chart-menu span,#org-chart-menu a {
+    line-height: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+#org-chart-zoom a {
+    text-decoration: none;
+    position: relative;
+    top: 1px;
+}
+
+#ocTextFieldSearchEmployee::-ms-clear {
+	width : 0;
+	height : 0;
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+
+<pdf>
+
+<head>
+
+             
+
+    <macrolist>
+
+        <macro id="nlheader">
+
+            <table style="width: 100%; height: 5px;  overflow: hidden; display: table;"><tr>
+
+              <td><span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;">Opportunity Digest - Summary of Changes Made Yesterday</span></span></td>
+
+              </tr></table>
+
+        </macro>
+
+    </macrolist>
+
+ 
+
+  
+
+    <style type="text/css">
+
+table { font-size: 10pt; table-layout: fixed; width: 100%; }
+
+th { font-weight: bold; font-size: 12pt; vertical-align: middle; background-color: #e3e3e3; color: #333333;  }
+
+tr {  font-size: 12pt;  color: #333333;  }
+
+td { font-family:Arial,Helvetica,sans-serif;font-size: 8pt;  color: #333333; }
+
+b { font-weight: bold;  }
+
+    
+
+</style>
+
+</head>
+
+<body header="nlheader" header-height="5%" padding="0.5in 0.5in 0.5in 0.5in" size="Letter">
+
+ 
+
+  
+
+ <!-- initiate -->
+
+  <#assign runningopp="">
+
+   
+
+     <!-- start looping -->
+
+    <#list results as result>
+
+ 
+
+      <!-- if it is not the same reassign the runningopp value and print the header, otherwise just skip this and print the detail-->
+
+<#if runningopp !=result.internalid>
+
+<#assign runningopp=result.internalid>
+
+ 
+
+      <table>
+
+       <tr><td></td></tr>
+
+       <tr><td></td></tr>
+
+       <tr><td><span style="font-family:Arial,Helvetica,sans-serif;font-size: 9pt; color: #3355FF; "> ${result.location} #${result.tranid}  : ${result.title} : ${result.salesrep} : ${result.leadsource} : ${result.custbody_dsi_opp_product_line}  </span>
+
+        </td></tr>
+
+      </table>
+
+</#if>
+
+      <table><tr>
+
+        <td>${result.systemNotes.date}</td>
+
+                  <td>${result.systemNotes.field}</td>
+
+                  <td>${result.systemNotes.oldvalue}</td>
+
+                  <td>${result.systemNotes.newvalue}</td>
+
+              </tr></table>
+
+     
+
+              </#list>
+
+</body>
+
+</pdf>

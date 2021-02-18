@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PaymentBatch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProcessAsBatch>true</ProcessAsBatch>
+  <Batch>
+    <Id>{{batchId}}</Id>
+  </Batch>
+  {{~#each payers}}
+  <Payer>
+	<!-- <Id>Company ID?</Id> -->
+	<Id><Value>{{this.name}}</Value></Id>
+	<Name>{{this.name}}</Name>
+	<Address>
+		{{~#each this.address.addressLines}}
+		<Line{{math @index "+" 1}}>{{this}}</Line{{math @index "+" 1}}>
+		{{~/each}}
+		<City>{{this.address.city}}</City>
+		<State>{{this.address.state}}</State>
+		<PostalCode>{{this.address.zip}}</PostalCode>
+	</Address>
+	{{~#each accounts}}
+	<Bank>
+		<Id><Value>{{this.id}}</Value></Id>
+		{{~#each this.payees}}
+		<Payee>
+			<Id>{{this.id}}</Id>
+			<Name1>{{this.name}}</Name1>
+			<CorporateAddress>
+				{{~#each this.address.addressLines}}
+				<Line{{math @index "+" 1}}>{{this}}</Line{{math @index "+" 1}}>
+				{{~/each}}
+				<City>{{this.address.city}}</City>
+				<State>{{this.address.state}}</State>
+				<PostalCode>{{this.address.zip}}</PostalCode>
+			</CorporateAddress>
+			<RemitAddress>
+				{{~#each this.address.addressLines}}
+				<Line{{math @index "+" 1}}>{{this}}</Line{{math @index "+" 1}}>
+				{{~/each}}
+				<City>{{this.address.city}}</City>
+				<State>{{this.address.state}}</State>
+				<PostalCode>{{this.address.zip}}</PostalCode>
+			</RemitAddress>
+			{{~#each this.payments}}
+			<Payment>
+				<ExternalId>{{this.externalId}}</ExternalId>
+				<Number>{{this.checkNumber}}</Number>
+				<Date>{{toISO8601Date this.date}}</Date>
+				<Amount>{{this.amount}}</Amount>
+				{{~#if this.memo}}
+				<Memo>{{this.memo}}</Memo>
+				{{~/if}}
+				<ExpenseDate>{{toISO8601Date this.date}}</ExpenseDate>
+				{{~#each this.stublines}}
+				<Invoice>
+					<Number>{{this.refnum}}</Number>
+					<Date>{{toISO8601Date this.date}}</Date>
+					<GrossAmount>{{this.grossAmount}}</GrossAmount>
+					<NetAmount>{{this.amount}}</NetAmount>
+					<DiscountAmount>{{this.discountAmount}}</DiscountAmount>
+					<Description>{{this.memo}}</Description>
+				</Invoice>
+				{{~/each}}
+			</Payment>
+			{{~/each}}
+		</Payee>
+		{{~/each}}
+	</Bank>
+	{{~/each}}
+  </Payer>
+  {{~/each}}
+</PaymentBatch>

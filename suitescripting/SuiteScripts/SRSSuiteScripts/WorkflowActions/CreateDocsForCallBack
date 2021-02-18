@@ -1,0 +1,74 @@
+/**
+ * Module Description
+ * Built to be used as a custom workflow action to create Document (Custom) records to be viewed on the Call Back Dashboard.
+ * The Call Back Dashboard is a saved search with the ID of 3296
+ * 
+ * Version    Date            Author           Remarks
+ * 1.00       10 Aug 2017     Scott			   Initial try at gettin gthis done.  Mitch and Austin have challenged me to do this in an hour.
+ * 1.01       10 Aug 2017     Scott			   Took a little over an hour.  
+ * 1.01       07 Feb 2018     Scott			   Added a command to set the value of a new field on the Document (Custom) record - Related Release Approval Process record
+ * 
+ *
+ */
+
+
+
+//Now we have the Array of esignedFiles
+//Time to Loop through and start creating Document (Custom) records
+function createNewDocRecords(){
+	//Get some initial params for this function to even begin to work and make sense
+	var recType = nlapiGetRecordType();
+	var recId = nlapiGetRecordId();
+	var newRec = nlapiGetNewRecord();
+	//What's the Deal?  Oh here it is...
+	var dealName = newRec.getFieldValue('custrecord_escrow_payment_deal');
+	var releaseRecordName = newRec.getFieldValue('name');
+	
+	var esignedFiles = [];
+	var esignedFileNames = [];
+
+	//Check to see which docs are esigned and construct the esignedFiles and esignedFileNames Arrays
+	if(newRec.getFieldValue('custrecord_escrow_payment_doc1_esign') == 2){
+		esignedFiles.push(newRec.getFieldValue('custrecord_escrow_payment_doc1'));
+		esignedFileNames.push(newRec.getFieldText('custrecord_escrow_payment_doc1'));
+	}
+	if(newRec.getFieldValue('custrecord_escrow_payment_doc2_esign') == 2){
+		esignedFiles.push(newRec.getFieldValue('custrecord_escrow_payment_doc2'));
+		esignedFileNames.push(newRec.getFieldText('custrecord_escrow_payment_doc2'));
+	}
+	if(newRec.getFieldValue('custrecord_escrow_payment_doc3_esign') == 2){
+		esignedFiles.push(newRec.getFieldValue('custrecord_escrow_payment_doc3'));
+		esignedFileNames.push(newRec.getFieldText('custrecord_escrow_payment_doc3'));
+	}
+	if(newRec.getFieldValue('custrecord_escrow_payment_doc4_esign') == 2){
+		esignedFiles.push(newRec.getFieldValue('custrecord_escrow_payment_doc4'));
+		esignedFileNames.push(newRec.getFieldText('custrecord_escrow_payment_doc4'));
+	}
+	if(newRec.getFieldValue('custrecord_escrow_payment_doc5_esign') == 2){
+		esignedFiles.push(newRec.getFieldValue('custrecord_escrow_payment_doc5'));
+		esignedFileNames.push(newRec.getFieldText('custrecord_escrow_payment_doc5'));
+	}
+	if(newRec.getFieldValue('custrecord_escrow_payment_doc6_esign') == 2){
+		esignedFiles.push(newRec.getFieldValue('custrecord_escrow_payment_doc6'));
+		esignedFileNames.push(newRec.getFieldText('custrecord_escrow_payment_doc6'));
+	}
+
+	var callBackRecord;
+	var callBackRecordId;
+	for (var i = 0; i < esignedFiles.length; i++) {
+		callBackRecord = nlapiCreateRecord('customrecord_document_management');
+		callBackRecord.setFieldValue('altname', releaseRecordName + ': ' + esignedFileNames[i]);  //Name
+		callBackRecord.setFieldValue('custrecord_escrow_customer', dealName);  //Deal
+		callBackRecord.setFieldValue('custrecord_doc_date', newRec.getFieldValue('custrecord_escrow_payment_date'));  //Document Date
+		callBackRecord.setFieldValue('custrecorddoc_pend_call_back', 'T');  //Document Pending Call Back
+		callBackRecord.setFieldValue('custrecord_dm_status', '4');  //Status
+		callBackRecord.setFieldValue('custrecord_doc_type', '13');  //Doc Type
+		callBackRecord.setFieldValue('custrecord_file', esignedFiles[i]);  //File
+		callBackRecord.setFieldValue('custrecord_related_release_rec', recId);  //Release Approval Process Record ID
+		callBackRecordId = nlapiSubmitRecord(callBackRecord, false, true);
+	}
+}
+
+
+
+

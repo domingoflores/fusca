@@ -1,0 +1,191 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+ 
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       03 Mar 2017     jmarimla         Initial
+ * 2.00       17 Mar 2017     jmarimla         Top WSRP portlet css
+ * 3.00       22 Mar 2017     jmarimla         WSO breakdown popup
+ * 4.00       31 Mar 2017     jmarimla         Status breakdown
+ * 5.00       05 May 2017     jmarimla         Integration portlet css
+ * 6.00       12 May 2017     jmarimla         Settings css
+ * 7.00       16 May 2017     jmarimla         Top WSO css
+ * 8.00       19 May 2017     jmarimla         WSRP popup css
+ * 9.00       24 May 2019     erepollo         Changed header BG to white
+ *
+ */
+ 
+/*
+ * Settings
+ */
+.apm-wsa-settings-daterange {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}
+
+.apm-wsa-settings-daterange-dialog.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-wsa-settings-daterange-dialog .buttons {
+    padding: 5px;
+    width: 100%;
+}
+
+.apm-wsa-settings-daterange-dialog .buttons * {
+    display: inline-block;
+}
+
+.apm-wsa-settings-daterange-dialog .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+.apm-wsa-settings-daterange-dialog .note {
+    padding: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.apm-wsa-dialog-customdaterange.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-wsa-dialog-customdaterange .buttons {
+    padding: 5px;
+    width: 100%;
+}
+
+.apm-wsa-dialog-customdaterange .buttons * {
+    display: inline-block;
+}
+
+.apm-wsa-dialog-customdaterange .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+/*
+ * Top WSO
+ */
+.apm-wsa-container-wsocharts {
+    padding: 10px 10px 10px 10px;
+    background-color: #ffffff;
+    width: 100%;
+} 
+
+.apm-wsa-container-wsocharts .chart-row {
+    width: 100%;
+}
+
+.apm-wsa-container-wsocharts .chart-outer {
+    height: 300px;
+    display: inline-block;
+    width: 50%;
+    padding: 5px 5px 5px 5px;
+}
+
+.apm-wsa-container-wsocharts .chart {
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #666666;
+}
+ 
+/*
+ * Top WSRP
+ */
+
+.apm-wsa-topwsrp-toolbar {
+    height: 39px;
+    background: #ffffff;
+    padding: 4px 10px;
+}
+
+.apm-wsa-topwsrp-chart {
+    height: 350px;
+    width: 100%;
+}
+
+/* 
+ * Dialog
+ */
+.apm-wsa-dialog-wsologs .grid {
+    width: 100%;
+    height: 420px;
+}
+
+.apm-wsa-dialog-wsobreakdown .chart {
+    width: 100%;
+    height: 420px;
+}
+
+/*
+ * Links
+ */
+.apm-wsa-a {
+    color:#255599;
+    text-decoration:none;
+}
+
+.apm-wsa-a:hover {
+    text-decoration:underline;
+}
+
+/*
+ * Overview Grid
+ */ 
+.apm-wsa-grid-wsrpdetails-icon {
+    width: 28px;
+    height: 28px;
+    background-image: none;
+}
+
+.apm-wsa-grid-wsrpdetails-icon.showicon{
+    background-image: url(ns_images/details.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+/*
+ * Status Breakdown
+ */ 
+.apm-wsa-statusbreakdown-chart {
+    display: inline-block;
+    height: 350px;
+    width: 50%;
+}
+
+/*
+ * Integration
+ */ 
+.apm-wsa-integration-chart {
+    display: inline-block;
+    height: 350px;
+}
+
+.apm-wsa-integration-chart.panel-1 {
+    width: 30%;
+}
+
+.apm-wsa-integration-chart.panel-2 {
+    width: 70%;
+}
+
+/*
+ * WSRP Popup
+ */ 
+.apm-wsa-dialog-wsrpcharts .toolbar {
+    height: 39px;
+    background: #e7e7e7;
+    padding: 4px 10px;
+}
+
+.apm-wsa-dialog-wsrpcharts .chart {
+    width: 100%;
+    height: 420px;
+}

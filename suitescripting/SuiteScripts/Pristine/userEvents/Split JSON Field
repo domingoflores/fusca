@@ -1,0 +1,76 @@
+/**
+ *@NApiVersion 2.x
+ *@NScriptType UserEventScript
+ *
+ *
+ * Module Description
+ * Built to be the USER EVENT script that runs on Document (Custom) records.
+ * 
+ * Version    Date            Author           Remarks
+ * 1.00       28 Jun 2018     Scott			   Added the splitJSON() function.  This function splits the value of a JSON field 
+ * 											   on the Document (Custom) record into 4 equal parts of 1000 characters into four 
+ * 											   JSON fields on the record.
+ * 
+ */
+
+define(['N/record','N/search', 'N/runtime', 'N/error', 'N/ui/serverWidget'],
+
+function(record,search, runtime, error, serverWidget){
+
+	function beforeSubmit(context){
+		//CALL THE FUNCTION THAT SPLITS THE VALUE IN THE custrecord_echosign_json FIELD INTO 
+		//FOUR STRINGS OF 1000 CHARACTERS
+		splitJSON(context);
+	}
+
+	function splitJSON(context){
+		//GET THE RECORD SO WE CAN GET THE VALUE OF THE JSON FIELD TO SPLIT AND SET THE VALUES OF THE SMALLER JSON FIELDS
+		var newRec = context.newRecord;
+		//GET THE VALUE OF THE FIELD TO SPLIT
+		var masterJSON = newRec.getValue('custrecord_echosign_json');
+		//CHECK TO SEE IF THERE IS ACTUALLY A VALUE TO SPLIT
+		//if((masterJSON != null) && (masterJSON != '')){
+		var splitMasterJSON = null;	
+		if(masterJSON){
+			//SET A NEW VARIABLE AS AN OBJECT USING REGEX
+			splitMasterJSON = masterJSON.match(/.{1,1000}/g);
+			//SET THE VALUES OF EACH OF THE JSON FIELDS WITH 1000 CHARACTERS OF THE MASTER JSON FIELD
+			//IF THERE ARE NOT ANY CHARACTERS REMAINING TO SET IN THE FIELD, THE FIELD WILL BE SET TO BLANK
+			setFieldValues(newRec, splitMasterJSON);	
+		}else{
+			//ONLY WAY TO GET IN HERE IS TO HAVE A BLANK MASTERJSON (NO VALUE IN THE FIELD)
+			//SET THE SPLITMASTERJSON TO BE BLANK IN ORDER TO BLANK OUT ALL THE SPLITJSON FIELDS
+			splitMasterJSON = ['','','',''];
+			//SET THE VALUE OF EACH SPLIT FIELD TO BE BLANK
+			setFieldValues(newRec, splitMasterJSON);
+		}		
+	}
+
+	function setFieldValues(newRec, splitMasterJSON){
+	 	newRec.setValue({
+		    fieldId: 'custrecord_echosign_json_split_1',
+		    value: splitMasterJSON[0],
+		    ignoreFieldChange: true
+		});
+		newRec.setValue({
+		    fieldId: 'custrecord_echosign_json_split_2',
+		    value: splitMasterJSON[1],
+		    ignoreFieldChange: true
+		});
+		newRec.setValue({
+		    fieldId: 'custrecord_echosign_json_split_3',
+		    value: splitMasterJSON[2],
+		    ignoreFieldChange: true
+		});
+		newRec.setValue({
+		    fieldId: 'custrecord_echosign_json_split_4',
+		    value: splitMasterJSON[3],
+		    ignoreFieldChange: true
+		});
+	 }
+
+	return {
+		beforeSubmit : beforeSubmit
+	};
+
+});

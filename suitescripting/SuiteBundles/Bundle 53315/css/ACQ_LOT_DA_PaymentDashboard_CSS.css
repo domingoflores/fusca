@@ -1,0 +1,271 @@
+.container-fixed {
+  margin: 0 auto;
+  max-width: 960px;
+}
+.pay-header {
+	background-color: #CCCCCC;
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 0 0;
+    border-width: 1px;
+	border-style: solid;
+    box-shadow: none;
+}
+.pay-subheader {
+	padding: 2px 0px 0px 2px;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	border-color: #DDDDDD;
+	
+}
+.pay-middle {
+
+	padding: 0px 0px;
+}
+
+.pay-footer {
+	background-color: #CCCCCC;
+    border-color: #DDDDDD;
+    border-radius: 0 0 4px 4px;
+    border-width: 1px;
+	border-style: solid;
+    box-shadow: none;
+	padding: 5px 0 0 0;
+}
+.pay-method {
+	padding: 4px 0px 2px 15px;
+}
+.pay-method > .table-condensed > thead > tr > th, .pay-method > .table-condensed > tbody > tr > th, .pay-method > .table-condensed > tfoot > tr > th, .pay-method > .table-condensed > thead > tr > td, .pay-method > .table-condensed > tbody > tr > td, .pay-method > .table-condensed > tfoot > tr > td {
+	padding: 0px;
+	border-top: 0px;
+}
+.lot-info {
+	padding: 4px 0px 2px 15px;
+
+}
+.lot-info > .table-condensed > thead > tr > th, .lot-info > .table-condensed > tbody > tr > th, .lot-info > .table-condensed > tfoot > tr > th, .lot-info > .table-condensed > thead > tr > td, .lot-info > .table-condensed > tbody > tr > td, .lot-info > .table-condensed > tfoot > tr > td {
+	padding: 2px;
+	border-top: 0px;
+}
+.cert-info {
+	padding: 4px 0px 2px 15px;
+}
+.pay-approve {
+	text-align: right;
+	padding: 15px 15px 0 0;
+}
+.create-da-results > .table-condensed > thead > tr > th, .create-da-results > .table-condensed > tbody > tr > th, .create-da-results > .table-condensed > tfoot > tr > th, .create-da-results > .table-condensed > thead > tr > td, .create-da-results > .table-condensed > tbody > tr > td, .create-da-results > .table-condensed > tfoot > tr > td {
+	padding: 3px 0 0 0;
+	border: 0px;
+	border-top: 0px;
+	border-bottom: 0px;
+}
+.btn {
+	color: red;
+}
+
+.btn.btn-control {
+	color:#428bca;
+	background:#f9f9f9;
+	border:1px solid #ddd;
+}
+
+input.btn-filter{
+	margin-right: 10px;
+}
+
+input.btn-filter:last-child{
+	margin-right: 0px;
+}
+
+#filterdashboard,
+#refreshdashboard {
+	margin-right:10px;
+}
+
+#payment-dashboard th label,
+#payment-dashboard th label span,
+#payment-dashboard th label input {
+	font-weight:normal;
+	margin:0;
+	vertical-align:baseline;
+}
+
+#payment-dashboard th label span {
+	margin-right:4px;
+}
+
+#payment-dashboard th:last-child,
+#payment-dashboard td:last-child {
+	text-align:right;
+}
+
+.yellow {
+	background-color: #FFFFE6;
+}
+.green {
+	background-color: #E0FFE0;
+}
+#feeamt .fa.fa-pencil-square {
+	margin-left:5px;
+}
+#feeamt {
+	cursor:pointer;
+}
+
+.valid{
+	color:green;
+}
+
+.invalid,
+.error {
+	color:red;
+}
+
+.dashboard-button-container{
+	display: inline;
+	margin:20px 0px;
+}
+
+#payment-dashboard{
+	margin:0px;
+}
+
+#payment-dashboard tbody tr{
+	position:relative;
+}
+
+#payment-dashboard tbody tr td {
+	vertical-align: middle;
+}
+
+#payment-dashboard tbody tr.error td {
+	border-top:1px solid red;
+}
+
+#payment-dashboard tbody tr .fee-container {
+	cursor:pointer;
+}
+
+#payment-dashboard tbody tr .fee-container input {
+	max-width:75px;
+}
+
+#payment-dashboard tbody tr td .approval-code {
+	display:inline-block;
+	margin:5px 0px;
+}
+
+#payment-dashboard tbody tr td .approval-status {
+	display:inline-block;
+	margin:5px 0px;
+}
+
+#payment-dashboard tbody tr td .approval-status.approval-error {
+	cursor:pointer;
+	color:red;
+	padding:0px 5px;
+	margin:0px;
+	margin-left:5px;
+	display:inline-block;
+	background-color:red;
+	border:1px solid darkred;
+	border-radius:2px;
+}
+
+#payment-dashboard tbody tr td .approval-error .error {
+	cursor:pointer;
+	color:#FFF;
+}
+
+#payment-dashboard tbody tr.active td {
+	background-color:#CCC;
+}
+
+#payment-dashboard tbody tr.active td.approval-column {
+	position:relative;
+}
+
+#payment-dashboard .overlay {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+
+#payment-dashboard thead th.fee-header {
+	min-width:75px;
+}
+
+/*Custmo override to hide close icon in top right corner*/
+.ui-dialog .ui-dialog-titlebar-close {
+  visibility: hidden;
+}
+
+.ui-dialog .ui-dialog-title {
+	color: #1c94c4;
+}
+
+.feeamt .fee {
+	margin-right:5px;
+}
+
+/*
+* CSS for loading icon
+*/
+.custom-loader,
+.custom-loader:before,
+.custom-loader:after {
+  background: #777;
+  -webkit-animation: customLoad1 1s infinite ease-in-out;
+  animation: customLoad1 1s infinite ease-in-out;
+  width: 8px;
+  height: 10px;
+}
+.custom-loader:before,
+.custom-loader:after {
+  position: absolute;
+  top:0;
+  content: '';
+}
+.custom-loader:before {
+  left: -1.5em;
+}
+.custom-loader {
+  text-indent: -9999em;
+  margin: 0px auto;
+  position: relative;
+  font-size: 10px;
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+  top:10px;
+}
+.custom-loader:after {
+  left: 1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+@-webkit-keyframes customLoad1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0 #777;
+    height: 10px;
+  }
+  40% {
+    box-shadow: 0 -4px #777;
+    height: 20px;
+  }
+}
+@keyframes customLoad1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0 #777;
+    height: 10px;
+  }
+  40% {
+    box-shadow: 0 -4px #777;
+    height: 20px;
+  }
+}

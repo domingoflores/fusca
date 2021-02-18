@@ -1,0 +1,1002 @@
+/**
+ * © 2014 NetSuite Inc.  User may not copy, modify, distribute, or re-bundle or otherwise make available this code. 
+ */
+
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       14 May 2014     maquino          Initial version
+ * 2.00       15 May 2014     maquino          Updated CSS for panel layout
+ * 3.00       19 May 2014     maquino          Updated color for panel layout
+ * 4.00       20 May 2014     jmarimla         Removed whitespace above application; Added css for tooltips
+ * 5.00       22 May 2014     jmarimla         Added CSS for buttons; Changes panel header colors
+ * 6.00       30 May 2014     jmarimla         Added CSS for highcharts tooltip
+ * 7.00       02 Jun 2014     jmarimla         Added CSS for links
+ * 8.00       27 Jun 2014     jmarimla         Added CSS for filter panel
+ * 9.00       01 Jul 2014     jmarimla         Added netsuite copyright
+ *                                             Added css for filters panel fields
+ * 10.00      02 Jul 2014     jmarimla         Added css for filter buttons
+ * 11.00      04 Jul 2014     rwong            Added css for grid and updated css for links.
+ * 12.00      04 Jul 2014     jmarimla         Added css for date field and date picker
+ * 13.00      14 Jul 2014     jmarimla         Added css to fix large whitespace in version 14.2
+ * 14.00      15 Jul 2014     jmarimla         Changed icons for expand/collapse for grid
+ *                                             Changed background image settings for calendar icon
+ * 15.00      17 Jul 2014     jmarimla         Added css for 14.2 blue button
+ * 16.00      18 Jul 2014     jmarimla         Added css for button menu and menu items
+ * 17.00      22 Jul 2014     jmarimla         Changed css for chart and grid headers
+ * 18.00      24 Jul 2014     jmarimla         Changed icon for expand/collapse urls
+ * 19.00      25 Jul 2014     jmarimla         Added css for IE compatibility
+ * 20.00      28 Aug 2014     jmarimla         Added css for pop up windows
+ * 21.00      04 Sep 2014     jmarimla         Adjusted app position
+ * 22.00      05 Sep 2014     rwong            Added css for script instance status bar and adjusted the columns of the grid.
+ * 23.00      08 Sep 2014     rwong            Added css for script instance status bar hover and adjust the script instance status bar css.
+ * 24.00      12 Sep 2014     jmarimla         14.2 reskin of pagination
+ * 25.00      12 Sep 2014     rwong            Adjusted display summary label and field for ssi pop-up
+ * 26.00      18 Sep 2014     rwong            Changed the text color for the status in the script instance status bar.
+ *                                             Update copyright notice
+ * 27.00      18 Sep 2014     jmarimla         Added chart default font
+ *                                             Changed sort icons
+ * 28.00      22 Oct 2014     jmarimla         Added border to grid
+ *
+ */
+
+/*
+=================================================
+  Suitelet Whitespace Correction
+=================================================
+*/
+
+#main_form {
+    padding-bottom: 0px !important;
+}
+
+#pageContainer #body {
+    min-height: 0px !important;
+}
+
+#pageContainer #body #div__body {
+    padding-bottom: 0px !important;
+}
+
+#psgp-sqm-main {
+    top: 0px;
+}
+
+/*
+=================================================
+  Global
+=================================================
+*/
+
+.sqm-panel * {
+    font-family: Serif;
+}
+
+.x4-panel-body {
+    border-color: #DDDDDF;
+}
+
+.x4-panel-header-default-top {
+    background-image: none;
+}
+
+.x4-panel-header {
+    background-image: none;
+    background-color: #DDDDDD;
+    border-color: #EEEEEE;
+}
+
+.x4-nlg .x4-panel-header-default-top {
+    background-image: none;
+}
+
+.x4-nlg .x4-panel-header {
+    background-image: none;
+    background-color: #DDDDDD;
+    border-color: #EEEEEE;
+}
+
+.sqm-border-center .x4-panel-header-text-container-default, .sqm-grid-panel .x4-panel-header-text-container-default {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: none;
+  line-height: normal;
+  padding-left: 12px;
+}
+
+.sqm-grid-panel-collapsed .x4-panel-header-text-container-default {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: none;
+  line-height: 15px;
+}
+
+.sqm-border-center .x4-panel-header-default-horizontal {
+    padding: 0 0 0 0;
+}
+
+.sqm-border-center .x4-header-text {
+    margin: 0 0 0 5;
+}
+
+.sqm-a {
+    color: #255599;
+    text-decoration: none;
+}
+
+.sqm-a:hover {
+    text-decoration: underline;
+}
+
+/*
+=================================================
+  Filters Panel
+=================================================
+*/
+.sqm-filters-panel {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.sqm-filters-panel-body {
+    padding: 10px 21px 10px 21px;
+}
+
+.sqm-filters-panel .x4-tool {
+    left: 0px !important;
+    top: 2px !important;
+}
+
+.sqm-filters-panel .x4-panel-header {
+    background-color: #EAEAEA;
+    background-image: none;
+}
+
+.x4-nlg .sqm-filters-panel .x4-panel-header {
+    background-color: #EAEAEA;
+    background-image: none;
+}
+
+.sqm-filters-panel .x4-panel-header-text-container-default {
+    padding-left: 16px;
+    color: #333333;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.sqm-display-label {
+    color: #666666;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.sqm-display-field {
+    color: #545454;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.sqm-input-field {
+    color: #262626;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.sqm-filters-panel .x4-tool-img {
+    width: 12px;
+    height: 12px;
+    background-position: 0px 0px !important;
+}
+
+.sqm-filters-panel .x4-tool-collapse-top {
+    background-image: url(ns_images/da-collapse.png);
+}
+
+.sqm-filters-panel .x4-tool-expand-bottom {
+    background-image: url(ns_images/da-expand.png);
+}
+
+.sqm-grid-panel .x4-tool-img, .sqm-grid-panel-collapsed .x4-tool-img {
+    width: 14px;
+    height: 14px;
+    background-position: 0px 0px !important;
+}
+
+.sqm-grid-panel .x4-tool-collapse-right {
+    background-image: url(ns_images/icon_collapse_twirl_white.png);
+}
+
+.sqm-grid-panel-collapsed .x4-tool-expand-left {
+    background-image: url(ns_images/icon_expand_twirl_white.png);
+}
+
+.x4-form-arrow-trigger, .x4-form-time-trigger {
+    background: url(ns_images/dropdown.png);
+    background-position: -2px 3px !important;
+    height: 26px;
+    border: none;
+}
+
+.sqm-input input[type="text"] {
+    border: none !important;
+}
+
+.sqm-input input[type="text"]:hover:enabled {
+    border: none !important;
+    box-shadow: none;
+}
+
+.sqm-input input[type="text"]:enabled:active, .sqm-input input[type="text"]:enabled:focus {
+    border: none !important;
+    box-shadow: none;
+}
+
+.x4-form-text {
+    background: #FFFFFF;
+    height: 26px;
+    border-color: #CCCCCC;
+    border-right-width: 0px;
+}
+
+.sqm-input .x4-form-item-body {
+    border: 1px solid #CCCCCC;
+}
+
+.sqm-input-over .x4-form-item-body {
+    border-color: #8C8C8C;
+}
+
+.sqm-input .x4-form-trigger-wrap-focus {
+    border-color : #408FDB;
+}
+
+.x4-boundlist {
+    border: 1px solid #408FDB;
+}
+
+.x4-boundlist-item {
+    color: #262626;
+    font-size: 14px;
+    font-weight: normal;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.x4-boundlist-item-over {
+    color: #FFFFFF;
+    background-color: #607799;
+    border-color: #607799;
+
+}
+
+.x4-boundlist-selected {
+    color: #FFFFFF;
+    background-color: #607799;
+    border-color: #607799;
+}
+
+/*
+=================================================
+  Date Field
+=================================================
+*/
+.sqm-date-field {
+    color: #262626;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.sqm-date-form input[type="text"] {
+    border: 1px solid #CCCCCC !important;
+    background: #FFFFFF;
+    height: 27px;
+}
+
+.sqm-date-form input[type="text"]:hover:enabled {
+    border: 1px solid #8C8C8C !important;
+}
+
+.sqm-date-form input[type="text"]:enabled:active, .sqm-date-form input[type="text"]:enabled:focus {
+    border: 1px solid #408FDB !important;
+    box-shadow: none;
+}
+
+.x4-form-date-trigger {
+    background-image: url(ns_images/calendar.png);
+    background-position: 0px 3px !important;
+    background-repeat: no-repeat;
+    height: 27px;
+    width: 24px;
+    border-color: #CCCCCC;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 3px;
+    margin-left: 6px;
+}
+
+.sqm-date-field-over .x4-form-date-trigger {
+    border-color: #8C8C8C;
+}
+
+.x4-form-trigger-wrap-focus .x4-form-date-trigger {
+    border-color : #408FDB;
+    background-image: url(ns_images/widget-calendar-down.png);
+    background-position: 1px 3px !important;
+    background-repeat: no-repeat;
+    background-color: #607799;
+}
+
+.x4-form-trigger-wrap-focus .x4-form-text {
+    border-color : #408FDB;
+}
+
+.x4-datepicker {
+    border: 1px solid #408FDB;
+    box-shadow: 0px 0px 2px 2px #408FDB;
+}
+
+.x4-datepicker-header {
+    background-image: none !important;
+    background-color: #ebf0f2 !important;
+}
+
+.x4-datepicker-arrow {
+    padding: 9px;
+    background-color: #ebf0f2;
+}
+
+a.x4-datepicker-arrow:hover {
+    border: 1px solid #8C8C8C;
+    border-radius: 4px;
+}
+
+.x4-datepicker-prev {
+    background-image: url(ns_images/previous.png);
+    background-position: -1px -1px;
+}
+
+.x4-datepicker-next {
+    background-image: url(ns_images/next.png);
+    background-position: -1px -1px;
+}
+
+.x4-datepicker-month .x4-btn {
+    pointer-events: none;
+    cursor: default;
+}
+
+.x4-datepicker-month .x4-btn-button {
+    height: 22px;
+}
+
+.x4-datepicker-month .x4-btn-inner{
+    color: #5981B3;
+    font-size: 14px;
+    font-weight: 550;
+    padding: 1px 0px 1px 0px;
+}
+
+.x4-datepicker-column-header {
+    border-color: #FFFFFF;
+}
+
+.x4-datepicker-column-header-inner {
+    background-color: #FFFFFF;
+    color: #555555;
+    font-size: 10px;
+    padding: 10px 10px 0px 0px;
+}
+
+.x4-datepicker-cell {
+    border: none;
+}
+
+.x4-datepicker-date {
+    color: #555555;
+    font-size: 14px;
+    text-align: center;
+    padding: 0px 2px 0px 0px;
+}
+
+.x4-datepicker-inner {
+    padding: 0px 11px 11px 11px;
+}
+
+.x4-datepicker-today {
+    border: none;
+}
+
+.x4-datepicker-today .x4-datepicker-date {
+    font-weight: bold;
+}
+
+.x4-datepicker-selected {
+    border: 1px solid #607799;
+    border-radius: 4px;
+}
+
+.x4-datepicker-selected .x4-datepicker-date {
+    background-color: #607799;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+a.x4-datepicker-date:hover {
+    color: #408FDB;
+    font-weight: bold;
+    background-color: #BEE0ED;
+    border-radius: 4px;
+}
+
+/*
+=================================================
+  Tooltip
+=================================================
+*/
+
+.sqm-tooltip, .sqm-tooltip * {
+    font: inherit;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-wrap: normal;
+}
+
+.sqm-tooltip .header {
+    background-color: #DCE1E8;
+}
+
+.sqm-tooltip .header div {
+    vertical-align: center;
+    margin: 3px 10px;
+    font-weight: bold;
+    color: #383838;
+}
+
+.sqm-tooltip .subheader {
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+    padding-left: 10px;
+}
+
+.sqm-tooltip .label {
+    text-align: right;
+    color: #666;
+}
+
+.sqm-tooltip .value {
+    text-align: center;
+    padding-left: 10px;
+}
+
+.sqm-tooltip .summary td {
+    border-top: 1px solid #666;
+}
+
+.x4-tip-tl, .x4-tip-tr, .x4-tip-tc {
+    background: transparent !important;
+}
+
+.x4-tip-tl {
+    float: right;
+    margin-top: 3px;
+}
+
+.x4-tip {
+    border-top: 1px solid #a6a6a6 !important;
+}
+
+.x4-tip-default {
+    background-color: #fff;
+}
+
+.sqm-hc-tooltip * {
+    font-size: 11px;
+}
+
+.sqm-hc-tooltip .label {
+    text-align: right;
+    color: #666;
+}
+
+.sqm-hc-tooltip .value {
+    text-align: center;
+    padding-left: 10px;
+}
+
+/*
+=================================================
+  Buttons
+=================================================
+*/
+.sqm-button-split {
+    background-image: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.sqm-button-split .x4-btn-inner {
+    font-size: 14px;
+    font-weight: 550;
+    padding: 0px 12px;
+}
+
+.sqm-button-split-gray {
+    background-color: #fafafa; /* Old browsers */
+    background-image: -moz-linear-gradient(top,  #fafafa 0%, #e5e5e5 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top,  #fafafa 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top,  #fafafa 0%,#e5e5e5 100%); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top,  #fafafa 0%,#e5e5e5 100%); /* IE10+ */
+    background-image: linear-gradient(to bottom,  #fafafa 0%,#e5e5e5 100%); /* W3C */
+    border:1px solid #b2b2b2;
+    color:#333333;
+}
+
+.sqm-button-split-gray.x4-btn-over {
+    background: #e5e5e5;
+}
+
+.sqm-button-split-gray.x4-btn-focus {
+    background: #b2b2b2;
+    border-color: #408FDB;
+}
+
+.sqm-button-split-menu .x4-menu-body {
+    background-color: #FFFFFF;
+    border: none;
+    padding: 0 0;
+}
+
+.sqm-button-split-menu .x4-menu-item-text {
+    color: #262626;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.sqm-button-split-menu .x4-menu-item {
+    border: 1px solid #408FDB;
+    background-color: #FFFFFF;
+}
+
+.sqm-button-split-menu .x4-menu-item-active {
+    background-color: #607799;
+    background-image: none;
+}
+
+.sqm-button-split-menu .x4-menu-item-active * {
+    color: #FFFFFF;
+}
+
+/*
+=================================================
+  Toolbar
+=================================================
+*/
+.sqm-toolbar {
+    background: #fff;
+}
+
+/*
+=================================================
+  Buttons
+=================================================
+*/
+
+.sqm-rect-btn {
+    background-image: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0;
+}
+
+.sqm-rect-btn .x4-btn-inner{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sqm-rect-btn-blue.x4-btn-default-small {
+    border: 1px solid #125ab2;
+    background-color: #4c9dff;
+    background-image: -webkit-linear-gradient(top, #4c9dff, #187bf2); /* For Chrome and Safari */
+    background-image: -moz-linear-gradient(top, #4c9dff, #187bf2); /* For old Fx (3.6 to 15) */
+    background-image: -ms-linear-gradient(top, #4c9dff, #187bf2); /* For pre-releases of IE 10*/
+    background-image: -o-linear-gradient(top, #4c9dff, #187bf2); /* For old Opera (11.1 to 12.0) */
+    background-image: linear-gradient(to bottom, #4c9dff, #187bf2); /* Standard syntax; must be last */
+}
+
+.sqm-rect-btn-blue .x4-btn-inner {
+    color: #ffffff;
+}
+
+.sqm-rect-btn-blue.x4-btn-focus {
+    box-shadow: 0px 0px 2px 2px #408FDB;
+}
+
+.sqm-rect-btn-blue.x4-btn-over {
+    background-image: none;
+    background-color: #1467cc;
+}
+
+.sqm-rect-btn-blue.x4-btn-pressed {
+    background-image: none;
+    background-color: #004599;
+}
+
+.sqm-rect-btn-gray {
+    border-color: #848784;
+    background-color: #e0e0e0;
+    background-image: -webkit-linear-gradient(top, #ffffff, #e0e0e0) !important; /* For Chrome and Safari */
+    background-image: -moz-linear-gradient(top, #ffffff, #e0e0e0) !important; /* For old Fx (3.6 to 15) */
+    background-image: -ms-linear-gradient(top, #ffffff, #e0e0e0) !important; /* For pre-releases of IE 10*/
+    background-image: -o-linear-gradient(top, #ffffff, #e0e0e0) !important; /* For old Opera (11.1 to 12.0) */
+    background-image: linear-gradient(to bottom, #ffffff, #e0e0e0) !important; /* Standard syntax; must be last */
+}
+
+.sqm-menu-btn {
+    background: transparent;
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/portlet-menu.png);
+    background-position: 5px 7px;
+    background-repeat: no-repeat;
+}
+
+.x4-nlg .sqm-menu-btn {
+    background: transparent;
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/portlet-menu.png);
+    background-position: 5px 7px;
+    background-repeat: no-repeat;
+}
+
+.sqm-menu-btn .x4-btn-arrow {
+    background-image: none;
+}
+
+
+/*
+=================================================
+  Grid
+=================================================
+*/
+.sqm-grid {
+    border: #DDDDDD 1px solid;  
+}
+
+.sqm-grid .x4-grid-cell {
+    font-size: 14px;
+    color: #333333;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    border-bottom-width: 1px;
+}
+
+.sqm-grid .x4-column-header {
+    border-right: 0px;
+}
+
+.sqm-grid .x4-column-header-inner {
+    background: #e5e5e5;
+    font-size: 11px;
+    color: #555555;
+    text-transform: uppercase;
+}
+
+.sqm-grid .x4-grid-td {
+    vertical-align: text-top;
+}
+
+.sqm-grid .x4-grid-row-over .x4-grid-td {
+    background-color: #fefeee;
+}
+
+.sqm-grid .x4-grid-header-ct {
+    border-color: #B2B2B2 #DDDDDD;
+}
+
+.sqm-grid .x4-column-header-sort-ASC .x4-column-header-text {
+    background-image: url('ns_images/sort_up.png');
+}
+
+.sqm-grid .x4-column-header-sort-DESC .x4-column-header-text {
+    background-image: url('ns_images/sort_down.png');
+}
+/*
+=================================================
+  Menu
+=================================================
+*/
+.sqm-menu .x4-menu-body {
+    background-color: #F8F9FD;
+    border: 1px solid #B2B2B2;
+    padding: 0 0;
+}
+
+.sqm-menu .x4-menu-item-text {
+    color: #607998;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.sqm-menu .x4-menu-item {
+    border: none;
+    background-color: #F8F9FD;
+}
+
+.sqm-menu-over *{
+    background-color: #DFE4EB;
+    color: #607998;
+}
+
+.sqm-menu .x4-menu-item-link {
+    padding: 0px 0px 0px 10px;
+}
+
+.sqm-menu .x4-menu-item-icon {
+    width: 0px;
+}
+
+/*
+=================================================
+  Pop up
+=================================================
+*/
+.sqm-window * {
+    font-family: Serif;
+}
+
+.sqm-window {
+    border-radius: 0px;
+    border-color: #DDDDDF;
+}
+
+.sqm-window .x4-header * {
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.sqm-window .x4-tool-img {
+    background-image: url(ns_images/portlet-header-x.png);
+    background-color: transparent;
+    width: 13px;
+    height: 14px;
+    background-position: 0px 0px !important;
+}
+
+.x4-window-header {
+    background-image: none;
+    background-color: #DDDDDD;
+    border-radius: 0px;
+}
+
+.sqm-window-body {
+    background-color: #FFFFFF;
+}
+
+.sqm-display-summary-label {
+    color: #666666;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.sqm-display-summary-field {
+    color: #262626;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/*
+=================================================
+  Scheduled Script Status Bar
+=================================================
+*/
+.sqm-grid-script-instances {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.sqm-grid-script-instances td {
+    border: 1px solid gray;
+}
+
+.sqm-grid-script-instances-complete {
+    background-color: #83D97A;
+    color: #FFFFFF;
+}
+
+.sqm-grid-script-instances-processing {
+    background-color: #7AB0D9;
+    color: #FFFFFF;
+}
+.sqm-grid-script-instances-pending {
+    background-color: #F3EB5E;
+    color: #FFFFFF;
+}
+.sqm-grid-script-instances-retry {
+    background-color: #FAB65D;
+    color: #FFFFFF;
+}
+.sqm-grid-script-instances-failed {
+    background-color: #D95E5E;
+    color: #FFFFFF;
+}
+.sqm-grid-script-instances-total {
+    background-color: #E0E0E0;
+}
+
+/*
+=================================================
+  Scheduled Script Status Bar Hover
+=================================================
+*/
+.sqm-grid-script-instances-hover {
+    width: 100px;
+}
+
+.sqm-grid-script-instances-hover td {
+    border: 1px solid white;
+    width: 18px;
+    height: 13px;
+}
+
+.sqm-grid-script-instances-title-hover {
+    text-decoration: underline;
+}
+
+.sqm-grid-script-instances-complete-hover {
+    background-color: #83D97A;
+}
+
+.sqm-grid-script-instances-processing-hover {
+    background-color: #7AB0D9;
+}
+.sqm-grid-script-instances-pending-hover {
+    background-color: #F3EB5E;
+}
+.sqm-grid-script-instances-retry-hover {
+    background-color: #FAB65D;
+}
+.sqm-grid-script-instances-failed-hover {
+    background-color: #D95E5E;
+}
+.sqm-grid-script-instances-total-hover {
+    background-color: #E0E0E0;
+}
+/*
+=================================================
+  Paging Toolbar
+=================================================
+*/
+.sqm-toolbar-grid {
+    background: #E0E6EF;
+    padding-right: 30px;
+}
+
+.sqm-toolbar-paging {
+    background: #E0E6EF;
+}
+
+.sqm-toolbar-paging .x4-btn-button {
+    height: 22px;
+}
+
+.sqm-toolbar-paging .x4-btn-toolbar {
+    opacity: 1;
+}
+
+.sqm-toolbar-paging .x4-btn-inner {
+    width: 22px;
+    line-height: 22px;
+}
+
+.sqm-toolbar-paging .x4-btn-icon-el {
+    width: 22px;
+    height: 22px;
+}
+
+.sqm-toolbar-paging .x4-tbar-page-prev {
+    background-image: url(ns_images/da-prevwhite.png);
+}
+
+.sqm-toolbar-paging .x4-tbar-page-next {
+    background-image: url(ns_images/da-nextwhite.png);
+}
+
+.sqm-toolbar-paging .x4-btn-over {
+    border: 1px dotted #000;
+    background: none;
+}
+
+.sqm-toolbar-paging .x4-btn-pressed {
+    border: 1px dotted #000;
+    background: none;
+}
+
+.sqm-toolbar-paging .x4-btn-focus {
+    border: 1px dotted #000;
+    background: none;
+}
+.sqm-display-totalpages-label {
+    color: #555555;
+    font-size: 14px;
+}
+
+.sqm-display-totalpages-field {
+    color: #555555;
+    font-size: 14px;
+}
+
+.sqm-input-pagingdropdown-field {
+    color: #262626;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    background: none;
+    border: none;
+}
+
+.sqm-input-pagingdropdown input[type="text"] {
+    border: none !important;
+}
+
+.sqm-input-pagingdropdown input[type="text"]:enabled:active, .sqm-input-pagingdropdown input[type="text"]:enabled:focus {
+    border: none !important;
+    box-shadow: none;
+}
+
+.sqm-input-pagingdropdown input[type="text"]:hover:enabled {
+    border: none !important;
+}
+
+.sqm-input-pagingdropdown .x4-form-arrow-trigger {
+    border: none;
+    margin-top: 4px;
+}
+
+.sqm-input-pagingdropdown .x4-trigger-cell {
+    background: none;
+}
+
+.sqm-list-pagingdropdown {
+    border-color: #B2B2B2;
+    border-width: 1px;
+}
+
+.sqm-list-pagingdropdown .x4-boundlist-item {
+    text-align: right;
+    background-color: #FAFAFA;
+    border-color: #FAFAFA;
+}
+
+.sqm-list-pagingdropdown .x4-boundlist-item-over {
+    color: #FFFFFF;
+    background-color: #B2B2B2;
+    border-color: #B2B2B2;
+}
+
+.sqm-list-pagingdropdown .x4-boundlist-selected {
+    font-weight: bold;
+    color: #262626;
+    background-color: #FAFAFA;
+    border-color: #FAFAFA;
+}
+
+/*
+=================================================
+  Charts
+=================================================
+*/
+
+.sqm-chart-subpanel * {
+    font-family: Arial;
+}

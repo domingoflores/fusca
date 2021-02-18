@@ -1,0 +1,294 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       18 Nov 2016     jmarimla         Initial
+ * 2.00       25 Nov 2016     jmarimla         Queue utilization dialog
+ * 3.00       06 Dec 2016     jmarimla         Count dialog
+ * 4.00       12 Dec 2016     jmarimla         Css for global settings
+ * 5.00       10 Jan 2017     jmarimla         Missing '.'
+ * 6.00       16 Jan 2017     rwong            Added css for queue status
+ * 7.00       25 Jan 2017     rwong            Queue Status update
+ *
+ */
+
+/*
+ * Settings
+ */
+.apm-sqm-settings-daterange {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}
+
+.apm-sqm-settings-daterange-dialog.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-sqm-settings-daterange-dialog .buttons {
+    padding: 5px;
+    width: 100%;
+}
+
+.apm-sqm-settings-daterange-dialog .buttons * {
+    display: inline-block;
+}
+
+.apm-sqm-settings-daterange-dialog .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+.apm-sqm-settings-daterange-dialog .note {
+    padding: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.apm-sqm-dialog-customdaterange.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-sqm-dialog-customdaterange .buttons {
+    padding: 5px;
+    width: 100%;
+}
+
+.apm-sqm-dialog-customdaterange .buttons * {
+    display: inline-block;
+}
+
+.apm-sqm-dialog-customdaterange .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+/*
+ * Queue Status
+ */
+
+.apm-sqm-queuestatus-row {
+    width: '100%';
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+
+.apm-sqm-queuestatus-queue {
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */
+    flex: 1;
+    position: relative;
+    height: 60px;
+}
+
+.apm-sqm-queuestatus-queue div{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #555555;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: #83d97a;
+}
+
+.apm-sqm-queuestatus-queue.busy div{
+    background-color: #7ab0d9;
+}
+
+.apm-sqm-queuestatus-queue div {
+    text-align: center;
+    font-size: 14px;
+    color: #555555;
+}
+
+.apm-sqm-tooltip-queuestatus.ui-tooltip {
+    box-shadow: 0px;
+    border: 1px solid #555555;
+}
+
+.apm-sqm-tooltip-queuestatus * {
+    text-align: center;
+    font-size: 12px;
+    color: #555555;
+}
+
+.apm-sqm-tooltip-queuestatus .deployment-name {
+    font-weight: 600;
+}
+
+.apm-sqm-tooltip-queuestatus .start-date {
+    font-weight: 600;
+}
+
+.apm-sqm-tooltip-queuestatus .label {
+    font-weight: 400;
+}
+
+.apm-sqm-queuestatus-legend {
+    width: 100%;
+    height: 30px;
+    position: relative;
+}
+
+.apm-sqm-queuestatus-legend-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.apm-sqm-queuestatus-legend .color {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #999999;
+}
+
+.apm-sqm-queuestatus-legend .color-available {
+    background-color: #83d97a;
+}
+
+.apm-sqm-queuestatus-legend .color-busy {
+    background-color: #7ab0d9;
+}
+
+.apm-sqm-queuestatus-legend .label {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #555555;
+    padding: 0px 4px;
+}
+
+.apm-sqm-queuestatus-date {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 10px;
+}
+
+.apm-sqm-queuestatus-date span{
+    font-size: 14px;
+    color: #555555;
+    font-weight: 400;
+}
+
+/*
+ * Queue Utilization Dialog
+ */
+.apm-sqm-dialog-queueutil .divider {
+    height: 28px;
+    width: 100%;
+    background-color: #d7e3f2;
+}
+
+.apm-sqm-dialog-queueutil .statements {
+    width: 100%;
+    padding: 10px;
+}
+
+.apm-sqm-dialog-queueutil .item {
+    width: 100%;
+    height: 28px;
+    text-align: center;
+}
+
+.apm-sqm-dialog-queueutil .item:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.apm-sqm-dialog-queueutil .item .value {
+    font-size: 12px;
+    color: #062c5f;
+    font-weight: 600;
+}
+
+.apm-sqm-dialog-queueutil .item .description {
+    font-size: 12px;
+    color: #555555;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/*
+ * Count Dialog
+ */
+.apm-sqm-dialog-count .grid {
+    width: 100%;
+    height: 420px;
+}
+
+/**
+* Circle
+*/
+
+.apm-sqm-circle {
+    position: relative;
+    font-size: 25px;
+    font-weight: bold;
+    width: 45px;
+    height: 45px;
+    border-radius: 25px;
+    border: 1px solid #c0c0c0;
+}
+
+.apm-sqm-circle-available {
+    background-color: #83d97a;
+}
+
+.apm-sqm-circle-busy {
+    background-color: #7ab0d9;
+}
+
+.apm-sqm-circle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+}
+
+.apm-sqm-header {
+    margin: 0px 0px 0px 10px;
+}
+
+.apm-sqm-header-text {
+    font-weight: normal;
+    color: #000000;
+    height: 15px;
+}
+
+.apm-sqm-header-text-first {
+    font-weight: bold;
+}
+
+.apm-sqm-header-text-lastrun {
+    color: #c0c0c0;
+}
+
+.apm-sqm-header-more {
+    cursor: pointer;
+    margin: 0px 0px 0px 55px;
+}
+
+.apm-sqm-section {
+    padding: 5px;
+    color: #1c94c4;
+    border-bottom: 1px solid #ccc;
+}
+
+.apm-sqm-content {
+    overflow: hidden;
+    display: -webkit-flex;
+    display: flex;
+}

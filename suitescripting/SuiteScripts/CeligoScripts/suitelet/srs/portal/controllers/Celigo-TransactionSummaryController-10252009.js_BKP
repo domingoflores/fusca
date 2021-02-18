@@ -1,0 +1,410 @@
+Ext.onReady(function(){
+    try {
+        //debugger;
+        Ext.QuickTips.init();
+        
+        var xg = Ext.grid;
+        
+        var reader = new Ext.data.JsonReader({
+            idProperty: 'id',
+            fields: [{//Escrow Company
+                name: 'companyname_val_0',
+                type: 'string'
+            }, {//Escrow Account
+                name: 'formulatext_val_1',
+                type: 'string'
+            }, {//Shareholder
+                name: 'companyname_val_2',
+                type: 'string'
+            }, {//Denomination
+                name: 'custrecord85_val_3',
+                type: 'string'
+            }, {//Deposits
+                name: 'formulanumeric_val_4',
+                type: 'float'
+            }, {//Holdbacks
+                name: 'custrecord75_val_5',
+                type: 'float'
+            }, {//Investment Earnings
+                name: 'custrecord76_val_6',
+                type: 'float'
+            }, {//Claims Paid
+                name: 'custrecord77_val_7',
+                type: 'float'
+            }, {//Expenses
+                name: 'custrecord78_val_8',
+                type: 'float'
+            }, {//Disbursements
+                name: 'custrecord103_val_9',
+                type: 'float'
+            }, {//Pending Claims
+                name: 'formulacurrency_val_10',
+                type: 'float'
+            }, {//Balance
+                name: 'formulanumeric_val_11',
+                type: 'float'
+            }, {//Balance to be converted
+                name: 'formulanumeric_val_11',
+                type: 'float'
+            }, {//Account Type Id
+                name: 'custrecord68_val_12',
+                type: 'string'
+            }, {//Shareholder Id
+                name: 'custrecord66_val_13',
+                type: 'string'
+            }, {//Escrow Id
+                name: 'custrecord67_val_14',
+                type: 'string'
+            }]
+        });
+        
+        if (!CeligoCurrencies || !CeligoCurrencies.get607()) 
+            alert('Currencies not configured, please contact your SRS administrator.');
+        
+        var shareSummaries = [];
+        var shareGrids = [];
+        var conversionFactor;
+        var emptyDataSets = 0;
+        
+        for (var i = 0; CeligoCurrencies.get607 && i < CeligoCurrencies.get607().length; i++) {
+        
+            var data = eval('CeligoDataCurr' + CeligoCurrencies.get607()[i].custrecord_ticker_currency_val_1).get290();
+            
+            if (!data || data.length < 1) {
+                emptyDataSets++;
+                continue;
+            }
+            
+            if (CeligoCurrencies.get607()[i].custrecord_ticker_currency_val_1 === '1') {
+            
+                // utilize custom extension for Group Summary
+                var usdSummary = new Ext.ux.grid.GroupSummary();
+                
+                new xg.GridPanel({
+                
+                    ds: new Ext.data.GroupingStore({
+                        reader: reader,
+                        data: data,
+                        sortInfo: {
+                            field: 'companyname_val_0',
+                            direction: 'ASC'
+                        },
+                        groupField: 'companyname_val_2'
+                    }),
+                    
+                    columns: [                    /*{
+                     header: 'Escrow',
+                     id: 'escrow',
+                     //width: 70,
+                     sortable: true,
+                     groupable: true,
+                     dataIndex: 'companyname_val_0',
+                     summaryType: 'count',
+                     hideable: false
+                     }, */
+                    {
+                        header: 'Escrow Account',
+                        id: 'escrow_acct',
+                        width: 175,
+                        sortable: true,
+                        groupable: true,
+                        dataIndex: 'formulatext_val_1',
+                        renderer: function(value, metaData, record, rowIndex, colIndex, store){
+                            //debugger;
+                            if (record.data.custrecord68_val_12 && record.data.custrecord66_val_13 && record.data.custrecord67_val_14) 
+                                return '<a href="https://checkout.netsuite.com/app/site/hosting/scriptlet.nl?script=42&deploy=1&custpage_acct_type=' + record.data.custrecord68_val_12 + '&custpage_escrow_id=' + record.data.custrecord66_val_13 + '&custpage_shareholder_id=' + record.data.custrecord67_val_14 + '" >' + value + '</a>';
+                            else 
+                                return '<a href="https://checkout.netsuite.com/app/site/hosting/scriptlet.nl?script=42&deploy=1">' + value + '</a>';
+                        }
+                    }, {
+                        header: 'Acct',
+                        width: 110,
+                        sortable: true,
+                        groupable: true,
+                        dataIndex: 'companyname_val_2',
+                        renderer: function(value, metaData, record, rowIndex, colIndex, store){
+                            if (record.data.companyname_val_0) 
+                                return record.data.companyname_val_0 + ' - ' + value;
+                            else 
+                                return value;
+                        }
+                    }, {
+                        header: 'Deposits',
+                        width: 110,
+                        sortable: true,
+                        dataIndex: 'formulanumeric_val_4',
+                        renderer: Ext.util.Format.usMoney,
+                        summaryType: 'sum',
+                        summaryRenderer: Ext.util.Format.usMoney
+                    }, {
+                        header: 'Holdbacks',
+                        width: 110,
+                        sortable: true,
+                        dataIndex: 'custrecord75_val_5',
+                        renderer: Ext.util.Format.usMoney,
+                        summaryType: 'sum',
+                        summaryRenderer: Ext.util.Format.usMoney
+                    }, {
+                        header: 'Invst Earnings',
+                        width: 110,
+                        sortable: true,
+                        dataIndex: 'custrecord76_val_6',
+                        renderer: Ext.util.Format.usMoney,
+                        summaryType: 'sum',
+                        summaryRenderer: Ext.util.Format.usMoney
+                    }, {
+                        header: 'Claims Paid',
+                        width: 110,
+                        sortable: true,
+                        dataIndex: 'custrecord77_val_7',
+                        renderer: Ext.util.Format.usMoney,
+                        summaryType: 'sum',
+                        summaryRenderer: Ext.util.Format.usMoney
+                    }, {
+                        header: 'Expenses',
+                        width: 100,
+                        sortable: true,
+                        renderer: Ext.util.Format.usMoney,
+                        dataIndex: 'custrecord78_val_8',
+                        summaryType: 'sum',
+                        summaryRenderer: Ext.util.Format.usMoney
+                    }, {
+                        header: 'Disbursements',
+                        width: 110,
+                        sortable: true,
+                        dataIndex: 'custrecord103_val_9',
+                        renderer: Ext.util.Format.usMoney,
+                        summaryType: 'sum',
+                        summaryRenderer: Ext.util.Format.usMoney
+                    }, {
+                        header: 'Balance',
+                        width: 110,
+                        sortable: true,
+                        groupable: true,
+                        renderer: Ext.util.Format.usMoney,
+                        summaryType: 'sum',
+                        summaryRenderer: Ext.util.Format.usMoney,
+                        dataIndex: 'formulanumeric_val_11'
+                    }, {
+                        header: '<i>Pending Claims</i>',
+                        width: 110,
+                        sortable: true,
+                        groupable: false,
+                        dataIndex: 'formulacurrency_val_10',
+                        renderer: Ext.util.Format.usMoney,
+                        summaryType: 'sum',
+                        summaryRenderer: Ext.util.Format.usMoney
+                    }],
+                    
+                    view: new Ext.grid.GroupingView({
+                        forceFit: true,
+                        showGroupName: true,
+                        hideGroupedColumn: true,
+                        autoFill: true
+                    }),
+                    
+                    sm: new Ext.grid.RowSelectionModel({
+                        singleSelect: true,
+                    }),
+                    
+                    plugins: usdSummary,
+                    
+                    /*tbar: [{
+                     text: 'Show/Hide Summaries',
+                     tooltip: 'Toggle the visibility of summary row',
+                     handler: function(){
+                     usdSummary.toggleSummaries();
+                     }
+                     }],*/
+                    frame: true,
+                    width: 1024,
+                    collapsible: true,
+                    animCollapse: true,
+                    trackMouseOver: true,
+                    title: CeligoCurrencies.get607()[i].custrecord_ticker_currency_txt_1 + ' Denominated',
+                    iconCls: 'icon-grid',
+                    enableDragDrop: true,
+                    stripeRows: true,
+                    autoHeight: true,
+                    shadow: true,
+                    renderTo: 'celigo-grid',
+                    deferRowRender: false
+                });
+            }
+            else {
+            
+                eval('function conv(v){v = v * ' + CeligoCurrencies.get607()[i].custrecord_usd_quote_val_3 + ';v = (Math.round((v-0)*100))/100; v = (v == Math.floor(v)) ? v + ".00" : ((v*10 == Math.floor(v*10)) ? v + "0" : v); v = String(v); var ps = v.split(\'.\'); var whole = ps[0]; var sub = ps[1] ? \'.\'+ ps[1] : \'.00\';  var r = /(\d+)(\d{3})/; while (r.test(whole)) {whole = whole.replace(r, \'$1\' + \',\' + \'$2\');}v = whole + sub;if(v.charAt(0) == \'-\'){return \'-$\' + v.substr(1); } return "$" +  v;}');
+                
+                var cols = [{
+                    header: 'Escrow',
+                    id: 'escrow',
+                    //width: 70,
+                    sortable: true,
+                    groupable: true,
+                    dataIndex: 'companyname_val_0',
+                    summaryType: 'count',
+                    hideable: false
+                }, {
+                    header: 'Escrow Account',
+                    id: 'escrow_acct',
+                    width: 275,
+                    sortable: true,
+                    groupable: true,
+                    dataIndex: 'formulatext_val_1',
+                    renderer: function(value, metaData, record, rowIndex, colIndex, store){
+                        //debugger;
+                        if (record.data.custrecord68_val_12) 
+                            return '<a href="https://checkout.netsuite.com/app/site/hosting/scriptlet.nl?script=42&deploy=1&custpage_acct_type=' + record.data.custrecord68_val_12 + '" >' + value + '</a>';
+                        else 
+                            return '<a href="https://checkout.netsuite.com/app/site/hosting/scriptlet.nl?script=42&deploy=1">' + value + '</a>';
+                    }
+                }, {
+                    header: 'Deposits',
+                    width: 110,
+                    sortable: true,
+                    dataIndex: 'formulanumeric_val_4',
+                    renderer: Ext.util.Format.usMoney,
+                    summaryType: 'sum',
+                    summaryRenderer: Ext.util.Format.usMoney
+                }, {
+                    header: 'Holdbacks',
+                    width: 110,
+                    sortable: true,
+                    dataIndex: 'custrecord75_val_5',
+                    renderer: Ext.util.Format.usMoney,
+                    summaryType: 'sum',
+                    summaryRenderer: Ext.util.Format.usMoney
+                }, {
+                    header: 'Invst Earnings',
+                    width: 110,
+                    sortable: true,
+                    dataIndex: 'custrecord76_val_6',
+                    renderer: Ext.util.Format.usMoney,
+                    summaryType: 'sum',
+                    summaryRenderer: Ext.util.Format.usMoney
+                }, {
+                    header: 'Claims Paid',
+                    width: 110,
+                    sortable: true,
+                    dataIndex: 'custrecord77_val_7',
+                    renderer: Ext.util.Format.usMoney,
+                    summaryType: 'sum',
+                    summaryRenderer: Ext.util.Format.usMoney
+                }, {
+                    header: 'Expenses',
+                    width: 100,
+                    sortable: true,
+                    renderer: Ext.util.Format.usMoney,
+                    dataIndex: 'custrecord78_val_8',
+                    summaryType: 'sum',
+                    summaryRenderer: Ext.util.Format.usMoney
+                }, {
+                    header: 'Disbursements',
+                    width: 110,
+                    sortable: true,
+                    dataIndex: 'custrecord103_val_9',
+                    renderer: Ext.util.Format.usMoney,
+                    summaryType: 'sum',
+                    summaryRenderer: Ext.util.Format.usMoney
+                }, {
+                    header: 'Pending Claims',
+                    width: 110,
+                    sortable: true,
+                    groupable: false,
+                    dataIndex: 'formulacurrency_val_10',
+                    renderer: Ext.util.Format.usMoney,
+                    summaryType: 'sum',
+                    summaryRenderer: Ext.util.Format.usMoney
+                }, {
+                    header: 'Balance',
+                    width: 110,
+                    sortable: true,
+                    groupable: true,
+                    renderer: Ext.util.Format.usMoney,
+                    summaryType: 'sum',
+                    summaryRenderer: Ext.util.Format.usMoney,
+                    dataIndex: 'formulanumeric_val_11'
+                }, {
+                    header: 'USD Balance',
+                    width: 100,
+                    sortable: true,
+                    groupable: true,
+                    summaryType: 'sum',
+                    summaryRenderer: conv,
+                    dataIndex: 'formulanumeric_val_11',
+                    renderer: conv
+                }];
+                
+                var summary = new Ext.ux.grid.GroupSummary();
+                
+                // utilize custom extension for Group Summary
+                shareSummaries[CeligoCurrencies.get607()[i].custrecord_ticker_currency_val_1] = new Ext.ux.grid.GroupSummary();
+                
+                shareGrids[CeligoCurrencies.get607()[i].custrecord_ticker_currency_val_1] = new xg.GridPanel({
+                
+                    ds: new Ext.data.GroupingStore({
+                        reader: reader,
+                        data: d,
+                        sortInfo: {
+                            field: 'formulatext_GROUP_1',
+                            direction: 'ASC'
+                        },
+                        groupField: 'companyname_CUSTRECORD66_summary_0'
+                    }),
+                    
+                    columns: cols,
+                    
+                    view: new Ext.grid.GroupingView({
+                        forceFit: true,
+                        showGroupName: true,
+                        hideGroupedColumn: true,
+                        autoFill: true
+                    }),
+                    
+                    sm: new Ext.grid.RowSelectionModel({
+                        singleSelect: true,
+                    
+                    }),
+                    
+                    plugins: usdSummary,
+                    
+                    /*tbar: [{
+                     text: 'Show/Hide Summaries',
+                     tooltip: 'Toggle the visibility of summary row',
+                     handler: function(){
+                     usdSummary.toggleSummaries();
+                     }
+                     }],*/
+                    frame: true,
+                    width: 1024,
+                    collapsible: true,
+                    animCollapse: true,
+                    trackMouseOver: true,
+                    title: CeligoCurrencies.get607()[i].custrecord_ticker_currency_txt_1 + ' Denominated',
+                    iconCls: 'icon-grid',
+                    enableDragDrop: true,
+                    stripeRows: true,
+                    autoHeight: true,
+                    shadow: true,
+                    renderTo: 'celigo-grid',
+                    deferRowRender: false
+                });
+            }
+        }
+        
+        //hide loader
+        document.getElementById('loader').style.display = 'none';
+        
+        if (emptyDataSets == CeligoCurrencies.get607().length) {
+            document.getElementById('message').innerHTML = '<p>No transactions found.</p>';
+        }
+    } 
+    catch (e) {
+        //hide loader
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('message').innerHTML = '<p>No transactions found.</p>';
+    }
+    
+});
+
+

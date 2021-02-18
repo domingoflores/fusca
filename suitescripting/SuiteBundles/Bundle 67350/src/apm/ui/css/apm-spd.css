@@ -1,0 +1,145 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+ 
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       18 Aug 2017     jmarimla         Initial
+ * 2.00       24 Aug 2017     jmarimla         Saved search charts
+ * 3.00       05 Sep 2017     jmarimla         SS logs grid        
+ * 4.00       07 Sep 2017     jmarimla         No data available 
+ * 5.00       18 Sep 2017     jmarimla         Customer debugging
+ * 6.00       21 Sep 2017     jmarimla         Header css
+ * 7.00       03 Aug 2018     jmarimla         FRHT css
+ * 8.00       24 May 2019     erepollo         Changed header BG to white
+ *
+ */
+ 
+/*
+ * SS Details
+ */
+.apm-spd-container-ssdetailscharts {
+    padding: 10px 10px 10px 10px;
+    background-color: #ffffff;
+    width: 100%;
+} 
+
+/*
+ * Settings Dialog
+ */
+.apm-spd-settings-custdebug {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}
+
+.apm-spd-dialog-custdebug.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-spd-dialog-custdebug .buttons {
+    padding: 15px 5px 5px 5px;
+    width: 100%;
+}
+
+.apm-spd-dialog-custdebug .buttons * {
+    display: inline-block;
+}
+
+.apm-spd-dialog-custdebug .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+/*
+ * Saved Search Details
+ */
+ 
+.apm-spd-container-ssdetailscharts .chart-row {
+    width: 100%;
+}
+
+.apm-spd-container-ssdetailscharts .chart-outer {
+    height: 300px;
+    display: inline-block;
+    width: 50%;
+    padding: 5px 5px 5px 5px;
+}
+
+.apm-spd-container-ssdetailscharts .chart {
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #666666;
+}
+
+/*
+ * SS Logs
+ */
+.apm-spd-sslogs .grid {
+    height: 410px;
+}
+
+.apm-spd-sslogs .header {
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+
+.apm-spd-sslogs .header .display {
+    padding: 3px 10px 3px 10px; 
+    float: left;
+    width: 25%;
+}
+
+.apm-spd-sslogs .header .label {
+    color: #999999;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.apm-spd-sslogs .header .value {
+    color: #545454;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.apm-spd-sslogs-viewdetails-icon {
+    width: 28px;
+    height: 28px;
+    background-image: none;
+}
+
+.apm-spd-sslogs-viewdetails-icon.showicon {
+    background-image: url(ns_images/details.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+/*
+ * No Data Available
+ */
+.apm-spd-nodataavailable {
+    position: relative;
+    padding: 10px 20px;
+}
+
+.apm-spd-nodataavailable .icon {
+    width: 32px;
+    height: 30px;
+    float: left;
+    background-image: url(ns_images/warning.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-spd-nodataavailable .message {
+    float: left;
+    margin: 5px 10px;
+    font-size: 12px;
+}
+

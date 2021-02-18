@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "6539ce4a-0386-4220-b6cb-930a6c0da6cb",
+		"name": "SRS TBA",
+		"description": "Two requests in this collection demonstrate how to connect to Netsuite's Restlets and WebServices using TBa. ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SRS TBA Webservice (Search Customer by Phone Number)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9296a22a-a854-43ed-9c2b-4f4082e0e96f",
+						"exec": [
+							"\r",
+							"pm.sendRequest('https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js', (err, res) => {\r",
+							"  (new Function(res.text()))();\r",
+							"});\r",
+							"\r",
+							"let account = pm.variables.replaceIn('{{Account}}');\r",
+							"let consumerKey =  pm.variables.replaceIn('{{ConsumerToken}}');\r",
+							"let consumerSecret =  pm.variables.replaceIn('{{ConsumerSecret}}');\r",
+							"let tokenId =  pm.variables.replaceIn('{{AccessToken}}');\r",
+							"let tokenSecret =  pm.variables.replaceIn('{{AccessSecret}}');\r",
+							"\r",
+							"console.log(\"account \" + account);\r",
+							"console.log(\"consumerKey \" + consumerKey);\r",
+							"console.log(\"consumerSecret \" + consumerSecret);\r",
+							"console.log(\"tokenId \" + tokenId);\r",
+							"console.log(\"tokenSecret \" + tokenSecret);\r",
+							"    \r",
+							"let timestamp = new Date().getTime().toString().substring(0, 10);\r",
+							"let nonce = CryptoJS.lib.WordArray.random(10).toString();\r",
+							"let baseString = account + '&' + consumerKey + '&' + tokenId + '&' + nonce + '&' + timestamp;\r",
+							"let key = consumerSecret + '&' + tokenSecret;\r",
+							"let signature = CryptoJS.HmacSHA256(baseString, key).toString(CryptoJS.enc.Base64);\r",
+							"\r",
+							"pm.environment.set(\"Nonce\", nonce);\r",
+							"pm.environment.set(\"Timestamp\", timestamp);\r",
+							"pm.environment.set(\"Signature\", signature);\r",
+							"\r",
+							"console.log(\"Nonce \" + nonce);\r",
+							"console.log(\"Timestamp \" + timestamp);\r",
+							"console.log(\"Signature \" + signature);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "SOAPAction",
+						"type": "text",
+						"value": "search"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soap:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t    <soap:Header>\r\n        <tokenPassport>\r\n            <account>{{Account}}</account>\r\n            <consumerKey>{{ConsumerToken}}</consumerKey>\r\n            <token>{{AccessToken}}</token>\r\n            <nonce>{{Nonce}}</nonce>\r\n            <timestamp>{{Timestamp}}</timestamp>\r\n            <signature algorithm=\"HMAC-SHA256\">{{Signature}}</signature>\r\n        </tokenPassport>\r\n    </soap:Header>\r\n    <soap:Body>\r\n        <search>\r\n            <searchRecord xsi:type=\"q1:CustomerSearch\" xmlns:q1=\"urn:relationships_{{Version}}.lists.webservices.netsuite.com\">\r\n                <q1:basic>\r\n                    <phone operator=\"is\">\r\n                        <searchValue>+442073462482</searchValue>\r\n                    </phone>\r\n                </q1:basic>\r\n            </searchRecord>\r\n        </search>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{Account_in_URL}}.suitetalk.api.netsuite.com/services/NetSuitePort_{{Version}}",
+					"protocol": "https",
+					"host": [
+						"{{Account_in_URL}}",
+						"suitetalk",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"services",
+						"NetSuitePort_{{Version}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SRS TBA Restlet  (Add User via Master Control Restlet)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "57df980d-69f0-4705-b347-569e3c7e89dc",
+						"exec": [
+							"\r",
+							"pm.sendRequest('https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js', (err, res) => {\r",
+							"  (new Function(res.text()))();\r",
+							"});\r",
+							"\r",
+							"let account = pm.variables.replaceIn('{{Account}}');\r",
+							"let consumerKey =  pm.variables.replaceIn('{{ConsumerToken}}');\r",
+							"let consumerSecret =  pm.variables.replaceIn('{{ConsumerSecret}}');\r",
+							"let tokenId =  pm.variables.replaceIn('{{AccessToken}}');\r",
+							"let tokenSecret =  pm.variables.replaceIn('{{AccessSecret}}');\r",
+							"\r",
+							"console.log(\"account \" + account);\r",
+							"console.log(\"consumerKey \" + consumerKey);\r",
+							"console.log(\"consumerSecret \" + consumerSecret);\r",
+							"console.log(\"tokenId \" + tokenId);\r",
+							"console.log(\"tokenSecret \" + tokenSecret);\r",
+							"    \r",
+							"let timestamp = new Date().getTime().toString().substring(0, 10);\r",
+							"let nonce = CryptoJS.lib.WordArray.random(10).toString();\r",
+							"let baseString = account + '&' + consumerKey + '&' + tokenId + '&' + nonce + '&' + timestamp;\r",
+							"let key = consumerSecret + '&' + tokenSecret;\r",
+							"let signature = CryptoJS.HmacSHA256(baseString, key).toString(CryptoJS.enc.Base64);\r",
+							"\r",
+							"pm.environment.set(\"Nonce\", nonce);\r",
+							"pm.environment.set(\"Timestamp\", timestamp);\r",
+							"pm.environment.set(\"Signature\", signature);\r",
+							"\r",
+							"console.log(\"Nonce \" + nonce);\r",
+							"console.log(\"Timestamp \" + timestamp);\r",
+							"console.log(\"Signature \" + signature);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "disableHeaderEncoding",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "includeBodyHash",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "realm",
+							"value": "{{Account}}",
+							"type": "string"
+						},
+						{
+							"key": "nonce",
+							"value": "{{Nonce}}",
+							"type": "string"
+						},
+						{
+							"key": "timestamp",
+							"value": "{{Timestamp}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenSecret",
+							"value": "{{AccessSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						},
+						{
+							"key": "consumerSecret",
+							"value": "{{ConsumerSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "consumerKey",
+							"value": "{{ConsumerToken}}",
+							"type": "string"
+						},
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"recordtype\": \"customer\",\r\n   \"records\": [\r\n       {\r\n           \"companyname\": \"test 1001\",\r\n           \"customform\": 15,\r\n           \"entitystatus\": [\r\n               {\r\n                 \"internalid\": \"20\",\r\n                 \"name\": \"PROSPECT-Lead - Qualified Prospect\"\r\n               }\r\n             ]\r\n       }\r\n   ],\r\n   \"module\": \"generic\",\r\n   \"restlet\": \"crud\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://{{Account_in_URL}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{RestletID}}&deploy=1",
+					"protocol": "https",
+					"host": [
+						"{{Account_in_URL}}",
+						"restlets",
+						"api",
+						"netsuite",
+						"com"
+					],
+					"path": [
+						"app",
+						"site",
+						"hosting",
+						"restlet.nl"
+					],
+					"query": [
+						{
+							"key": "script",
+							"value": "{{RestletID}}"
+						},
+						{
+							"key": "deploy",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

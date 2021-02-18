@@ -1,0 +1,1262 @@
+/**
+ * Copyright © 2015, 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       05 Dec 2014     jmarimla         Initial
+ * 2.00       07 Mar 2015     jmarimla         Added toolbar field and refresh button css
+ * 3.00       03 Mar 2015     jyeh
+ * 4.00       21 Apr 2015     jmarimla         Added tab panel css
+ * 5.00       01 Jul 2015     jmarimla         Added splashscreen css
+ * 6.00       06 Aug 2015     rwong            Added url css definition
+ * 7.00       25 Aug 2015     jmarimla         Hide suitelet title; Added css for suitelet header
+ * 8.00       05 Nov 2015     jmarimla         Css for personalize panel
+ * 9.00       01 Dec 2015     jmarimla         Css for export csv button and tooltip
+ * 10.00      08 Apr 2016     jmarimla         Css for tooltip
+ * 11.00      06 Dec 2016     jmarimla         Window close button
+ * 12.00      12 Apr 2019     jmarimla         Profiler link
+ * 13.00      17 Apr 2019     rwong            Adjusted profiler link
+ * 14.00      24 May 2019     erepollo         Added portlet shadow. Modified icons
+ * 15.00      01 Aug 2019     erepollo         Grayed out pagination buttons when disabled
+ * 16.00      11 Oct 2019     jmarimla         Search by operationid
+ * 17.00      28 Nov 2019     lemarcelo        Added padding
+ *
+ */
+
+ /*
+=================================================
+  Suitelet Whitespace Correction
+=================================================
+*/
+
+#main_form {
+    padding-bottom: 0px !important;
+}
+
+#pageContainer #body {
+    min-height: 0px !important;
+}
+
+#pageContainer #body #div__body {
+    display: none;
+    padding-bottom: 0px !important;
+}
+
+#psgp-apm-main {
+    top: 0px;
+}
+
+/*
+=================================================
+  Splashscreen
+=================================================
+*/
+
+.x4-mask {
+    background-color: #FFFFFF;
+    opacity: 0.8;
+}
+
+.apm-loadmask-msg.x4-mask-msg, .apm-loadmask.x4-mask-msg{
+    border: none;
+    background: none;
+}
+
+.apm-loadmask-msg .x4-mask-msg-inner, .apm-loadmask-msg.x4-mask-msg-inner{
+    padding: 0px;
+    border: none;
+    background: none;
+}
+
+.apm-loadmask-msg .x4-mask-msg-text {
+    font-family: Open Sans;
+    color: #666;
+    font-size: 13px;
+    font-weight: normal;
+    background-image: url(ns_images/loading-ani.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 80px 10px 0px 10px;
+}
+
+.x4-css-shadow {
+    box-shadow: none !important;
+}
+
+/*
+=================================================
+  Global
+=================================================
+*/
+
+.apm-container * {
+    font-family: Serif;
+}
+
+.x4-panel-body {
+    border-color: #DDDDDF;
+}
+
+.apm-panel-portlet .x4-panel-body {
+	border: none;
+}
+
+.x4-panel-header-default-top {
+    background-image: none;
+    box-shadow: none;
+}
+
+.x4-panel-header {
+    background-image: none;
+    background-color: #DDDDDD;
+    border: none;
+}
+
+.x4-nlg .x4-panel-header-default-top {
+    background-image: none;
+}
+
+.x4-nlg .x4-panel-header {
+    background-image: none;
+    background-color: #DDDDDD;
+    border-color: #EEEEEE;
+}
+
+.apm-a {
+    color: #255599;
+    text-decoration: none;
+}
+
+.apm-a:hover {
+    text-decoration: underline;
+}
+
+.x4-tip {
+    border-color: #262626;
+    color: #262626;
+    background-color: #ffffff;
+    background-image: -webkit-linear-gradient(top, #ffffff, #e5e5e5); /* For Chrome and Safari */
+    background-image: -moz-linear-gradient(top, #ffffff, #e5e5e5); /* For old Fx (3.6 to 15) */
+    background-image: -ms-linear-gradient(top, #ffffff, #e5e5e5); /* For pre-releases of IE 10*/
+    background-image: -o-linear-gradient(top, #ffffff, #e5e5e5); /* For old Opera (11.1 to 12.0) */
+    background-image: linear-gradient(to bottom, #ffffff, #e5e5e5); /* Standard syntax; must be last */
+}
+
+/*
+=================================================
+  Header
+=================================================
+*/
+
+.apm-toolbar-page {
+    border: none;
+    background: none;
+}
+
+.apm-display-pagetitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4d5f79;
+}
+
+.apm-quickselectormenu {
+    background-color: #fafafa;
+    box-shadow: 0px 0px 3px #000;
+}
+
+.apm-pagetoolbar-btn, .x4-nlg .apm-pagetoolbar-btn {
+    background: transparent;
+    border: none;
+    background-image: url(ns_images/dropdown.png);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+}
+
+.apm-pagetoolbar-btn .x4-btn-inner{
+    color: #255599;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.apm-pagetoolbar-btn.x4-btn-over .x4-btn-inner{
+    text-decoration: underline;
+}
+
+.apm-db-recordstoolbar, .apm-panel-portlet .x4-panel-header {
+	background: #ffffff;
+}
+
+/*
+=================================================
+  Personalize Panel
+=================================================
+*/
+
+.apm-personalizepanel .x4-panel-header {
+    background: none;
+    border-color: #EEEEEE;
+}
+
+.apm-personalizepanel .x4-panel-body {
+    border-color: #ffffff;
+}
+
+.apm-personalizepanel-header {
+    background-color: #333
+}
+
+.apm-personalizepanel-header-title * {
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.apm-personalizepanel-header-close, .x4-nlg .apm-personalizepanel-header-close {
+    background: transparent;
+    border: none;
+    border-radius: none;
+}
+
+.apm-personalizepanel-header-close .x4-btn-inner {
+    font-family: Arial,sans-serif;
+    color: #fff;
+    font-weight: normal;
+    font-size: 32px;
+}
+
+.apm-personalizepanel-body {
+    background-color: #4d4d4d;
+}
+
+.apm-personalizepanel-carditem-nav, .x4-nlg .apm-personalizepanel-carditem-nav {
+    background: transparent;
+    border: none;
+    border-radius: none;
+}
+
+.apm-personalizepanel-carditem-nav .x4-btn-inner {
+    font-family: Arial,sans-serif;
+    color: #fff;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.apm-personalizepanel-cardtab {
+    background-color: #666666;
+}
+
+.apm-personalizepanel-cardtab * {
+    color: #fff;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.apm-personalizepanel-cardtab-selected {
+    background-color: #4d4d4d;
+}
+
+.apm-personalizepanel-cardtab-hover {
+    background-color: #aaaaaa;
+}
+
+.apm-personalizepanel-itembutton, .x4-nlg .apm-personalizepanel-itembutton {
+    background: transparent;
+    border: none;
+    border-radius: none;
+}
+
+.apm-personalizepanel-itembutton .x4-btn-button {
+    height: 20px;
+}
+
+.apm-personalizepanel-itembutton .x4-btn-wrap {
+    top: 75px;
+}
+
+.apm-personalizepanel-itembutton .x4-btn-inner {
+    color: #fff;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+/*
+=================================================
+  Personalize Icons
+=================================================
+*/
+
+.apm-personalizepanel-itemicon-customportlet, .x4-nlg .apm-personalizepanel-itemicon-customportlet {
+    background-image: url(ns_images/personalize-custom-portlet.png) ;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-personalizepanel-itemicon-reportsnapshot, .x4-nlg .apm-personalizepanel-itemicon-reportsnapshot {
+    background-image: url(ns_images/personalize-report-snapshot.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-personalizepanel-itemicon-customportlet-remove.x4-btn-over, .x4-nlg .apm-personalizepanel-itemicon-customportlet-remove.x4-btn-over {
+    background-image: url(ns_images/personalize-remove-portlet.png), url(ns_images/personalize-custom-portlet.png) ;
+    background-position: 43px 20px, center;
+    background-repeat: no-repeat;
+}
+
+.apm-personalizepanel-itemicon-reportsnapshot-remove.x4-btn-over, .x4-nlg .apm-personalizepanel-itemicon-reportsnapshot-remove.x4-btn-over {
+    background-image: url(ns_images/personalize-remove-portlet.png), url(ns_images/personalize-report-snapshot.png) ;
+    background-position: 43px 20px, center;
+    background-repeat: no-repeat;
+}
+
+.apm-personalizepanel-itemicon-customportlet-add.x4-btn-over, .x4-nlg .apm-personalizepanel-itemicon-customportlet-add.x4-btn-over {
+    background-image: url(ns_images/personalize-add-portlet.png), url(ns_images/personalize-custom-portlet.png) ;
+    background-position: 43px 20px, center;
+    background-repeat: no-repeat;
+}
+
+.apm-personalizepanel-itemicon-reportsnapshot-add.x4-btn-over, .x4-nlg .apm-personalizepanel-itemicon-reportsnapshot-add.x4-btn-over {
+    background-image: url(ns_images/personalize-add-portlet.png), url(ns_images/personalize-report-snapshot.png) ;
+    background-position: 43px 20px, center;
+    background-repeat: no-repeat;
+}
+
+/*
+=================================================
+  Buttons
+=================================================
+*/
+
+.apm-rect-btn {
+    background-image: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0;
+}
+
+.apm-rect-btn .x4-btn-inner{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.apm-rect-btn-blue.x4-btn-default-small {
+    border: 1px solid #125ab2;
+    background-color: #4c9dff;
+    background-image: -webkit-linear-gradient(top, #4c9dff, #187bf2); /* For Chrome and Safari */
+    background-image: -moz-linear-gradient(top, #4c9dff, #187bf2); /* For old Fx (3.6 to 15) */
+    background-image: -ms-linear-gradient(top, #4c9dff, #187bf2); /* For pre-releases of IE 10*/
+    background-image: -o-linear-gradient(top, #4c9dff, #187bf2); /* For old Opera (11.1 to 12.0) */
+    background-image: linear-gradient(to bottom, #4c9dff, #187bf2); /* Standard syntax; must be last */
+}
+
+.apm-rect-btn-blue .x4-btn-inner {
+    color: #ffffff;
+}
+
+.apm-rect-btn-blue.x4-btn-focus {
+    box-shadow: 0px 0px 2px 2px #408FDB;
+}
+
+.apm-rect-btn-blue.x4-btn-over {
+    background-image: none;
+    background-color: #1467cc;
+}
+
+.apm-rect-btn-blue.x4-btn-pressed {
+    background-image: none;
+    background-color: #004599;
+}
+
+.apm-rect-btn-gray.x4-btn-default-small {
+    border: 1px solid #b2b2b2;
+    background-color: #fafafa;
+    background-image: -webkit-linear-gradient(top, #fafafa, #e5e5e5); /* For Chrome and Safari */
+    background-image: -moz-linear-gradient(top, #fafafa, #e5e5e5); /* For old Fx (3.6 to 15) */
+    background-image: -ms-linear-gradient(top, #fafafa, #e5e5e5); /* For pre-releases of IE 10*/
+    background-image: -o-linear-gradient(top, #fafafa, #e5e5e5); /* For old Opera (11.1 to 12.0) */
+    background-image: linear-gradient(to bottom, #fafafa, #e5e5e5); /* Standard syntax; must be last */
+}
+
+.apm-rect-btn-gray .x4-btn-inner {
+    color: #333333;
+}
+
+.apm-rect-btn-gray.x4-btn-focus {
+    box-shadow: 0px 0px 2px 2px #408FDB;
+}
+
+.apm-rect-btn-gray.x4-btn-over {
+    background-image: none;
+    background-color: #e5e5e5;
+}
+
+.apm-rect-btn-gray.x4-btn-pressed {
+    background-image: none;
+    background-color: #b2b2b2;
+}
+
+/*
+=================================================
+  Filters Panel
+=================================================
+*/
+.apm-panel-filters {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.apm-panel-filters-body {
+    padding: 10px 21px 10px 21px;
+    border-color: #DDDDDD;
+    -moz-border-radius: 0px 0px 5px 5px;;
+    -webkit-border-radius: 0px 0px 5px 5px;;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.apm-panel-filters .x4-tool {
+    left: 0px !important;
+    top: 2px !important;
+}
+
+.apm-panel-filters .x4-panel-header {
+    background-color: #EAEAEA;
+    background-image: none;
+}
+
+.x4-nlg .apm-panel-filters .x4-panel-header {
+    background-color: #EAEAEA;
+    background-image: none;
+    border-color: #DDDDDD;
+}
+
+.apm-panel-filters .x4-panel-header-default {
+    background-image: none;
+    border: none;
+}
+
+.apm-panel-filters .x4-panel-header-text-container-default {
+    padding-left: 16px;
+    color: #666;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.apm-panel-filters .x4-tool-img {
+    width: 12px;
+    height: 12px;
+    background-position: 0px 0px !important;
+}
+
+.apm-panel-filters .x4-tool-collapse-top {
+    background-image: url(ns_images/da-collapse.png);
+}
+
+.apm-panel-filters .x4-tool-expand-bottom {
+    background-image: url(ns_images/da-expand.png);
+}
+
+/*
+=================================================
+  Display Fields
+=================================================
+*/
+.apm-display-label {
+    color: #999999;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.apm-display-field {
+    color: #545454;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.apm-display-toolbar-field {
+    color: #555555;
+    font-size: 14px;
+}
+
+/*
+=================================================
+  Fields
+=================================================
+*/
+.x4-form-text {
+    background: #FFFFFF;
+    height: 26px;
+    border-color: #CCCCCC;
+    border-right-width: 0px;
+}
+
+/*
+=================================================
+  Input Fields
+=================================================
+*/
+.apm-input-field {
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.apm-input input[type="text"] {
+    border: none !important;
+}
+
+.apm-input input[type="text"]:hover:enabled {
+    border: none !important;
+    box-shadow: none;
+}
+
+.apm-input input[type="text"]:enabled:active, .apm-input input[type="text"]:enabled:focus {
+    border: 1px solid #408FDB !important;
+    /*box-shadow: none !important;*/
+    box-shadow: 0px 0px 2px 2px rgba(64, 143, 219, 0.75) !important;
+}
+
+.apm-input .x4-form-item-body {
+    border: 1px solid #CCCCCC;
+}
+
+.apm-input-over .x4-form-item-body {
+    border-color: #8C8C8C;
+}
+
+/*
+=================================================
+  ComboBox Fields
+=================================================
+*/
+.apm-combo-field {
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.apm-combo input[type="text"] {
+    border: none !important;
+}
+
+.apm-combo input[type="text"]:hover:enabled {
+    border: none !important;
+    box-shadow: none;
+}
+
+.apm-combo input[type="text"]:enabled:active, .apm-combo input[type="text"]:enabled:focus {
+    border: none !important;
+    box-shadow: none;
+}
+
+.apm-combo .x4-form-item-body {
+    border: 1px solid #CCCCCC;
+}
+
+.apm-combo-over .x4-form-item-body {
+    border-color: #8C8C8C;
+}
+
+.apm-combo .x4-form-trigger-wrap-focus {
+    /*border-color : #408FDB;*/
+    /*box-shadow: none;*/
+    border: 1px solid #408FDB !important;
+    box-shadow: 0px 0px 2px 2px rgba(64, 143, 219, 0.75);
+}
+
+.x4-form-arrow-trigger, .x4-form-time-trigger {
+    background: url(ns_images/dropdown.png);
+    background-position: -2px 3px !important;
+    height: 26px;
+    border: none;
+}
+
+.x4-boundlist {
+    border: 1px solid #408FDB;
+}
+
+.x4-boundlist-item {
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.x4-boundlist-item-over {
+    color: #FFFFFF;
+    background-color: #607799;
+    border-color: #607799;
+}
+
+.x4-boundlist-selected {
+    color: #FFFFFF;
+    background-color: #607799;
+    border-color: #607799;
+}
+
+/*
+=================================================
+  Date Field
+=================================================
+*/
+.apm-date-field {
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.apm-date input[type="text"] {
+    border: 1px solid #CCCCCC !important;
+    background: #FFFFFF;
+    height: 27px;
+}
+
+.apm-date input[type="text"]:hover:enabled {
+    border: 1px solid #8C8C8C !important;
+}
+
+.apm-date input[type="text"]:enabled:active, .apm-date input[type="text"]:enabled:focus {
+    border: 1px solid #408FDB !important;
+    /*box-shadow: none;*/
+    box-shadow: 0px 0px 2px 2px rgba(64, 143, 219, 0.75);
+}
+
+.apm-date-field-over .x4-form-date-trigger {
+    border-color: #8C8C8C;
+}
+
+/*
+.apm-date .x4-form-trigger-wrap-focus .x4-form-text {
+    border-color : #408FDB;
+}*/
+
+/*
+=================================================
+  DatePicker Field
+=================================================
+*/
+.x4-form-date-trigger {
+    background-image: url(ns_images/calendar.png);
+    background-position: 0px 3px !important;
+    background-repeat: no-repeat;
+    height: 27px;
+    width: 24px;
+    border-color: #CCCCCC;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 3px;
+    margin-left: 6px;
+}
+
+.x4-form-trigger-wrap-focus .x4-form-date-trigger {
+    border-color : #408FDB;
+    background-image: url(ns_images/widget-calendar-down.png);
+    background-position: 1px 3px !important;
+    background-repeat: no-repeat;
+    background-color: #607799;
+}
+
+.x4-datepicker {
+    border: 1px solid #408FDB;
+    box-shadow: 0px 0px 2px 2px #408FDB;
+}
+
+.x4-datepicker-header {
+    background-image: none !important;
+    background-color: #ebf0f2 !important;
+}
+
+.x4-datepicker-arrow {
+    padding: 9px;
+    background-color: #ebf0f2;
+}
+
+a.x4-datepicker-arrow:hover {
+    border: 1px solid #8C8C8C;
+    border-radius: 4px;
+}
+
+.x4-datepicker-prev {
+    background-image: url(ns_images/previous.png);
+    background-position: -1px -1px;
+}
+
+.x4-datepicker-next {
+    background-image: url(ns_images/next.png);
+    background-position: -1px -1px;
+}
+
+.x4-datepicker-month .x4-btn {
+    pointer-events: none;
+    cursor: default;
+}
+
+.x4-datepicker-month .x4-btn-button {
+    height: 22px;
+}
+
+.x4-datepicker-month .x4-btn-inner{
+    color: #5981B3;
+    font-size: 13px;
+    font-weight: 550;
+    padding: 1px 0px 1px 0px;
+}
+
+.x4-datepicker-column-header {
+    border-color: #FFFFFF;
+}
+
+.x4-datepicker-column-header-inner {
+    background-color: #FFFFFF;
+    color: #555555;
+    font-size: 10px;
+    padding: 10px 10px 0px 0px;
+}
+
+.x4-datepicker-cell {
+    border: none;
+}
+
+.x4-datepicker-date {
+    color: #555555;
+    font-size: 13px;
+    text-align: center;
+    padding: 0px 2px 0px 0px;
+}
+
+.x4-datepicker-inner {
+    padding: 0px 11px 11px 11px;
+}
+
+.x4-datepicker-today {
+    border: none;
+}
+
+.x4-datepicker-today .x4-datepicker-date {
+    font-weight: bold;
+}
+
+.x4-datepicker-selected {
+    border: 1px solid #607799;
+    border-radius: 4px;
+}
+
+.x4-datepicker-selected .x4-datepicker-date {
+    background-color: #607799;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+a.x4-datepicker-date:hover {
+    color: #408FDB;
+    font-weight: bold;
+    background-color: #BEE0ED;
+    border-radius: 4px;
+}
+
+/*
+=================================================
+  Portlets
+=================================================
+*/
+
+.apm-panel-portlet .x4-panel-header-text-container-default {
+  color: #000000;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 0 8px 12px;
+}
+
+.apm-portlet-container {
+	box-shadow: 0 0 8px 0 #cccccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+/*
+=================================================
+  SubPanel
+=================================================
+*/
+.apm-panel-subpanel .x4-panel-header, .x4-nlg .apm-panel-subpanel .x4-panel-header {
+    background-image: none;
+    background-color: #DFE4EB;
+    border: none;
+}
+
+.apm-panel-subpanel .x4-panel-body {
+    border: none;
+}
+
+.apm-panel-subpanel .x4-panel-header-text-container-default {
+  color: #607988;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: none;
+  line-height: normal;
+  padding: 0px 2px 1px 15px;
+}
+
+.apm-panel-subpanel .x4-tool {
+    left: 0px !important;
+    top: 2px !important;
+}
+
+.apm-panel-subpanel .x4-tool-img {
+    width: 12px;
+    height: 11px;
+    background-position: 0px 0px !important;
+}
+
+.apm-panel-subpanel .x4-tool-collapse-top {
+    background-image: url(ns_images/icon_collapse_tab_white.png);
+}
+
+.apm-panel-subpanel .x4-tool-expand-bottom {
+    background-image: url(ns_images/icon_expand_tab_white.png);
+}
+
+/*
+=================================================
+  Grid
+=================================================
+*/
+.apm-grid {
+    border: #DDDDDD 1px solid;
+}
+
+.apm-grid .x4-grid-cell {
+    font-size: 12px;
+    color: #333333;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-bottom-width: 1px;
+}
+
+.apm-grid .x4-column-header {
+    border-right: 0px;
+}
+
+.apm-grid .x4-column-header-inner {
+    background: #e5e5e5;
+    font-size: 11px;
+    color: #555555;
+    text-transform: uppercase;
+}
+
+.apm-grid .x4-grid-td {
+    vertical-align: text-top;
+}
+
+.apm-grid .x4-grid-row-over .x4-grid-td {
+    background-color: #fefeee;
+}
+
+.apm-grid .x4-grid-header-ct {
+    border-color: #B2B2B2 #DDDDDD;
+}
+
+.apm-grid .x4-column-header-sort-ASC .x4-column-header-text {
+    background-image: url('ns_images/sort_up.png');
+}
+
+.apm-grid .x4-column-header-sort-DESC .x4-column-header-text {
+    background-image: url('ns_images/sort_down.png');
+}
+
+.apm-column-action-details {
+    background: transparent;
+    background-size: contain;
+    height: 16px;
+    width: 16px;
+    background-image: url(ns_images/details.png);
+    background-repeat: no-repeat;
+}
+
+.apm-export-csv-btn, .x4-nlg .apm-export-csv-btn {
+    background: transparent;
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/export_csv_icon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*
+=================================================
+  Portlet Components
+=================================================
+*/
+
+.apm-refresh-btn, .x4-nlg .apm-refresh-btn {
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/portlet-refresh_blue2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-refresh-btn:hover, .x4-nlg .apm-refresh-btn:hover {
+	background: transparent;
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/portlet-refresh_blue2_2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-menu-btn, .x4-nlg .apm-menu-btn {
+    background: transparent;
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/portlet-menu_blue2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-menu-btn:hover, .x4-nlg .apm-menu-btn:hover {
+    background: transparent;
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/portlet-menu_blue2_2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-menu-btn .x4-btn-arrow {
+    background-image: none;
+}
+
+.apm-menu .x4-menu-body {
+    background-color: #F8F9FD;
+    border: 1px solid #B2B2B2;
+    padding: 0 0;
+}
+
+.apm-menu .x4-menu-item-text {
+    color: #607998;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.apm-menu .x4-menu-item {
+    border: none;
+    background-color: #F8F9FD;
+}
+
+.apm-menu .x4-menu-item-active{
+    background-image: none;
+    background-color: #DFE4EB;
+    color: #607998;
+}
+
+.apm-menu .x4-menu-item-link {
+    padding: 0px 0px 0px 10px;
+}
+
+.apm-menu .x4-menu-item-icon {
+    width: 0px;
+}
+
+/*
+=================================================
+  Pop up Window
+=================================================
+*/
+.apm-window * {
+    font-family: Serif;
+}
+
+.apm-window {
+    border-radius: 0px;
+    border-color: #DDDDDF;
+}
+
+.apm-window .x4-window-header-text {
+    font-size: 13px;
+    color: #FFFFFF;
+}
+
+.apm-window .x4-tool-img {
+    background-image: url(ns_images/tool-sprites-x.jpg);
+    background-color: transparent;
+    width: 15px;
+    height: 15px;
+    background-position: 0px 0px !important;
+}
+
+.x4-window-header {
+    background-image: none;
+    background-color: #DDDDDD;
+    border-radius: 0px;
+}
+
+.apm-window-body {
+    background-color: #FFFFFF;
+}
+
+/*
+=================================================
+  SuiteScript Chart Panel
+=================================================
+*/
+.apm-suitescriptdetail-chart-warning .x4-panel-body {
+    background-image: url(ns_images/warning.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+}
+
+.apm-suitescriptdetail-chart-panel .x4-panel-header, .x4-nlg .apm-suitescriptdetail-chart-panel .x4-panel-header {
+    background-color: #ffffff;
+}
+
+.apm-suitescriptdetail-chart-panel .x4-panel-header .x4-panel-header-text-container-default{
+    font-family: Arial;
+    font-size: 17px;
+    color: #666666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/*
+=================================================
+  Paging Toolbar
+=================================================
+*/
+.apm-toolbar-grid {
+    background: #E5E5E5;
+    padding-right: 30px;
+}
+
+.apm-toolbar-paging {
+    background: transparent;
+}
+
+.apm-toolbar-paging .x4-btn-button {
+    height: 22px;
+}
+
+.apm-toolbar-paging .x4-btn-toolbar {
+    opacity: 1;
+}
+
+.apm-toolbar-paging .x4-btn-inner {
+    width: 22px;
+    line-height: 22px;
+}
+
+.apm-toolbar-paging .x4-btn-icon-el {
+    width: 22px;
+    height: 22px;
+}
+
+.x4-btn-default-toolbar-small-disabled {
+    border-color: transparent;
+}
+
+.apm-toolbar-paging .x4-tbar-page-prev {
+    background-image: url(ns_images/da-prevwhite.png);
+}
+
+.x4-item-disabled .x4-tbar-page-prev {
+    -webkit-filter: grayscale(100%) opacity(40%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%) opacity(40%);
+}
+
+.apm-toolbar-paging .x4-tbar-page-next {
+    background-image: url(ns_images/da-nextwhite.png);
+}
+
+.x4-item-disabled .x4-tbar-page-next {
+    -webkit-filter: grayscale(100%) opacity(40%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%) opacity(40%);
+}
+
+.apm-toolbar-paging .x4-btn-over {
+    border: 1px dotted #000;
+    background: none;
+}
+
+.apm-toolbar-paging .x4-btn-pressed {
+    border: 1px dotted #000;
+    background: none;
+}
+
+.apm-toolbar-paging .x4-btn-focus {
+    border: 1px dotted #000;
+    background: none;
+}
+
+.apm-display-totalpages-label {
+    color: #555555;
+    font-size: 14px;
+}
+
+.apm-display-totalpages-field {
+    color: #555555;
+    font-size: 14px;
+}
+
+.apm-input-pagingdropdown-field {
+    color: #262626;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    background: none;
+    border: none;
+}
+
+.apm-input-pagingdropdown input[type="text"] {
+    border: none !important;
+}
+
+.apm-input-pagingdropdown input[type="text"]:enabled:active, .apm-input-pagingdropdown input[type="text"]:enabled:focus {
+    border: none !important;
+    box-shadow: none;
+}
+
+.apm-input-pagingdropdown input[type="text"]:hover:enabled {
+    border: none !important;
+}
+
+.apm-input-pagingdropdown .x4-form-arrow-trigger {
+    border: none;
+    margin-top: 4px;
+}
+
+.apm-input-pagingdropdown .x4-trigger-cell {
+    background: none;
+}
+
+.apm-list-pagingdropdown {
+    border-color: #B2B2B2;
+    border-width: 1px;
+}
+
+.apm-list-pagingdropdown .x4-boundlist-item {
+    text-align: right;
+    background-color: #FAFAFA;
+    border-color: #FAFAFA;
+}
+
+.apm-list-pagingdropdown .x4-boundlist-item-over {
+    color: #FFFFFF;
+    background-color: #B2B2B2;
+    border-color: #B2B2B2;
+}
+
+.apm-list-pagingdropdown .x4-boundlist-selected {
+    font-weight: bold;
+    color: #262626;
+    background-color: #FAFAFA;
+    border-color: #FAFAFA;
+}
+
+/*
+=================================================
+  Paging Toolbar
+=================================================
+*/
+
+.apm-tabpanel {
+
+    background-image: none;
+}
+
+.apm-tabpanel .x4-tab-bar-default {
+    border: none;
+}
+
+.apm-tabpanel .x4-tab-bar-default-top {
+    background: none;
+}
+
+.apm-tabpanel .x4-tab-bar-body-default-top {
+    padding-bottom: 0px;
+}
+
+.apm-tabpanel .x4-tab-bar-strip-default {
+    border: none;
+    background: none;
+}
+
+.apm-tabpanel .x4-tab-default-top {
+    border: none;
+    box-shadow: none;
+    background: none;
+    padding: 0px 0px 0px 0px;
+}
+
+.apm-tabpanel .x4-tab-inner {
+    color: #FFFFFF;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 5px 9px 5px 9px;
+}
+
+.apm-tabpanel .x4-tab-default-active .x4-tab-inner {
+    font-weight: bold;
+    background-image: url(ns_images/whitetriangle-tab.png);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+
+}
+
+.apm-tabpanel .x4-panel-body {
+    border: none;
+}
+
+/*
+=================================================
+  Tooltip
+=================================================
+*/
+
+.apm-tooltip {
+    background: #FFFFFF;
+    border-color: #262626;
+}
+
+.apm-tooltip *{
+    font-size: 11px;
+    font-weight: normal;
+    color: #666666;
+}
+
+/*
+=================================================
+  Redirect Link
+=================================================
+*/
+
+.apm-redirectlink {
+    color: #333333;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+    float: right;
+	margin: 0px 20px 0px 0px;
+}
+
+.apm-redirectlink:hover {
+    text-decoration: underline;
+}
+
+.apm-redirectlink-icon {
+    background: transparent;
+    background-size: contain;
+    height: 16px;
+    width: 16px;
+    background-image: url(ns_images/details.png);
+    background-repeat: no-repeat;
+    float:left;
+}

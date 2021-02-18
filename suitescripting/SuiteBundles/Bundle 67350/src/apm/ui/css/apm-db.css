@@ -1,0 +1,247 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       07 Jan 2015     jmarimla         Initial
+ * 2.00       15 Jan 2015     jmarimla         Set text-align for recordtiletitle
+ * 3.00       28 Jan 2015     jmarimla         Css for selected record tile and record charts
+ * 4.00       10 Mar 2015     rwong            Added css for delete icon
+ * 5.00       21 Mar 2015     jmarimla         Added css for new record tiles ui
+ * 6.00       24 May 2019     erepollo         Changed subpanel BG to white
+ *
+ */
+
+/*
+=================================================
+  Record Sub Panel
+=================================================
+*/
+
+.apm-db-recordssubpanel {
+    border: 1px solid #DDDDDF
+}
+
+.apm-db-recordssubpanel .x4-panel-body {
+    border: none;
+}
+
+.apm-records-toolbar {
+    background: #E0E6EF;
+    padding-right: 30px;
+}
+
+/*
+=================================================
+  Carousel
+=================================================
+*/
+
+.apm-db-btn-carouselprev, .x4-nlg .apm-db-btn-carouselprev {
+    background: transparent;
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/carouselarrow_L.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-db-btn-carouselprev.x4-btn-over, .x4-nlg .apm-db-btn-carouselprev.x4-btn-over {
+    border: 1px solid #d3d7de;
+    border-radius: 5px;
+}
+
+.apm-db-btn-carouselprev.x4-btn-pressed, .x4-nlg .apm-db-btn-carouselprev.x4-btn-pressed {
+    border: 1px solid #d3d7de;
+    border-radius: 5px;
+    background-color: #f0f3f7;
+}
+
+.apm-db-btn-carouselnext, .x4-nlg .apm-db-btn-carouselnext {
+    background: transparent;
+    border: none;
+    border-radius: none;
+    background-image: url(ns_images/carouselarrow_R.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-db-btn-carouselnext.x4-btn-over, .x4-nlg .apm-db-btn-carouselnext.x4-btn-over {
+    border: 1px solid #d3d7de;
+    border-radius: 5px;
+}
+
+.apm-db-btn-carouselnext.x4-btn-pressed, .x4-nlg .apm-db-btn-carouselnext.x4-btn-pressed {
+    border: 1px solid #d3d7de;
+    border-radius: 5px;
+    background-color: #f0f3f7;
+}
+
+/*
+=================================================
+  Record Tile
+=================================================
+*/
+
+.apm-db-recordtile {
+    border: 1px solid #dadfe6;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #none;
+}
+
+.apm-db-recordtile-outer-selected .apm-db-recordtile {
+    position: relative;
+    width: 185px;
+    height: 175px;
+    padding: 0px;
+    border: #2e82e8 solid 2px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: -2px 2px 5px 0px #616161;
+    -moz-box-shadow: -2px 2px 5px 0px #616161;
+    box-shadow: -2px 2px 5px 0px #616161;
+}
+
+
+.apm-db-recordtile-outer-selected:before {
+    content: "";
+    position: absolute;
+    top: 190px;
+    left: 76px;
+    border-style: solid;
+    border-width: 16px 16px 0;
+    border-color: #2e82e8 transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+}
+
+.apm-db-recordtile-outer-selected:after {
+    content: "";
+    position: absolute;
+    top: 187px;
+    left: 77px;
+    border-style: solid;
+    border-width: 15px 15px 0;
+    border-color: #FFFFFF transparent;
+    display: block;
+    width: 0;
+    z-index: 2;
+}
+
+
+.apm-db-recordtile-header {
+    background-color: #e6ebf2;
+}
+
+.apm-db-recordtile-body-data {
+    background-color: #ffffff;
+}
+
+.apm-db-recordtile-body-nodata {
+    background-color: #fefdf1;
+}
+
+.apm-db-recordtile-body-nodata-icon {
+    background-image: url(ns_images/icon_msg_info.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-db-recordtile-body-nodata-text {
+    color: #666;
+    font-size: 13px;
+}
+
+.apm-db-recordtile-hover {
+    border: 1px solid #2e82e8;
+    -webkit-box-shadow: -1px 2px 4px 0px rgba(46, 130, 232, 0.75);
+    -moz-box-shadow: -1px 2px 4px 0px rgba(46, 130, 232, 0.75);
+    box-shadow: -1px 2px 4px 0px rgba(46, 130, 232, 0.75);
+}
+
+.apm-db-display-recordtiletitle {
+    color: #333333;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.apm-db-display-recordtiletitle-oper {
+    color: #666666;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.apm-db-display-recordtiletitle-body, .apm-db-display-recordtiletitle-oper-body {
+    text-align: bottom;
+}
+
+.apm-db-display-recordtilefield {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.apm-db-display-recordtiletotaltime {
+    color: #666666;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.apm-db-display-recordtileresponsetimetext {
+    color: #666666;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.apm-db-display-warning * {
+    color: #ff5833;
+}
+
+.apm-db-recordtileusers-icon {
+    background: transparent;
+    background-image: url(ns_images/person_icon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-db-recordtilelogs-icon {
+    background: transparent;
+    background-image: url(ns_images/logs_icon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*
+=================================================
+  Record Charts
+=================================================
+*/
+
+.apm-db-subpanel-recordcharts {
+    background-color: #ffffff;
+}
+
+.apm-db-recordchart {
+    border: 1px solid #666666;
+    background-color: #ffffff;
+}
+
+/*
+=================================================
+  SetUp Record Pages
+=================================================
+*/
+
+.apm-db-setup-record-pages-delete {
+    background-image: url(ns_images/machine_x.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+
+}

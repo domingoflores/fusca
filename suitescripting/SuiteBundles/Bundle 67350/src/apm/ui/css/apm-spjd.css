@@ -1,0 +1,96 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+ 
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       04 Jan 2018     jmarimla         Initial
+ * 2.00       11 Jan 2018     jmarimla         Instance details
+ * 3.00       23 Jan 2018     jmarimla         Chart top border
+ * 4.00       25 Jan 2018     jmarimla         Chart height
+ * 5.00       26 Jul 2018     jmarimla         FRHT icon
+ *
+ */
+
+/*
+ * Instance Details
+ */
+.apm-spjd-instancedetails-grid {
+    width: 100%;
+    height: 415px;
+}
+
+.apm-spjd-instancedetails-viewdetails-icon {
+    width: 28px;
+    height: 28px;
+    background-image: none;
+}
+
+.apm-spjd-instancedetails-viewdetails-icon.showicon {
+    background-image: url(ns_images/details.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+.apm-spjd-instancedetails-chart {
+    width: 100%;
+    height: 500px;
+    border-top: 1px solid #dddddd;
+}
+
+.apm-spjd-instancedetails-legend {
+    width: 100%;
+    height: 50px;
+}
+
+.apm-spjd-instancedetails-legend .legend-container {
+    height: 50px;
+    width: 750px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.apm-spjd-instancedetails-legend .legend-item {
+    padding: 10px 10px;
+    display: inline-block;  
+}
+
+.apm-spjd-instancedetails-legend .legend-icon {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 3px 0px 3px;
+}
+
+.apm-spjd-instancedetails-legend .legend-icon.scheduled.wt {
+    background-color: rgba(250, 182, 93, 0.3);
+}
+
+.apm-spjd-instancedetails-legend .legend-icon.mapreduce.wt {
+    background-color: rgba(122, 176, 217, 0.3);
+}
+
+.apm-spjd-instancedetails-legend .legend-icon.scheduled.et {
+    background-color: rgba(250, 182, 93, 0.8);
+}
+
+.apm-spjd-instancedetails-legend .legend-icon.mapreduce.et {
+    background-color: rgba(122, 176, 217, 0.8);
+}
+
+.apm-spjd-instancedetails-legend .legend-text {
+    height: 15px;
+    color: #333333;
+    font-size: 12px;
+    font-weight: normal;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 3px 0px 3px;
+}

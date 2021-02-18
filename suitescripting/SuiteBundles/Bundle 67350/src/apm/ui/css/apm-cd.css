@@ -1,0 +1,46 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+ 
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       15 Feb 2018     jmarimla         Initial 
+ * 2.00       22 Feb 2018     jmarimla         Drilldown
+ * 3.00       03 Mar 2018     jmarimla         Z-index drillup button
+ *
+ */
+
+/*
+ * Exact Concurrency
+ */
+.apm-cd-exactconcurrency-main {
+    width: 100%;
+    position: relative;
+} 
+
+.apm-cd-exactconcurrency {
+	width: 100%;
+    height: 350px;
+}
+
+.apm-cd-btn-drillup {
+    position: absolute;
+    margin: 10px;
+    top: 0px;
+    right: 0px;
+    z-index: 999;
+}
+
+/*
+ * Instance Details
+ */
+.apm-cd-popup-instances .grid {
+    height: 410px;
+}
+
+
+
+
+ 

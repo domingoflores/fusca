@@ -1,0 +1,56 @@
+/* 
+ * Contact class
+ */
+table.contact {
+	font-size: 9pt;
+	border-width: 1px;
+	border-style: dotted;
+	border-color: rgb(0, 0, 0);
+	border-collapse: separate;
+}
+table.contact th {
+	font-size: 9pt;
+	border-width: 1px;
+	padding: 1px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+}
+table.contact td {
+	font-size: 9pt;
+	border-width: 1px;
+	padding: 1px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+}
+
+/* 
+ * outerDealShareholder class
+ */
+table.outerDealShareholder {
+	font-size: 9pt;
+	border-width: 1px;
+	border-style: dotted;
+	border-color: rgb(0, 0, 0);
+	border-collapse: separate;	
+}
+
+table.outerDealShareholder th {
+	font-size: 9pt;
+}
+table.outerDealShareholder td {
+	font-size: 9pt;
+}
+table.innerViewable th {
+	font-size: 9pt;	
+}
+table.innerViewable td {
+	font-size: 9pt;	
+}
+
+table.innerNonViewable th td {
+	font-size: 8pt;	
+}
+
+

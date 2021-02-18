@@ -1,0 +1,102 @@
+.hiddenRow {
+    padding: 0 !important;
+}
+
+.pay-header {
+	background-color: #CCCCCC;
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 0 0;
+    border-width: 1px;
+	border-style: solid;
+    box-shadow: none;
+}
+.pay-subheader {
+	background-color: #F7F7F9;
+	padding: 2px 0px 0px 2px;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	border-color: #DDDDDD;
+	
+}
+.pay-middle {
+	background-color: #E0FFE0;
+	padding: 0px 0px;
+
+}
+
+.pay-footer {
+	background-color: #CCCCCC;
+    border-color: #DDDDDD;
+    border-radius: 0 0 4px 4px;
+    border-width: 1px;
+	border-style: solid;
+    box-shadow: none;
+	padding: 5px 0 0 0;
+}
+.pay-method {
+	background-color: #FFFFE6;
+	padding: 4px 0px 2px 15px;
+}
+.pay-method > .table-condensed > thead > tr > th, .pay-method > .table-condensed > tbody > tr > th, .pay-method > .table-condensed > tfoot > tr > th, .pay-method > .table-condensed > thead > tr > td, .pay-method > .table-condensed > tbody > tr > td, .pay-method > .table-condensed > tfoot > tr > td {
+	padding: 0px;
+	border-top: 0px;
+}
+.lot-info {
+	background-color: #E0FFE0;
+	padding: 4px 0px 2px 15px;
+	min-height:;
+}
+.lot-info > .table-condensed > thead > tr > th, .lot-info > .table-condensed > tbody > tr > th, .lot-info > .table-condensed > tfoot > tr > th, .lot-info > .table-condensed > thead > tr > td, .lot-info > .table-condensed > tbody > tr > td, .lot-info > .table-condensed > tfoot > tr > td {
+	padding: 2px;
+	border-top: 0px;
+}
+.cert-info {
+	background-color: #E0FFE0;
+	padding: 4px 0px 2px 15px;
+}
+.pay-approve {
+	text-align: right;
+	padding: 15px 15px 0 0;
+}
+.create-da-results > .table-condensed > thead > tr > th, .create-da-results > .table-condensed > tbody > tr > th, .create-da-results > .table-condensed > tfoot > tr > th, .create-da-results > .table-condensed > thead > tr > td, .create-da-results > .table-condensed > tbody > tr > td, .create-da-results > .table-condensed > tfoot > tr > td {
+	padding: 3px 0 0 0;
+	border: 0px;
+	border-top: 0px;
+	border-bottom: 0px;
+}
+.btn {
+	color: red;
+}
+progress {
+	-webkit-appearance: progress-bar;
+	height: 10px;
+	width: 350px;
+}
+.progress { 
+	position:relative; 
+	width:100px; 
+	border: 1px solid #ddd; 
+	padding: 1px; 
+	border-radius: 3px; 
+}
+.bar { 
+	background-color: #B4F5B4; 
+	width:0%; 
+	height:10px; 
+	border-radius: 3px; 
+}
+.percent { 
+	position:absolute; 
+	display:inline-block; 
+	top:0px; 
+	left:36%;
+	font-weight:900; 
+}
+.file_status { 
+	font-weight:900; 
+	text-align:center; 
+}
+
+#feeamt .fee {
+	margin-right:5px;
+}

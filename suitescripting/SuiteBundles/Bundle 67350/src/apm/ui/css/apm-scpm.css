@@ -1,0 +1,163 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+ 
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       27 Oct 2017     jmarimla         Initial
+ * 2.00       10 Nov 2017     jmarimla         Processor settings  
+ * 3.00       18 Dec 2017     jmarimla         Script by portlet 
+ * 4.00       28 Dec 2017     jmarimla         Pop up window
+ * 5.00       23 Jan 2017     jmarimla         Utilization portlet
+ * 6.00       24 May 2019     erepollo         Removed border
+ *
+ */
+ 
+ /*
+ * Settings
+ */
+.apm-scpm-settings-daterange {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}
+
+.apm-scpm-settings-daterange-dialog.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-scpm-settings-daterange-dialog .buttons {
+    padding: 5px;
+    width: 100%;
+}
+
+.apm-scpm-settings-daterange-dialog .buttons * {
+    display: inline-block;
+}
+
+.apm-scpm-settings-daterange-dialog .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+.apm-scpm-settings-daterange-dialog .note {
+    padding: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.apm-scpm-dialog-customdaterange.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-scpm-dialog-customdaterange .buttons {
+    padding: 5px;
+    width: 100%;
+}
+
+.apm-scpm-dialog-customdaterange .buttons * {
+    display: inline-block;
+}
+
+.apm-scpm-dialog-customdaterange .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+/*
+ * Overview
+ */
+.apm-scpm-grid-deployments {
+    width: 100%;
+    height: 350px;
+}
+
+.apm-scpm-overviewgrid-viewdetails-icon {
+    width: 28px;
+    height: 28px;
+    background-image: none;
+}
+
+.apm-scpm-overviewgrid-viewdetails-icon.showicon{
+    background-image: url(ns_images/details.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+/*
+ * Script Priority
+ */ 
+.apm-scpm-scriptpriority-chart {
+    height: 350px;
+    width: 100%;
+}
+
+/*
+ * Utilization
+ */ 
+.apm-scpm-utilization-chart {
+    height: 350px;
+    width: 100%;
+}
+
+/*
+ * Queue Details
+ */ 
+.apm-scpm-queuedetails-chart {
+    display: inline-block;
+    height: 350px;
+    width: 50%;
+}
+
+/*
+ * Processor Settings
+ */
+.apm-scpm-processorsettings {
+    width: 100%;
+}
+
+.apm-scpm-processorsettings .block {
+    width: 100%;
+    border-top: solid 1px #ededed;
+    border-bottom: solid 1px #ededed;
+}
+
+.apm-scpm-processorsettings .block:nth-child(even) {
+    background: #fafafa;
+}
+
+.apm-scpm-processorsettings .label {
+    width: 100%;
+    height: 25px;
+    text-align: center;
+}
+
+.apm-scpm-processorsettings .label span {
+    font-size: 14px;
+    color: #555555;
+    font-weight: bold;    
+}
+
+.apm-scpm-processorsettings .value {
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    margin: 0px 0px 10px 0px;
+}
+
+.apm-scpm-processorsettings .value span {
+    font-size: 28px;
+    color: #999999;
+    font-weight: bold;
+}
+
+/*
+ * Concurrency Details
+ */
+.apm-scpm-dialog-concurrencydet .chart {
+    height: 400px;
+    width: 100%;
+}

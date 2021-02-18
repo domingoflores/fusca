@@ -1,0 +1,176 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       07 Aug 2018     rwong            Initial
+ * 2.00       10 Aug 2018     jmarimla         Chart and grid css
+ * 3.00       04 Sep 2018     jmarimla         Frht button icons
+ * 4.00       28 Sep 2018     jmarimla         Breadcrumbs css
+ * 5.00       26 Oct 2018     jmarimla         Breadcrumbs css
+ * 6.00       30 Oct 2018     jmarimla         Drilldown buttons
+ * 7.00       14 Dec 2018     jmarimla         Format kpi values
+ *
+ */
+
+/*
+ * PRF KPI Portlet
+ */
+ 
+.apm-prf-breadcrumbs {
+	width: 100%;
+	padding: 5px 20px;
+	white-space: normal;
+    display: block;
+}
+
+.apm-prf-breadcrumbs {
+	color: #4D5F79;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.apm-prf-breadcrumbs a {
+	color: #4D5F79;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.apm-prf-kpi-container {
+    width: 100%;
+    padding: 0px 50px;
+}
+
+.apm-prf-kpi-row {
+    width: 100%;
+}
+
+.apm-prf-kpi-block {
+    width: 33%;
+    display: inline-block;
+    padding: 15px 0px;
+}
+
+.apm-prf-kpi-block .label{
+    color: #999999;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.apm-prf-kpi-block .value{
+    color: #545454;
+    font-size: 13px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px 10px 0px 0px; 
+}
+
+.apm-prf-subpanel-frhtchart {
+	padding: 5px 20px;
+}
+
+.apm-prf-subpanel-frhtgrid {
+	padding: 5px 20px;
+}
+
+.apm-prf-subpanel-frhtgrid .psgp-subpanel-body {
+	padding: 3px 0px;
+}
+
+.apm-prf-frhtchart-xaxis-label {
+	width: 100px;
+}
+
+.apm-prf-frhtchart-xaxis-label .xaxis-label {
+	float: left;
+	height: 24px;
+	line-height: 24px;
+	margin: 0px 5px 0px 0px;
+}
+
+.apm-prf-frhtchart-xaxis-label .xaxis-icon-vc {
+	float: left;
+	width: 24px;
+	height: 24px;
+	margin: 0px 5px 0px 0px;
+	background-image: url(ns_images/glyph-log.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+
+.apm-prf-frhtchart-xaxis-label .xaxis-icon-dd {
+	float: left;
+	width: 24px;
+	height: 24px;
+	margin: 0px 5px 0px 0px;
+	background-image: url(ns_images/glyph-fields-hierarchical.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+
+.apm-prf-frhtgrid-viewcalls-icon {
+    width: 30px;
+    height: 24px;
+    background-image: none;
+}
+
+.apm-prf-frhtgrid-viewcalls-icon.showicon {
+    background-image: url(ns_images/glyph-log.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+
+.apm-prf-frhtgrid-drilldown-icon {
+    width: 30px;
+    height: 24px;
+    background-image: none;
+}
+
+.apm-prf-frhtgrid-drilldown-icon.showicon {
+    background-image: url(ns_images/glyph-fields-hierarchical.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+
+/*
+ * Popup windows
+ */
+.apm-prf-apicalls .grid {
+    height: 410px;
+}
+
+/*
+ * No Data Available
+ */
+.apm-prf-nodataavailable {
+    position: relative;
+    padding: 10px 20px;
+}
+
+.apm-prf-nodataavailable .icon {
+    width: 32px;
+    height: 30px;
+    float: left;
+    background-image: url(ns_images/warning.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.apm-prf-nodataavailable .message {
+    float: left;
+    margin: 5px 10px;
+    font-size: 12px;
+}

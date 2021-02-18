@@ -1,0 +1,112 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       07 Jun 2017     jmarimla         Initial
+ * 2.00       16 Jun 2017     jmarimla         Perf details css
+ * 3.00       26 Jul 2018     jmarimla         FRHT icon
+ * 4.00       24 May 2019     erepollo         Changed header BG to white
+ *
+ */
+
+/*
+ * KPI Portlet
+ */
+
+.apm-wsod-kpi-container {
+	width: 100%;
+	padding: 0px 50px;
+}
+
+.apm-wsod-kpi-row {
+	width: 100%;
+}
+
+.apm-wsod-kpi-block {
+	width: 33%;
+	display: inline-block;
+	padding: 15px 0px;
+}
+
+.apm-wsod-kpi-block .label{
+    color: #999999;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.apm-wsod-kpi-block .value{
+    color: #545454;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+/*
+ * Perf Details
+ */
+.apm-wsod-container-perfdetailscharts {
+    padding: 10px 10px 10px 10px;
+    background-color: #ffffff;
+    width: 100%;
+} 
+
+.apm-wsod-container-perfdetailscharts .chart-row {
+    width: 100%;
+}
+
+.apm-wsod-container-perfdetailscharts .chart-outer {
+    height: 300px;
+    display: inline-block;
+    width: 50%;
+    padding: 5px 5px 5px 5px;
+}
+
+.apm-wsod-container-perfdetailscharts .chart {
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #666666;
+}
+
+/*
+ * Popup windows
+ */
+.apm-wsod-wsologs .grid {
+    height: 410px;
+}
+
+.apm-wsod-wsologs-viewdetails-icon {
+    width: 28px;
+    height: 28px;
+    background-image: none;
+}
+
+.apm-wsod-wsologs-viewdetails-icon.showicon {
+    background-image: url(ns_images/details.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+.apm-wsod-wsrplogs .grid {
+    height: 410px;
+}
+
+.apm-wsod-wsrplogs-viewdetails-icon {
+    width: 28px;
+    height: 28px;
+    background-image: none;
+}
+
+.apm-wsod-wsrplogs-viewdetails-icon.showicon {
+    background-image: url(ns_images/details.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    cursor: pointer;
+}

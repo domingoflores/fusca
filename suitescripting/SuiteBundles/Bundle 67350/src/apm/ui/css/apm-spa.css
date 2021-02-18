@@ -1,0 +1,276 @@
+/**
+ * Copyright © 2015, 2017, Oracle and/or its affiliates. All rights reserved.
+ */
+ 
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       03 Aug 2017     jmarimla         Initial
+ * 2.00       10 Aug 2017     jmarimla         Saved search tiles
+ * 3.00       07 Sep 2017     jmarimla         Modified tiles
+ * 4.00       18 Sep 2017     jmarimla         Customer debugging
+ * 5.00       17 Nov 2017     jmarimla         Adjust tiles
+ * 6.00       29 Mar 2019     jmarimla         Add avg time
+ * 7.00       24 May 2019     erepollo         Changed toolbar BG to white
+ *
+ */
+ 
+#spa-main-content {
+    min-width: 1400px;
+}
+
+/*
+ * Settings Dialog
+ */
+.apm-spa-settings-custdebug {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}
+
+.apm-spa-dialog-custdebug.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-spa-dialog-custdebug .buttons {
+    padding: 15px 5px 5px 5px;
+    width: 100%;
+}
+
+.apm-spa-dialog-custdebug .buttons * {
+    display: inline-block;
+}
+
+.apm-spa-dialog-custdebug .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+/*
+ * Saved Search Toolbar
+ */
+ 
+.apm-spa-tiles-toolbar {
+	position: relative;
+    height: 39px;
+    background: #ffffff;
+    padding: 4px 10px;
+}
+
+.apm-spa-tiles-toolbar .label {
+	color: #555555;
+	font-size: 14px;
+	padding: 5px 9px;
+	text-transform: uppercase;
+}
+
+.apm-spa-tiles-toolbar .text-date {
+    color: #555555;
+    font-size: 14px;
+    padding: 5px 9px;
+}
+
+.apm-spa-tiles-toolbar .left{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 6px 0px 0px 12px;
+}
+
+.apm-spa-tiles-toolbar .left div{
+    float: left;
+}
+
+.apm-spa-tiles-toolbar .right{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 6px 12px 0px 0px;
+}
+
+.apm-spa-tiles-toolbar .right div{
+    float: left;
+}
+
+/*
+ * Tiles
+ */
+
+.apm-spa-tiles-column {
+    width: 100%;
+    position: relative;
+    height: 300px;
+}
+
+.apm-spa-tile {
+    float: left;
+    width: 20%;
+    height: 100%;
+    position: relative;
+}
+
+.apm-spa-tile .main:hover {
+    cursor: pointer;
+    border: 1px solid #2e82e8;
+    -webkit-box-shadow: -1px 2px 4px 0px rgba(46, 130, 232, 0.75);
+    -moz-box-shadow: -1px 2px 4px 0px rgba(46, 130, 232, 0.75);
+    box-shadow: -1px 2px 4px 0px rgba(46, 130, 232, 0.75);  
+}
+
+.apm-spa-tile .main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    border: 1px solid #dadfe6;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.apm-spa-tile .header {
+    width: 100%;
+    height: 75px;
+    background-color: #e6ebf2;
+    padding: 3px;
+}
+
+.apm-spa-tile .searchname {
+    color: #333333;
+    font-size: 17px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.apm-spa-tile .searchid {
+    color: #333333;
+    font-size: 13px;
+    text-transform: lowercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.apm-spa-tile .recordtype {
+    color: #333333;
+    font-size: 13px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.apm-spa-tile .body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.apm-spa-tile .chart {
+    width: 100%;
+    height: 85px;
+}
+
+.apm-spa-tile .kpi-label.executiontime {
+	height: 15px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.apm-spa-tile .kpi-row-1 {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+}
+
+.apm-spa-tile .kpi-row-2 {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+}
+
+.apm-spa-tile .kpi-row-1 .kpi {
+    flex: 1;
+    height: 100%;
+    padding: 0px 0px 0px 10px;
+}
+
+.apm-spa-tile .kpi-row-1 .kpi-label {
+    height: 15px;
+    font-size: 12px;
+    color: #666666;
+    font-weight: 400;
+}
+
+.apm-spa-tile .kpi-row-1 .kpi-value {
+    height: 30px;
+    font-size: 25px;
+    color: #666666;
+    font-weight: 600;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi {
+	flex: 1;
+	height: 100%;
+    padding: 0px 0px 0px 10px;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi.col-1 {
+	display: flex;
+	flex-direction: column;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi-label {
+    height: 15px;
+    font-size: 12px;
+    color: #666666;
+    font-weight: 400;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi.col-1 .kpi-value {
+	height: 30px;
+    font-size: 25px;
+    color: #666666;
+    font-weight: 600;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi.col-2 {
+	display: flex;
+	flex-direction: column;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi-icon {
+	display: flex;
+	flex-direction: row;
+	align-items: start;	
+}
+
+.apm-spa-tile .kpi-row-2 .kpi-label-icon {
+	height: 22px;
+	width: 22px;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi-label-icon.totalusers {
+    background-image: url(ns_images/person_icon.png);
+    background-position: center left;
+    background-repeat: no-repeat;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi-label-icon.totalrequests {
+    background-image: url(ns_images/logs_icon.png);
+    background-position: center left;
+    background-repeat: no-repeat;
+}
+
+.apm-spa-tile .kpi-row-2 .kpi-value {
+    float: left;
+    font-size: 16px;
+    color: #666666;
+    font-weight: 600;
+}

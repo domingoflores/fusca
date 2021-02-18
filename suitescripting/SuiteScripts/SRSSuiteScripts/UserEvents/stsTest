@@ -1,0 +1,17 @@
+function acqCaseHandler(type){
+	var logLevel = 'ERROR';
+	//var dataObj = {}; NEED TO USE OBJECT FOR PASSING ALL THIS DATA BETWEEN FUNCTIONS
+	var newCase = nlapiGetNewRecord();
+	var newCaseID = newCase.getId();
+	var newCaseQueue = newCase.getFieldValue('custevent_case_queue');
+	var recordType = 'Case';
+	
+	
+	//Check to see if this is an Acquiom Case and the case is being created. 24 is the ID of the Acquiom Case Queue
+	if ((type == 'create') && (newCaseQueue == '24')){
+		
+		//Set Variables for the New Case fields
+		var newCase = nlapiLoadRecord('supportcase', newCaseID);
+		var test = "stsTestFile";
+	}
+}

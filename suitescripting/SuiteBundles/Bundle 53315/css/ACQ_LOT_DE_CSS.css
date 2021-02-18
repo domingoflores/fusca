@@ -1,0 +1,120 @@
+
+
+div.container .labelCol {
+color:#666;
+font-size:10pt;
+text-decoration:none;
+text-align:right;
+vertical-align:middle;
+width:125px;
+padding: 8px;
+}
+
+div.container .fieldCol {
+width:250px;
+text-align:left;
+}
+
+div.container .labelid {
+color:#666;
+font-size:10pt;
+font-style:bold;
+width:50px;
+text-align:right;
+}
+
+div.container input {
+line-height:normal;
+font-size:6pt;
+height:15px;
+border-color:#999;
+border-style:solid;
+border-width:1px;
+padding:0;
+}
+
+div.container .text {
+color:#000;
+font-size:8pt;
+}
+
+element.style {
+width:100%;
+font-size:0;
+}
+
+div.container .form-control {
+background-color:#fff;
+background-image:none;
+border:1px solid #ccc;
+border-radius:4px;
+box-shadow:0 1px 1px rgba(0,0,0,0.075) inset;
+color:#555;
+display:block;
+font-size:14px;
+height:32px;
+line-height:1.42857;
+transition:border-color .15s ease-in-out 0 box-shadow .15s ease-in-out 0;
+width:100%;
+padding:4px 6px;
+margin: 4px 8px 4px 8px;
+}
+
+div.container input,button,select,textarea {
+font-family:inherit;
+font-size:inherit;
+line-height:inherit;
+}
+
+div.container button,input,optgroup,select,textarea {
+color:inherit;
+font:inherit;
+margin:0;
+}
+
+div.container body,td,select,textarea,input {
+font-family:Tahoma,Geneva,sans-serif;
+}
+
+div.container .form-control::-moz-placeholder {
+color:#777;
+opacity:1;
+}
+
+div.container .table > thead > tr > th,.table > tbody > tr > th,.table > tfoot > tr > th,.table > thead > tr > td,.table > tbody > tr > td,.table > tfoot > tr > td {
+line-height:1.42857;
+}
+
+div.container table {
+background-color:transparent;
+border-collapse:collapse;
+border-spacing:0;
+}
+
+div.container body {
+color:#333;
+font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size:14px;
+line-height:1.42857;
+}
+
+div.container html {
+font-family:sans-serif;
+font-size:62.5%;
+}
+
+div.container .table {
+margin-bottom:20px;
+max-width:100%;
+width:100%;
+}
+
+:before,:after,* {
+box-sizing:border-box;
+}
+
+div.headerrow {
+margin-bottom:5px;
+vertical-align:middle;
+padding:3px 0px;
+}

@@ -1,0 +1,77 @@
+
+.container-fixed {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.pay-header {
+	background-color: #CCCCCC;
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 0 0;
+    border-width: 1px;
+	border-style: solid;
+    box-shadow: none;
+}
+.pay-subheader {
+	padding: 2px 0px 0px 2px;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	border-color: #DDDDDD;
+	
+}
+.pay-middle {
+
+	padding: 0px 0px;
+}
+
+.pay-footer {
+	background-color: #CCCCCC;
+    border-color: #DDDDDD;
+    border-radius: 0 0 4px 4px;
+    border-width: 1px;
+	border-style: solid;
+    box-shadow: none;
+	padding: 5px 0 0 0;
+}
+.pay-method {
+	padding: 4px 0px 2px 15px;
+}
+.pay-method > .table-condensed > thead > tr > th, .pay-method > .table-condensed > tbody > tr > th, .pay-method > .table-condensed > tfoot > tr > th, .pay-method > .table-condensed > thead > tr > td, .pay-method > .table-condensed > tbody > tr > td, .pay-method > .table-condensed > tfoot > tr > td {
+	padding: 0px;
+	border-top: 0px;
+}
+.lot-info {
+	padding: 4px 0px 2px 15px;
+
+}
+.lot-info > .table-condensed > thead > tr > th, .lot-info > .table-condensed > tbody > tr > th, .lot-info > .table-condensed > tfoot > tr > th, .lot-info > .table-condensed > thead > tr > td, .lot-info > .table-condensed > tbody > tr > td, .lot-info > .table-condensed > tfoot > tr > td {
+	padding: 2px;
+	border-top: 0px;
+}
+.cert-info {
+	padding: 4px 0px 2px 15px;
+}
+.pay-approve {
+	text-align: right;
+	padding: 15px 15px 0 0;
+}
+.create-da-results > .table-condensed > thead > tr > th, .create-da-results > .table-condensed > tbody > tr > th, .create-da-results > .table-condensed > tfoot > tr > th, .create-da-results > .table-condensed > thead > tr > td, .create-da-results > .table-condensed > tbody > tr > td, .create-da-results > .table-condensed > tfoot > tr > td {
+	padding: 3px 0 0 0;
+	border: 0px;
+	border-top: 0px;
+	border-bottom: 0px;
+}
+.btn {
+	color: red;
+}
+.yellow {
+	background-color: #FFFFE6;
+}
+.green {
+	background-color: #E0FFE0;
+}
+#feeamt .fa.fa-pencil-square {
+	margin-left:5px;
+}
+#feeamt {
+	cursor:pointer;
+}

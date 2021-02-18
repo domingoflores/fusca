@@ -1,0 +1,1158 @@
+/**
+ *@NApiVersion 2.x
+ *@NScriptType Suitelet
+ */
+
+define(['N/ui/serverWidget', 'N/search', 'N/http', 'N/runtime', 'N/record', 'N/redirect', '/SuiteScripts/Pristine/libraries/approvalProcessLibrary'],
+
+	/**
+	 * -----------------------------------------------------------
+	 * documentSelectionSuitelet.js
+	 * ___________________________________________________________
+	 * Module builds the Document Selection Suitelet for the
+	 * Document Collection Process of a Deal Event
+	 *
+	 * Version 1.0
+	 * Author: Ken Crossman & Peter Gail
+	 * ___________________________________________________________
+	 */
+
+	function(serverWidget, search, http, runtime, record, redirect, approvalProcess) {
+		'use strict';
+
+		var DEVELOPMENT = false;
+
+		// Constants
+		var APPROVAL_STEP_FIELD = 'custrecord_de_ds_ap_step';
+		var RECORD_TYPE = 'customrecord_payment_import_record';
+		var APPROVAL_LOG_RECORD_TYPE = 'customrecord_doc_selection_appr_log';
+		var APPROVAL_STATUS_FIELD = 'custrecord_de_ds_ap_status';
+		var SUBMIT_FIELD_ID = 'usr_action_sel';
+
+		// PRODUCTION WATCH: ensure correct internal id
+		var APPROVAL_BUSINESS_PROCESS = 1; // 'Document Collection'
+
+		function onRequest(context) {
+
+			if (runtime.envType === 'SANDBOX') {
+				DEVELOPMENT = true;
+			}
+
+			var user = runtime.getCurrentUser();
+			var docSelectionHelper = docSelectionHelperModule(search, serverWidget, user); // This is where the Next Action field is created
+			var dealEvent = '';
+			var approvalStepID = '';
+			var secTypeCount = 0;
+
+			approvalProcess.initialize(user, RECORD_TYPE, APPROVAL_STEP_FIELD, APPROVAL_LOG_RECORD_TYPE, APPROVAL_BUSINESS_PROCESS);
+			approvalProcess.setSubmitFieldID(SUBMIT_FIELD_ID);
+			var docTemplCount = 0;
+			var exRecGpCount = 0;
+
+			if (context.request.method === 'GET') {
+
+				/* ----------------- FORM CREATION SECTION ----------------- */
+
+				// Get the Deal Event parameter and store in hidden field
+				dealEvent = context.request.parameters.custscriptdealevent;
+				approvalProcess.setRecordID(dealEvent);
+				var form = serverWidget.createForm({
+					title: 'Document Selection by Security Type and Group'
+				});
+
+				/* ----------------- DOCUMENT SELECTION STATUS SECTION ----------------- */
+
+
+				// Now let us get the Deal Event
+				var dealEventRec = getDealEvent(dealEvent);
+				// Add the document selection status id field and populate it
+				approvalStepID = dealEventRec[0].getValue({
+					name: APPROVAL_STEP_FIELD
+				});
+
+				// Add hidden Deal Event field
+				var formDealEvent = form.addField({
+					id: 'dealevent',
+					type: serverWidget.FieldType.TEXT,
+					label: 'Deal Event'
+				});
+
+				formDealEvent.updateDisplayType({
+					displayType: serverWidget.FieldDisplayType.HIDDEN
+				});
+
+				formDealEvent.defaultValue = dealEvent;
+
+				// Add hidden Document Selection Status ID field
+				var formApprovStepID = form.addField({
+					id: 'approval_process_step',
+					type: serverWidget.FieldType.TEXT,
+					label: 'Approval Proccess Status'
+				});
+
+				formApprovStepID.updateDisplayType({
+					displayType: serverWidget.FieldDisplayType.HIDDEN
+				});
+				formApprovStepID.defaultValue = approvalStepID;
+
+				/* ----------------- DOC TEMPLATE SECTION ----------------- */
+
+				// Now first get list of document templates for this Deal Event and store the count in a hidden screen field
+				var docTemplates = getDocTemplates(dealEvent);
+				docTemplCount = docTemplates.length;
+				var getDocTemplCount = form.addField({
+					id: 'doctemplcount',
+					type: serverWidget.FieldType.INTEGER,
+					label: 'Document Template Count'
+				});
+
+				getDocTemplCount.updateDisplayType({
+					displayType: serverWidget.FieldDisplayType.HIDDEN
+				});
+
+				getDocTemplCount.defaultValue = docTemplates.length;
+
+				/* ----------------- SECURITY TYPE SECTION ----------------- */
+
+				// Now first get list of security types for this Deal Event and store the count in a hidden screen field
+				var securityTypes = getSecurityTypes(dealEvent);
+				secTypeCount = securityTypes.length;
+				var getSecTypeCount = form.addField({
+					id: 'sectypecount',
+					type: serverWidget.FieldType.INTEGER,
+					label: 'Security Type Count'
+				});
+
+				getSecTypeCount.updateDisplayType({
+					displayType: serverWidget.FieldDisplayType.HIDDEN
+				});
+
+				getSecTypeCount.defaultValue = securityTypes.length;
+
+				// Now add the securitySubList
+				var securitySubList = form.addSublist({
+					id: 'sublist',
+					type: serverWidget.SublistType.LIST,
+					label: 'Document Selection'
+				});
+				
+				securitySubList.addMarkAllButtons();
+
+				/* ----------------- EXCHANGE RECORD GROUPS SECTION ----------------- */
+
+				// Now first get list of security types for this Deal Event and store the count in a hidden screen field
+				var exRecGps = getExchRecGroups(dealEvent);
+				exRecGpCount = exRecGps.length;
+
+				var getExRecGpCount = form.addField({
+					id: 'exrecgpcount',
+					type: serverWidget.FieldType.INTEGER,
+					label: 'Ex Rec Group Count'
+				});
+
+				getExRecGpCount.updateDisplayType({
+					displayType: serverWidget.FieldDisplayType.HIDDEN
+				});
+
+				getExRecGpCount.defaultValue = exRecGps.length;
+
+				/* ----------------- SUBLIST SECTION ----------------- */
+
+				// The Security Type column
+				securitySubList.addField({
+					id: 'certtype',
+					type: serverWidget.FieldType.TEXT,
+					label: 'Security Type'
+				});
+				// The Exchange Record Group column
+				securitySubList.addField({
+					id: 'exrecgp',
+					type: serverWidget.FieldType.TEXT,
+					label: 'Group'
+				});
+				// The hidden Security Type ID column
+				var certTypeIDcol = securitySubList.addField({
+					id: 'certtypeid',
+					type: serverWidget.FieldType.TEXT,
+					label: 'Security Type ID'
+				});
+				certTypeIDcol.updateDisplayType({
+					displayType: serverWidget.FieldDisplayType.HIDDEN
+				});
+				// The hidden Ex Rec Gp ID column
+				var exRecGpIDcol = securitySubList.addField({
+					id: 'exrecgpid',
+					type: serverWidget.FieldType.TEXT,
+					label: 'Group ID'
+				});
+				exRecGpIDcol.updateDisplayType({
+					displayType: serverWidget.FieldDisplayType.HIDDEN
+				});
+
+				// Create a checkbox field for each document template linked to the Deal Event
+				var docTemplID = '';
+				var cellFieldID = '';
+				for (var j = 0; j < docTemplates.length; j++) {
+					var doctemplate = docTemplates[j].getValue({
+						name: 'name',
+						join: 'custrecord_dedt_doc_template'
+					});
+					docTemplID = docTemplates[j].getValue({
+						name: 'custrecord_dedt_doc_template'
+					});
+					cellFieldID = 'col' + docTemplID;
+
+					var cellfield = securitySubList.addField({
+						id: cellFieldID,
+						type: serverWidget.FieldType.CHECKBOX,
+						label: doctemplate
+					});
+
+					if (parseInt(approvalStepID) !== 1) { // 1.Selection in Progress
+						cellfield.updateDisplayType({
+							displayType: serverWidget.FieldDisplayType.DISABLED
+						});
+
+					}
+				}
+				// Now store the security types in rows on the screen
+				var certType = '';
+				var certTypeID = '';
+				for (var i = 0; i < secTypeCount; i++) {
+					certType = securityTypes[i].getText({
+						name: 'custrecord_acq_lotce_3_src_certtype',
+						join: 'custrecord_acq_lotce_zzz_zzz_parentlot',
+						summary: search.Summary.GROUP,
+						sort: search.Sort.ASC
+					});
+
+					securitySubList.setSublistValue({
+						id: 'certtype',
+						line: i,
+						value: certType
+					});
+					certTypeID = securityTypes[i].getValue({
+						name: 'custrecord_acq_lotce_3_src_certtype',
+						join: 'custrecord_acq_lotce_zzz_zzz_parentlot',
+						summary: search.Summary.GROUP,
+						sort: search.Sort.ASC
+					});
+
+					securitySubList.setSublistValue({
+						id: 'certtypeid',
+						line: i,
+						value: certTypeID
+					});
+				}
+
+				// Now store the ex rec grps in rows on the screen
+				var exRecGp = '';
+				var exRecGpID = '';
+				var subListRow = i;
+				var combinedRowCount = secTypeCount + exRecGpCount;
+
+				for (var k = 0; k < exRecGpCount; k++) {
+					exRecGp = exRecGps[k].getValue({
+						name: 'name', // The name of the exchange rec group
+						summary: search.Summary.MAX,
+						sort: search.Sort.ASC
+					});
+
+					securitySubList.setSublistValue({
+						id: 'exrecgp',
+						line: subListRow,
+						value: exRecGp
+					});
+					exRecGpID = exRecGps[k].getValue({
+						name: 'internalid', // The id of the exchange rec group
+						summary: search.Summary.GROUP
+					});
+
+					securitySubList.setSublistValue({
+						id: 'exrecgpid',
+						line: subListRow,
+						value: exRecGpID
+					});
+					subListRow = subListRow + 1;
+				}
+
+				/* ----------------- DOC SELECTION SECTION ----------------- */
+
+				// Now read the current document selection for this deal event and check the boxes to display the current choice
+				var docSel = docSelectionHelper.getXJoinRows(dealEvent);
+
+				// First the security type rows
+				for (var a = 0; a < securityTypes.length; a++) {
+					// Get each cert type id
+					certTypeID = securityTypes[a].getValue({
+						join: 'custrecord_acq_lotce_zzz_zzz_parentlot',
+						name: 'custrecord_acq_lotce_3_src_certtype',
+						summary: search.Summary.GROUP,
+						sort: search.Sort.ASC
+					});
+
+					exRecGpID = '';
+
+					for (var b = 0; b < docTemplates.length; b++) {
+						docTemplID = docTemplates[b].getValue({
+							name: 'custrecord_dedt_doc_template'
+						});
+						cellFieldID = 'col' + docTemplID;
+
+						if (isDocSelected(docSel, certTypeID, exRecGpID, docTemplID)) {
+							securitySubList.setSublistValue({
+								id: cellFieldID,
+								line: a,
+								value: 'T'
+							});
+						}
+
+					}
+				}
+
+				// Then the exchange rec groups rows
+				subListRow = a;
+				combinedRowCount = secTypeCount + exRecGpCount;
+
+				for (var l = 0; l < exRecGpCount; l++) {
+					// Get each ex rec gp id
+					exRecGpID = exRecGps[l].getValue({
+						name: 'internalid', // The id of the exchange rec group
+						summary: search.Summary.GROUP
+					});
+
+					certTypeID = '';
+
+					for (var h = 0; h < docTemplCount; h++) {
+
+						docTemplID = docTemplates[h].getValue({
+							name: 'custrecord_dedt_doc_template'
+						});
+						cellFieldID = 'col' + docTemplID;
+
+						if (isDocSelected(docSel, certTypeID, exRecGpID, docTemplID)) {
+							securitySubList.setSublistValue({
+								id: cellFieldID,
+								line: subListRow,
+								value: 'T'
+							});
+						}
+
+					}
+					subListRow = subListRow + 1;
+				}
+				// Now add the  Status Change Log SubList
+				var appSublist = form.addSublist({
+					id: 'appsublist',
+					type: serverWidget.SublistType.LIST,
+					label: 'Status Change Log'
+				});
+
+				appSublist.addField({
+					id: 'logtimestamp',
+					type: serverWidget.FieldType.TEXT,
+					label: 'Timestamp'
+				});
+					appSublist.addField({
+					id: 'loguser',
+					type: serverWidget.FieldType.TEXT,
+					label: 'User'
+				});
+				appSublist.addField({
+					id: 'logbeforestatus',
+					type: serverWidget.FieldType.TEXT,
+					label: 'Before Status'
+				});
+				appSublist.addField({
+					id: 'usersubmitaction',
+					type: serverWidget.FieldType.TEXT,
+					label: 'User Action'
+				});
+				appSublist.addField({
+					id: 'logafterstatus',
+					type: serverWidget.FieldType.TEXT,
+					label: 'After Status'
+				});
+			
+				// Now get all doc selection status change log recs
+				var statusLogList = getStatusLog(dealEvent);
+				var statusLog = null;
+				var statusLogCount = statusLogList.length;
+
+				// Now add them to the sublist
+				var logUser = '';
+				var logTimeStamp = '';
+				var logBeforeStatus = '';
+				var logAfterStatus = '';
+				var approvalAction = '';
+
+				for (var sl = 0; sl < statusLogCount; sl++) {
+					statusLog = statusLogList[sl];
+					logUser = statusLog.getText({
+						name: 'custrecord_dsa_approver',
+					});
+
+					appSublist.setSublistValue({
+						id: 'loguser',
+						line: sl,
+						value: logUser
+					});
+
+					logTimeStamp = statusLog.getValue({
+						name: 'custrecord_dsa_timestamp',
+					});
+					appSublist.setSublistValue({
+						id: 'logtimestamp',
+						line: sl,
+						value: logTimeStamp
+					});
+
+					logBeforeStatus = statusLog.getText({
+						name: 'custrecord_dsa_before_status',
+					});
+					appSublist.setSublistValue({
+						id: 'logbeforestatus',
+						line: sl,
+						value: logBeforeStatus || '--- Missing Data! ---'
+					});
+
+					approvalAction = statusLog.getText({
+						name: 'custrecord_dsa_user_action',
+					});
+					appSublist.setSublistValue({
+						id: 'usersubmitaction',
+						line: sl,
+						value: approvalAction || '--- Missing Data! ---'
+					});
+
+					logAfterStatus = statusLog.getText({
+						name: 'custrecord_dsa_after_status',
+					});
+					appSublist.setSublistValue({
+						id: 'logafterstatus',
+						line: sl,
+						value: logAfterStatus || '--- Missing Data! ---'
+					});
+				}
+
+				/* ----------------------- REVIEW & APPROVAL SECTION ----------------------- */
+
+				approvalProcess.addReviewSectionFields(approvalStepID, form);
+
+				context.response.writePage(form);
+			} else {
+
+				var params = context.request.parameters;
+				var sublistData = params.sublistdata.split(/\u0002/);
+				var sublistFields = params.sublistfields.split(/\u0001/);
+				var newApprovalStepID = null;
+				var submitAction = JSON.parse(params[approvalProcess.getSubmitFieldID()]);
+				var userActionID = submitAction.approvalActionID;
+
+				// Show you have the Deal Event
+				var dealEventID = params.dealevent;
+
+				approvalStepID = params.approval_process_step;
+
+				// Get doc template count
+
+				approvalProcess.setRecordID(dealEventID);
+				var formColCount = parseInt(params.doctemplcount) + 4;
+
+				// Get security type count
+				secTypeCount = params.sectypecount;
+
+				// Get ex rec group count
+				exRecGpCount = params.exrecgpcount;
+
+				/* ----------------- DE STATUS SECTION ----------------- */
+
+				// Determine what the new status of the DE should be
+				newApprovalStepID = parseInt(submitAction.approvalStepID);
+
+
+				/* ----------------------- UPDATE DEAL EVENT AND AUDIT TRAIL RECORDS ----------------------- */
+				try {
+
+					docSelectionHelper.saveDocumentSelection(approvalStepID, newApprovalStepID, dealEventID, sublistFields, sublistData, secTypeCount, exRecGpCount, formColCount);
+
+					var timestamp = new Date();
+
+					var fieldUpdates = [{
+						fieldId: 'custrecord_dsa_deal_event',
+						value: dealEventID
+					}, {
+						fieldId: 'custrecord_dsa_approver',
+						value: user.id
+					}, {
+						fieldId: 'custrecord_dsa_timestamp',
+						value: timestamp
+					}, {
+						fieldId: 'custrecord_dsa_before_step',
+						value: parseInt(approvalStepID)
+					}, {
+						fieldId: 'custrecord_dsa_after_step',
+						value: newApprovalStepID
+					}];
+					if (userActionID) {
+						fieldUpdates.push({
+							fieldId: 'custrecord_dsa_user_action',
+							value: userActionID
+						});
+					}
+					docSelectionHelper.updateDealRecord(newApprovalStepID, dealEventID);
+					approvalProcess.update(newApprovalStepID, fieldUpdates);
+				} catch (e) {
+					log.error({
+						title: 'DE UPDATE ERROR',
+						details: e.name + ' - ' + e.message
+					});
+				}
+				context.response.write('Thank you, your selection has been saved! \n\nPlease notify the next approver of the updated status and close this window.');
+			}
+		}
+
+		function getStatusLog(dealEvent) {
+			var appsearch = search.create({
+				type: APPROVAL_LOG_RECORD_TYPE,
+				columns: [{
+					name: 'custrecord_dsa_approver'
+				}, {
+					name: 'custrecord_dsa_timestamp',
+					sort: search.Sort.DESC
+				}, {
+					name: 'custrecord_dsa_before_status'
+				}, {
+					name: 'custrecord_dsa_after_status'
+				}, {
+					name: 'custrecord_dsa_user_action'
+				}],
+				filters: [{
+					name: 'custrecord_dsa_deal_event',
+					operator: search.Operator.IS,
+					values: dealEvent
+				}]
+			});
+			var searchResults = appsearch.run().getRange({
+				start: 0,
+				end: 20
+			});
+
+			return searchResults;
+		}
+
+		function getDealEvent(dealEvent) {
+			var desearch = search.create({
+				type: 'customrecord_payment_import_record',
+				columns: [{
+					name: APPROVAL_STEP_FIELD
+				}],
+				filters: [{
+					name: 'internalid',
+					operator: search.Operator.IS,
+					values: dealEvent
+				}]
+			});
+			var searchResults = desearch.run().getRange({
+				start: 0,
+				end: 20
+			});
+
+			return searchResults;
+		}
+
+		function getSecurityTypes(dealEvent) {
+			var sectypesearch = search.create({
+				type: 'customrecord_acq_lot', //Exchange Record
+				title: 'My Security Types',
+				columns: [{
+					name: 'custrecord_acq_lotce_3_src_certtype', //This is the DE0-T1) Certificate Type field on the LOT Certificate Entry record type
+					join: 'custrecord_acq_lotce_zzz_zzz_parentlot', //This is the Exchange Record field on the LOT Certificate Entry record type
+					summary: search.Summary.GROUP,
+					sort: search.Sort.ASC
+				}],
+				filters: [{
+					name: 'custrecord_acq_lot_payment_import_record',
+					operator: search.Operator.IS,
+					values: dealEvent
+				}]
+			}).run();
+			var searchResults = sectypesearch.getRange(0, 100);
+
+			return searchResults;
+		}
+
+		function getExchRecGroups(dealEvent) {
+			var exchRecGpSearch = search.create({
+				type: 'customrecord_exch_rec_group', //Exchange Record Group
+				title: 'Exchange Record Groups',
+				columns: [{
+					name: 'internalid', //The id of the exchange rec group
+					summary: search.Summary.GROUP
+				}, {
+					name: 'name', //The name of the exchange rec group
+					summary: search.Summary.MAX,
+					sort: search.Sort.ASC
+				}],
+				filters: [{
+					name: 'custrecord_erg_deal_event',
+					operator: search.Operator.IS,
+					values: dealEvent
+				}, {
+					name: 'internalid', //internal id of the exchange record member
+					join: 'custrecord_exch_rec_group', //exchange record group field on exchange rec
+					operator: search.Operator.GREATERTHAN,
+					summary: search.Summary.COUNT,
+					values: 0
+				}]
+			}).run();
+			var searchResults = exchRecGpSearch.getRange(0, 100);
+
+			return searchResults;
+		}
+
+		function getDocTemplates(dealEvent) {
+			var docTemplSearch = search.create({
+				type: 'customrecord_deal_event_doc_template',
+				columns: [{
+					name: 'custrecord_dedt_doc_template' //The id of the document template
+				}, {
+					name: 'name', //The name of the document template
+					join: 'custrecord_dedt_doc_template'
+				}],
+				filters: [{
+					name: 'custrecord_dedt_deal_event',
+					operator: search.Operator.IS,
+					values: dealEvent
+				}]
+			});
+
+			var searchResults = docTemplSearch.run().getRange({
+				start: 0,
+				end: 100
+			});
+
+			return searchResults;
+		}
+
+		function isDocSelected(docSel, certTypeID, exRecGpID, docTemplID) {
+
+			var answer = false;
+			for (var i = 0; i < docSel.length; i++) {
+				var selcertTypeID = docSel[i].getValue({
+					name: 'custrecord_ds_cert_type'
+				});
+				var selexRecGpID = docSel[i].getValue({
+					name: 'custrecord_ds_exrec_gp'
+				});
+				var seldocTemplID = docSel[i].getValue({
+					name: 'custrecord_ds_doc_template'
+				});
+				if (selcertTypeID == certTypeID && selexRecGpID == exRecGpID && seldocTemplID == docTemplID) {
+					answer = true;
+					break;
+				}
+			}
+
+			return answer;
+		}
+
+		function getExchangeRecs(dealEvent) {
+			var exchangeRecSearch = search.create({
+				type: 'customrecord_acq_lot_cert_entry',
+				title: 'xchrecs',
+				columns: [{
+					name: 'custrecord_acq_lotce_3_src_certtype',
+					summary: search.Summary.GROUP,
+					sort: search.Sort.ASC
+				}, {
+					name: 'custrecord_acq_lotce_zzz_zzz_parentlot', //Exchange Rec
+					summary: search.Summary.GROUP,
+					sort: search.Sort.ASC
+				}, {
+					name: 'custrecord_exch_rec_group', //Exchange Rec Gp
+					join: 'custrecord_acq_lotce_zzz_zzz_parentlot',
+					summary: search.Summary.MAX,
+				}],
+				filters: [{
+					name: 'custrecord_acq_lot_payment_import_record',
+					join: 'custrecord_acq_lotce_zzz_zzz_parentlot',
+					operator: search.Operator.IS,
+					values: dealEvent
+				}]
+			});
+			var searchResults = '';
+			searchResults = exchangeRecSearch.run().getRange({
+				start: 0,
+				end: 1000
+			});
+
+
+			// var exchRecCount = searchResults.length;
+
+			return searchResults;
+		}
+
+		function getGpExRecs(dealEvent) {
+			var gpExRecSearch = search.create({
+				type: 'customrecord_acq_lot',
+				title: 'gpxchrecs',
+				columns: [{
+					name: 'internalid'
+				}, {
+					name: 'custrecord_exch_rec_group'
+				}],
+				filters: [{
+					name: 'custrecord_acq_lot_payment_import_record',
+					operator: search.Operator.IS,
+					values: dealEvent
+				}, {
+					name: 'custrecord_exch_rec_group',
+					operator: search.Operator.ISEMPTY
+				}]
+			});
+
+
+			var searchResults = '';
+
+			searchResults = gpExRecSearch.run().getRange({
+				start: 0,
+				end: 1000
+			});
+
+			return searchResults;
+		}
+
+		function getApprovals(dealEvent) {
+			var appsearch = search.create({
+				type: 'customrecord_payment_import_record',
+				columns: [{
+					name: APPROVAL_STEP_FIELD
+				}],
+				filters: [{
+					name: 'internalid',
+					operator: search.Operator.IS,
+					values: dealEvent
+				}]
+			});
+			var searchResults = appsearch.run().getRange({
+				start: 0,
+				end: 20
+			});
+
+			return searchResults;
+		}
+
+
+		/**
+		 * Helper module contains methods for Document Selection
+		 * @param  {object} search       NetSuite Search Module
+		 * @param  {object} serverWidget NetSuite serverWidget Module
+		 * @param  {object} user         current NetSuite user
+		 * @return {object}              Helper module
+		 */
+		function docSelectionHelperModule(search, serverWidget, user) {
+
+			var module = {
+
+				saveDocumentSelection: saveDocSelection,
+
+				updateDealRecord: updateDealRec,
+
+				getXJoinRows: getXJoinRowsHelper
+
+			}; // Module
+
+
+			/**
+			 * Updates the Audit Trail Record for this Deal Event
+			 * with the User and time an action was performed
+			 * @param  {string} newApprovalStepID The new Approval Process Step ID of the Deal Event Doc Config that will be updated
+			 * @param  {string} dealEventID    ID of this Deal Event Record
+			 * @return {null}             void
+			 */
+			function updateDealRec(newApprovalStepID, dealEventID) {
+				var deRecord = record.load({
+					type: 'customrecord_payment_import_record',
+					id: dealEventID
+				});
+
+				deRecord.setValue({
+					fieldId: APPROVAL_STEP_FIELD,
+					value: newApprovalStepID
+				});
+
+				// Save this record
+				deRecord.save();
+			}
+
+			/**
+			 * Determines if the Deal Event Document selection should be saved
+			 * @param  {string} newApprovalStepID   The updated Deal Event Document Selection Aproval Process Step ID
+			 * @param  {string} dealEvent     ID of this Deal Event
+			 * @param  {array} sublistFields User selection of fields to configure for this Deal Event
+			 * @param  {object} sublistData   Data of selection of fields to configure for this Deal Event
+			 * @param  {number} secTypeCount  Count of security types to configure for this Deal Event
+			 * @param  {integer} formColCount  Count of selections of fields to configure for this Deal Event
+			 * @return {null}               void
+			 */
+			function saveDocSelection(approvalStepID, newApprovalStepID, dealEvent, sublistFields, sublistData, secTypeCount, exRecGpCount, formColCount) {
+				var step = approvalProcess.getStep(parseInt(newApprovalStepID));
+				var stepNum = parseInt(step.stepNum);
+				var prevStep = approvalProcess.getStep(parseInt(approvalStepID));
+				var prevStepNum = parseInt(prevStep.stepNum);
+			
+				switch (parseInt(step.stepNum)) {
+					case -1: // Selection Saved
+					case 1: // Selection In Progress
+						if (prevStepNum > stepNum) {
+							// Do nothing because this is a rejection
+						} else {
+							// Get all existing Document Selection rows for this Deal Event and delete and recreate them
+							deleteXJoinRows(dealEvent);
+							createXJoinRows(sublistFields, sublistData, secTypeCount, exRecGpCount, formColCount, dealEvent);
+						}
+						break;
+
+					case 2: // Selection Completed - Sent For Review
+						// Get all existing Document Selection rows for this Deal Event and delete and recreate them
+						if (prevStepNum > stepNum) {
+							// Do nothing because this is a rejection
+						} else {
+							// Get all existing Document Selection rows for this Deal Event and delete and recreate them
+							deleteXJoinRows(dealEvent);
+							createXJoinRows(sublistFields, sublistData, secTypeCount, exRecGpCount, formColCount, dealEvent);
+						}
+						break;
+					case 5: // Generation Complete
+						generateDocs(dealEvent);
+						break;
+					case 0: // Documents Deleted
+						deleteDocs(dealEvent);
+						break;
+					default:
+						break;
+				}
+
+				return null;
+			}
+
+			function deleteXJoinRows(dealEvent) {
+				var xjoins = getXJoinRowsHelper(dealEvent);
+
+				var xjoincount = xjoins.length;
+
+				var deletedxjoinid = [];
+				for (var x = 0; x < xjoincount; x++) {
+					var xjoinid = xjoins[x].getValue({
+						name: 'internalid'
+					});
+					deletedxjoinid[x] = record.delete({
+						type: 'customrecord_document_selection',
+						id: xjoinid
+					});
+				}
+			}
+
+			function createXJoinRows(sublistFields, sublistData, secTypeCount, exRecGpCount, formcolcount, dealEvent) {
+				// Now create xjoin rows
+				var secTypeID = '';
+				var subListLine = '';
+				var colID = '';
+				var cell = '';
+				var exRecGpID = '';
+				var columns = [];
+
+				// First the security type selections
+				for (var i = 0; i < secTypeCount; i++) {
+					subListLine = sublistData[i];
+
+					columns = subListLine.split(/\u0001/);
+
+					for (var j = 0; j < formcolcount; j++) {
+						colID = sublistFields[j];
+						if (colID.toLowerCase() == 'certtypeid') {
+							secTypeID = columns[j];
+						}
+						colID = colID.substring(3, colID.length);
+
+						cell = columns[j];
+
+						if (cell == 'T') {
+							// Create one xjoin row
+							createXJoinRow(dealEvent, secTypeID, exRecGpID, colID);
+						}
+					}
+				}
+				secTypeID = '';
+				var subListRow = i;
+				var combinedRowCount = secTypeCount + exRecGpCount;
+
+				// Then the Exchange Rec Group selections
+				for (var k = 0; k < exRecGpCount; k++) {
+					subListLine = sublistData[subListRow];
+
+					columns = subListLine.split(/\u0001/);
+
+					for (var m = 0; m < formcolcount; m++) {
+						colID = sublistFields[m];
+						if (colID.toLowerCase() == 'exrecgpid') {
+							exRecGpID = columns[m];
+						}
+						colID = colID.substring(3, colID.length);
+
+						cell = columns[m];
+
+						if (cell == 'T') {
+							// Create one xjoin row
+							createXJoinRow(dealEvent, secTypeID, exRecGpID, colID);
+						}
+					}
+					subListRow = subListRow + 1;
+				}
+			}
+
+			function createXJoinRow(dealEvent, secTypeID, exRecGpID, colID) {
+
+				var xJoinRec = record.create({
+					type: 'customrecord_document_selection'
+				});
+				xJoinRec.setValue({
+					fieldId: 'custrecord_ds_deal_event',
+					value: dealEvent
+				});
+				xJoinRec.setValue({
+					fieldId: 'custrecord_ds_cert_type',
+					value: secTypeID
+				});
+				xJoinRec.setValue({
+					fieldId: 'custrecord_ds_exrec_gp',
+					value: exRecGpID
+				});
+
+				xJoinRec.setValue({
+					fieldId: 'custrecord_ds_doc_template',
+					value: colID
+				});
+				var xJoinRecID = xJoinRec.save();
+			}
+
+			function generateDocs(dealEvent) {
+
+				// Get all document templatess selected
+				var docSel = getXJoinRowsHelper(dealEvent);
+				// Get all exchange recs by security type
+				var exchangeRecords = getExchangeRecs(dealEvent);
+
+				// Go thru each exchange rec by security type
+				var docSelection = '';
+				var docTemplID = '';
+				var certTypeID = '';
+				var exRecGpID = '';
+				var selexRecGpID = '';
+				var exchRecID = '';
+				var selcertTypeID = '';
+				var recsToCreate = 0;
+				var seldocTemplID = null;
+
+				for (var i = 0; i < exchangeRecords.length; i++) {
+					exRecGpID = exchangeRecords[i].getValue({
+						name: 'custrecord_exch_rec_group', //Exchange Rec Gp
+						join: 'custrecord_acq_lotce_zzz_zzz_parentlot',
+						summary: search.Summary.MAX,
+					});
+
+					exchRecID = exchangeRecords[i].getValue({
+						name: 'custrecord_acq_lotce_zzz_zzz_parentlot',
+						summary: search.Summary.GROUP
+					});
+					if (exRecGpID === '') {
+						// This is not a member of an exchange record group. Proceed to create docs by virtue of security type ownership
+						certTypeID = exchangeRecords[i].getValue({
+							name: 'custrecord_acq_lotce_3_src_certtype',
+							summary: search.Summary.GROUP,
+							sort: search.Sort.ASC
+						});
+
+						for (var j = 0; j < docSel.length; j++) {
+							selcertTypeID = docSel[j].getValue({
+								name: 'custrecord_ds_cert_type'
+							});
+							seldocTemplID = docSel[j].getValue({
+								name: 'custrecord_ds_doc_template'
+							});
+
+							if (selcertTypeID === certTypeID) { // If the security type owned by this exchange rec is one of those selected then create doc
+								recsToCreate++;
+
+								// Now we have the exchange rec id and the doc template id for a security type
+								createDoc(dealEvent, exchRecID, docSel[j]);
+							}
+						}
+					}
+
+				}
+				// Go thru each exchange rec by group
+				// Get all exchange recs by group
+				var gpExRecs = getGpExRecs(dealEvent);
+				for (var m = 0; m < gpExRecs.length; m++) {
+					exRecGpID = gpExRecs[m].getValue({
+						name: 'custrecord_exch_rec_group'
+					});
+
+					exchRecID = gpExRecs[m].getValue({
+						name: 'internalid'
+					});
+					for (var n = 0; n < docSel.length; n++) {
+						selexRecGpID = docSel[n].getValue({
+							name: 'custrecord_ds_exrec_gp'
+						});
+						seldocTemplID = docSel[n].getValue({
+							name: 'custrecord_ds_doc_template'
+						});
+
+						if (selexRecGpID !== '' && exRecGpID !== '' && selexRecGpID === exRecGpID) { // If this exchange rec's group is one of those selected then create doc
+							recsToCreate++;
+
+							// Now we have the exchange rec id and the doc template id for a security type
+							createDoc(dealEvent, exchRecID, docSel[n]);
+						}
+					}
+				}
+			}
+
+			function createDoc(dealEvent, exchRecID, docSel) {
+
+				var docRec = record.create({
+					type: 'customrecord_document_management'
+				});
+
+				docRec.setValue({
+					fieldId: 'custrecord_document_mpr',
+					value: dealEvent
+				});
+				docRec.setValue({
+					fieldId: 'custrecord_acq_lot_exrec',
+					value: exchRecID
+				});
+				docRec.setValue({
+					fieldId: 'custrecord_doc_template',
+					value: docSel.getValue({
+						name: 'custrecord_ds_doc_template'
+					})
+				});
+				docRec.setValue({
+					fieldId: 'altname',
+					value: docSel.getValue({
+						name: 'name',
+						join: 'custrecord_ds_doc_template'
+					})
+				});
+				docRec.setValue({
+					fieldId: 'custrecord_dm_status',
+					value: 5 //Final
+				});
+				docRec.setValue({
+					fieldId: 'custrecord_doc_type',
+					value: docSel.getValue({
+						name: 'custrecord_dt_doc_type',
+						join: 'custrecord_ds_doc_template'
+					})
+				});
+				docRec.setValue({
+					fieldId: 'custrecord_file',
+					value: docSel.getValue({
+						name: 'custrecord_dt_int_file',
+						join: 'custrecord_ds_doc_template'
+					})
+				});
+				docRec.setValue({
+					fieldId: 'custrecord_doc_created_by_script',
+					value: 1035 //Document Selection Suitelet
+				});
+				var docID = docRec.save();
+			}
+
+			function deleteDocs(dealEvent) {
+
+				var docSearch = search.create({
+					type: 'customrecord_document_management',
+					title: 'docs',
+					columns: [{
+						name: 'internalid'
+					}],
+					filters: [{
+						name: 'custrecord_document_mpr',
+						operator: search.Operator.IS,
+						values: dealEvent
+					}, {
+						name: 'custrecord_doc_created_by_script',
+						operator: search.Operator.IS,
+						values: 1035 //Document Selection Suitelet
+					}]
+
+				});
+
+				docSearch.run().each(function(result) {
+					var docID = result.getValue({
+						name: 'internalid'
+					});
+					record.delete({
+						type: 'customrecord_document_management',
+						id: docID
+					});
+
+					return true;
+				});
+			}
+
+			function getXJoinRowsHelper(dealEvent) {
+				var xjoinsearch = search.create({
+					type: 'customrecord_document_selection',
+					title: 'XjoinRows',
+					columns: [{
+						name: 'internalid'
+					}, {
+						name: 'name',
+						join: 'custrecord_ds_doc_template'
+					}, {
+						name: 'custrecord_ds_cert_type'
+					}, {
+						name: 'custrecord_ds_exrec_gp'
+					}, {
+						name: 'custrecord_ds_doc_template'
+					}, {
+						name: 'custrecord_dt_deal',
+						join: 'custrecord_ds_doc_template'
+					}, {
+						name: 'custrecord_dt_doc_type',
+						join: 'custrecord_ds_doc_template'
+					}, {
+						name: 'custrecord_dt_ext_file',
+						join: 'custrecord_ds_doc_template'
+					}, {
+						name: 'custrecord_dt_int_file',
+						join: 'custrecord_ds_doc_template'
+					}],
+					filters: [{
+						name: 'custrecord_ds_deal_event',
+						operator: search.Operator.IS,
+						values: dealEvent
+					}]
+				});
+
+				var searchResults = xjoinsearch.run().getRange({
+					start: 0,
+					end: 100
+				});
+
+				return searchResults;
+			}
+
+			return module;
+		} // HELPER MODULE
+
+		return {
+			onRequest: onRequest
+		};
+	});

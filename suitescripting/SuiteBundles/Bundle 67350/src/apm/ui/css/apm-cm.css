@@ -1,0 +1,165 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       17 Jan 2018     jmarimla         Initial
+ * 2.00       06 Feb 2018     jmarimla         Concurrency portlet
+ * 3.00       09 Feb 2018     jmarimla         Popup instances
+ * 4.00       19 Feb 2018     rwong            Violation chart
+ * 5.00       15 May 2018     jmarimla         Remove italic
+ * 6.00       14 Dec 2018     jmarimla         Not available css
+ * 7.00       03 Apr 2019     jmarimla         Footnote css
+ * 8.00       24 May 2019     erepollo         Change concurrency toolbar BG to white
+ *
+ */
+
+.psgp-kpipanel-item-value.notavailable {
+	color: #ff5833;
+}
+
+/*
+ * Settings
+ */
+.apm-cm-settings-daterange {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}
+
+.apm-cm-settings-daterange-dialog.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-cm-settings-daterange-dialog .buttons {
+    padding: 5px;
+    width: 100%;
+}
+
+.apm-cm-settings-daterange-dialog .buttons * {
+    display: inline-block;
+}
+
+.apm-cm-settings-daterange-dialog .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+.apm-cm-settings-daterange-dialog .note {
+    padding: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.apm-cm-dialog-customdaterange.ui-dialog-content {
+    padding: 20px;
+}
+
+.apm-cm-dialog-customdaterange .buttons {
+    padding: 5px;
+    width: 100%;
+}
+
+.apm-cm-dialog-customdaterange .buttons * {
+    display: inline-block;
+}
+
+.apm-cm-dialog-customdaterange .btn-save {
+    margin: 0px 20px 0px 0px;
+}
+
+/*
+ * Concurrency Portlet
+ */
+
+.apm-cm-concurrency-estimated {
+    height: 500px;
+}
+
+.apm-cm-concurrency-toolbar {
+    height: 39px;
+    background: #ffffff;
+    padding: 4px 10px;
+}
+
+.apm-cm-concurrency-legend {
+	height: 50px;
+	width: 100%;
+    background: #ffffff;
+}
+
+.apm-cm-concurrency-legend .legend-container {
+    height: 50px;
+    width: 750px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.apm-cm-concurrency-legend .legend-item {
+    padding: 10px 10px;
+    display: inline-block;  
+}
+
+.apm-cm-concurrency-legend .legend-icon {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 3px 0px 3px;
+    border: 1px solid #999999;
+}
+
+.apm-cm-concurrency-legend .legend-icon.icon-1 {
+    background-color: #FFFFFF;
+}
+
+.apm-cm-concurrency-legend .legend-icon.icon-2 {
+    background-color: #E8F1F9;
+}
+
+.apm-cm-concurrency-legend .legend-icon.icon-3 {
+    background-color: #D1E4F4;
+}
+
+.apm-cm-concurrency-legend .legend-icon.icon-4 {
+    background-color: #BAD6EE;
+}
+
+.apm-cm-concurrency-legend .legend-icon.icon-5 {
+    background-color: #A3C8E8;
+}
+
+.apm-cm-concurrency-legend .legend-icon.icon-6 {
+    background-color: #8CBBE3;
+}
+
+.apm-cm-concurrency-legend .legend-text {
+    height: 15px;
+    color: #333333;
+    font-size: 12px;
+    font-weight: normal;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 3px 0px 3px;
+}
+
+.apm-cm-concurrency-footnote {
+    background: #ffffff;
+    padding: 3px 20px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #333333;
+    width: 100%;
+}
+
+/*
+ * Instance Details
+ */
+.apm-cm-popup-instances .grid {
+    height: 410px;
+}
+

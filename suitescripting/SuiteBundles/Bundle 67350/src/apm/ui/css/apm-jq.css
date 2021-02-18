@@ -1,0 +1,934 @@
+/**
+ * Copyright © 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+/**
+ * Module Description
+ *
+ * Version    Date            Author           Remarks
+ * 1.00       20 Sep 2016     jmarimla         Initial
+ * 2.00       27 Oct 2016     jmarimla         Grid css
+ * 3.00       09 Nov 2016     jmarimla         Grid paging css
+ * 4.00       10 Nov 2016     rwong            Column panel css
+ * 5.00       11 Nov 2016     jmarimla         KPI Panel css
+ * 6.00       25 Nov 2016     jmarimla         Dialog css
+ * 7.00       25 Nov 2016     rwong            Added loading mask css
+ * 8.00       28 Nov 2016     jmarimla         Table wordwrap
+ * 9.00       06 Dec 2016     jmarimla         Dialog close image
+ * 10.00      12 Dec 2016     jmarimla         Css for global settings
+ * 11.00      10 Jan 2017     jmarimla         Date time field css fixes
+ * 12.00      12 Jan 2017     jmarimla         Paging combo box css
+ * 13.00      14 Feb 2017     jmarimla         Cancel unused css
+ * 14.00      05 May 2017     jmarimla         Modified Filters css
+ * 15.00      25 Jul 2017     jmarimla         Text field css
+ * 16.00      04 Aug 2017     jmarimla         Portlet buttons
+ * 17.00      04 Aug 2017     jmarimla         Modified refresh button
+ * 18.00      08 Aug 2018     jmarimla         Subpanel
+ * 19.00      23 Nov 2018     jmarimla         Export csv
+ * 20.00      24 May 2019     erepollo         Added portlet shadow. Modified icons
+ *
+ */
+
+/**
+ * NetSuite
+ */
+.uir-page-title {
+    display: none;
+}
+
+/**
+ * Cancel unused jquery ui css
+ */
+.ui-widget-content {
+    background-image: none;
+}
+
+.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default {
+    background-image: none;
+}
+
+.ui-widget-overlay {
+    background-image: none;
+}
+
+.ui-widget-header {
+    background-image: none;
+}
+
+.ui-state-default .ui-icon,
+.ui-state-hover .ui-icon,.ui-state-focus .ui-icon
+.ui-state-active .ui-icon {
+    background-image: none;
+}
+
+/**
+ * Global
+ */
+
+.psgp-main-content {
+    padding: 0px 10px;
+}
+
+.psgp-main-content * {
+    font-family: Serif;
+}
+
+.psgp-dialog *,
+.psgp-settings-dialog * {
+    font-family: Serif;
+}
+
+div.ui-selectmenu-open {
+    position: absolute;
+    z-index: 65535;
+}
+
+/**
+ * Title bar
+ */
+.psgp-suitelet-title {
+    height: 37px;
+    width: 100%;
+    position: relative;
+} 
+
+.psgp-suitelet-title-text {
+    position: absolute;
+    left: 0;
+    font-size: 22px;
+    font-weight: bold;
+    color: #4d5f79;
+}
+
+/**
+ * Settings Link
+ */
+
+.psgp-suitelet-settings .label {
+    color: #255599;
+    font-size: 14px;
+    font-weight: normal;
+    padding-right: 20px;
+    background-image: url(ns_images/dropdown.png);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+}
+
+.psgp-suitelet-settings .label:hover {
+    text-decoration: underline;
+}
+
+/**
+ * Settings Dialog
+ */
+.psgp-settings-dialog.ui-dialog {
+    border: 1px solid #dddddd;
+    background-color: #fafafa;
+    box-shadow: 0px 0px 3px #000;
+    padding: 0px;
+    border-radius: 0px;
+    overflow: visible;
+}
+
+.psgp-settings-dialog .ui-dialog-titlebar {
+    display: none;
+}
+
+.psgp-settings-dialog .ui-dialog-content {
+    padding: 0px;
+}
+
+/**
+ * Buttons
+ */
+
+.psgp-btn-default, .ui-widget .psgp-btn-default {
+    background-image: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0px 15px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.psgp-btn-blue {
+    color: #ffffff;
+    border: 1px solid #125ab2;
+    background-color: #4c9dff;
+    background-image: -webkit-linear-gradient(top, #4c9dff, #187bf2);
+    /* For Chrome and Safari */
+    
+    background-image: -moz-linear-gradient(top, #4c9dff, #187bf2);
+    /* For old Fx (3.6 to 15) */
+    
+    background-image: -ms-linear-gradient(top, #4c9dff, #187bf2);
+    /* For pre-releases of IE 10*/
+    
+    background-image: -o-linear-gradient(top, #4c9dff, #187bf2);
+    /* For old Opera (11.1 to 12.0) */
+    
+    background-image: linear-gradient(to bottom, #4c9dff, #187bf2);
+    /* Standard syntax; must be last */
+}
+.psgp-btn-blue-focus {
+    box-shadow: 0px 0px 2px 2px #408FDB;
+}
+.psgp-btn-blue-over {
+    background-image: none;
+    background-color: #1467cc;
+}
+.psgp-btn-blue-pressed {
+    background-image: none;
+    background-color: #004599;
+}
+
+.psgp-btn-gray {
+    color: #333333;
+    border: 1px solid #b2b2b2;
+    background-color: #fafafa;
+    background-image: -webkit-linear-gradient(top, #fafafa, #e5e5e5); /* For Chrome and Safari */
+    background-image: -moz-linear-gradient(top, #fafafa, #e5e5e5); /* For old Fx (3.6 to 15) */
+    background-image: -ms-linear-gradient(top, #fafafa, #e5e5e5); /* For pre-releases of IE 10*/
+    background-image: -o-linear-gradient(top, #fafafa, #e5e5e5); /* For old Opera (11.1 to 12.0) */
+    background-image: linear-gradient(to bottom, #fafafa, #e5e5e5); /* Standard syntax; must be last */
+}
+.psgp-btn-gray-focus {
+    box-shadow: 0px 0px 2px 2px #408FDB;
+}
+.psgp-btn-gray-over {
+    background-image: none;
+    background-color: #e5e5e5;
+}
+.psgp-btn-gray-pressed {
+    background-image: none;
+    background-color: #b2b2b2;
+}
+
+/**
+ * Portlet
+ */
+
+.psgp-portlet {
+    box-shadow: 0 0 8px 0 #cccccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.psgp-portlet-header {
+    height: 51px;
+    position: relative;
+}
+.psgp-portlet-header .title {
+    position: absolute;
+    padding: 16px 13px 13px 13px;
+}
+.psgp-portlet-header-title {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
+}
+.psgp-portlet-header .buttons {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+}
+.psgp-portlet-header .buttons div {
+    float: left;
+    margin: 0px 5px;
+}
+.psgp-portlet-body {
+    background: none;
+}
+.psgp-portlet-btn-refresh {
+    background: transparent;
+    border: none;
+    background-image: url(ns_images/portlet-refresh_blue2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    margin: 16px 0px;
+    cursor: pointer;
+}
+
+.psgp-portlet-btn-refresh:hover {
+    background: transparent;
+    border: none;
+    background-image: url(ns_images/portlet-refresh_blue2_2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    margin: 16px 0px;
+    cursor: pointer;
+}
+
+/**
+ * SubPanel
+ */
+
+.psgp-subpanel {
+    border: none;
+}
+.psgp-subpanel-header {
+    background-image: none;
+    background-color: #DFE4EB;
+    border: none;
+    height: 27px;
+    line-height: 27px;
+}
+.psgp-subpanel-header-title {
+    color: #607988;
+    font-size: 13px;
+    font-weight: bold;
+}
+.psgp-subpanel-header-icon {
+    display: inline-block;
+    margin: 0px 3px;
+    height: 12px;
+    width: 12px;
+    background-image: url(ns_images/icon_collapse_tab_white.png);
+}
+.psgp-subpanel-header-icon-expand {
+    background-image: url(ns_images/icon_expand_tab_white.png);
+}
+
+/**
+ * Filters
+ */
+
+.psgp-filters {
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+.psgp-filters-header {
+    background-color: #dddddd;
+    height: 27px;
+    line-height: 27px;
+}
+.psgp-filters-header-title {
+    color: #666666;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.psgp-filters-header-icon {
+    display: inline-block;
+    margin: 0px 3px;
+    height: 12px;
+    width: 12px;
+    background-image: url(ns_images/da-collapse.png);
+}
+.psgp-filters-header-icon-expand {
+    background-image: url(ns_images/da-expand.png);
+}
+.psgp-filters-body {
+    height: 75px;
+    background: none;
+}
+/*
+.psgp-filters-body:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+*/
+.psgp-filter-block {
+    display: inline-block;
+    margin: 0px 15px;
+    height: 100%;
+}
+
+.psgp-filter-combo {
+    position: relative;
+    top: 8px;
+}
+
+/**
+ * Fields
+ */
+
+.psgp-field-datetime {
+  position: relative;
+  width: 310px;
+}
+
+.psgp-field-label {
+    color: #999999;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.psgp-field-datetime-time {
+  position: absolute;
+  bottom: -5px;
+  left: 202px;
+}
+
+.psgp-date-picker, .ui-widget .psgp-date-picker {
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+    padding-left: 3px;
+    height: 27px;
+    width: 170px;
+} 
+
+/**
+ * Date Picker
+ */
+.psgp-field-datetime-date .ui-datepicker-trigger {
+    width: 24px;
+    height: 26px;
+    margin: 0px 4px;
+    padding: 10px 0px 0px 0px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-image: url(ns_images/calendar.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    position: absolute;
+    bottom: 0px;
+}
+
+.psgp-field-datetime-date .ui-datepicker-trigger:active {
+    border-color : #408FDB;
+    background-image: url(ns_images/widget-calendar-down.png);
+    background-position: 1px 3px !important;
+    background-repeat: no-repeat;
+    background-color: #607799;
+}
+
+.ui-datepicker {
+    border: 1px solid #408FDB;
+    box-shadow: 0px 0px 2px 2px #408FDB;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    padding: 0px;
+    width: 210px;
+    background-image: none;
+    background-color: #ffffff;
+}
+
+.ui-datepicker table {
+    table-layout: fixed;
+    width: 200px;
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: 0px;
+    background-color: #ebf0f2;
+    height: 33px;
+}
+
+.ui-datepicker .ui-datepicker-title * {
+    color: #5981B3;
+    font-size: 13px;
+    font-weight: 550;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+    width: 20px;
+    height: 20px;
+    top: 7px;
+    left: 7px;
+}
+
+.ui-datepicker .ui-datepicker-prev .ui-icon {
+    background-image: url(ns_images/previous.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+.ui-datepicker .ui-datepicker-next {
+    width: 20px;
+    height: 20px;
+    top: 7px;
+    right: 7px;
+}
+
+.ui-datepicker .ui-datepicker-next .ui-icon {
+    background-image: url(ns_images/next.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+.ui-datepicker .ui-datepicker-prev.ui-state-hover,
+.ui-datepicker .ui-datepicker-next.ui-state-hover {
+    background: none;
+    border: 1px solid #8C8C8C;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+.ui-datepicker .ui-datepicker-prev.ui-state-hover .ui-icon,
+.ui-datepicker .ui-datepicker-next.ui-state-hover .ui-icon  {
+    opacity: 1;
+}
+
+.ui-datepicker .ui-datepicker-calendar th {
+    width: 25px;
+}
+
+.ui-datepicker .ui-datepicker-calendar thead * {
+    color: #555555;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.ui-datepicker td a {
+    padding: 0px;
+}
+
+.ui-datepicker .ui-datepicker-calendar .ui-state-default {
+    background-image: none;
+    background-color: #ffffff;
+    border: 0px;
+    color: #555555;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.ui-datepicker .ui-datepicker-calendar .ui-datepicker-today .ui-state-default {
+    font-weight: bold;
+}
+
+.ui-datepicker .ui-datepicker-calendar .ui-state-active {
+    background-image: none;
+    border: 1px solid #607799;
+    border-radius: 4px;
+    background-color: #607799;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/**
+ * DateTime Filter
+ */
+.psgp-filter-datetime {
+  position: relative;
+  width: 310px;
+}
+
+.psgp-filter-datetime .psgp-field-datetime-time {
+  position: absolute;
+  bottom: -3px;
+  left: 202px;
+}
+
+.psgp-filter-datetime .psgp-field-datetime-date .ui-datepicker-trigger {
+    bottom: 1px;
+}
+
+/**
+ * Combo box
+ */
+.psgp-combobox-form .ui-selectmenu-button {
+    border: 1px solid #cccccc;
+    background-image: none;
+    background-color: #ffffff;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    height: 27px;
+}
+
+.psgp-combobox-form .ui-selectmenu-button.ui-state-hover {
+    border-color: #8C8C8C;
+}
+
+.psgp-combobox-form .ui-selectmenu-button.ui-state-focus {
+    border: 1px solid #408fdb;
+    box-shadow: 0px 0px 2px 2px rgba(64, 143, 219, 0.75);
+}
+
+.psgp-combobox-form span.ui-selectmenu-text {
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+    padding-left: 3px;
+}
+
+.psgp-combobox-form .ui-selectmenu-button span.ui-icon {
+    background: url(ns_images/dropdown.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    right: 0px;
+    margin-top: -10px;
+}
+
+.psgp-combobox-form-menu .ui-menu {
+    border: 1px solid #408FDB;
+    background: none;
+    background-color: #ffffff;
+    max-height: 300px;
+}
+
+.psgp-combobox-form-menu .ui-menu-item {
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 4px 0px;
+}
+
+.psgp-combobox-form-menu .ui-menu-item.ui-state-focus {
+    color: #ffffff;
+    background-image: none;
+    background-color: #607799;
+    border-color: #607799;
+}
+
+/**
+ * Text Field
+ */
+input.psgp-textbox {
+    height: 27px;
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+    padding-left: 3px;
+    border: 1px solid #cccccc;
+}
+
+input.psgp-textbox:hover {
+    border-color: #8C8C8C;
+}
+
+input.psgp-textbox:focus {
+    border: 1px solid #408fdb;
+    box-shadow: 0px 0px 2px 2px rgba(64, 143, 219, 0.75);
+}
+
+/**
+ * Grid
+ */
+
+.psgp-grid {
+    width: 100%;
+}
+.psgp-grid table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.psgp-grid tbody tr {
+    font-size: 12px;
+    height: 34px;
+}
+.psgp-grid tbody td {
+    color: #555555;
+    padding: 0px 8px;
+    border-bottom: solid 1px #ededed;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.psgp-grid tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+.psgp-grid tbody tr:hover {
+    background-color: #fefeee;
+}
+.psgp-grid thead th {
+    padding: 0px 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    height: 28px;
+    color: #555555;
+    background: #e5e5e5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.psgp-grid thead span {
+    padding-right: 12px;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.psgp-grid thead span.asc {
+    background-image: url('ns_images/sort_up.png');
+}
+.psgp-grid thead span.desc {
+    background-image: url('ns_images/sort_down.png');
+}
+.psgp-grid tfoot tr {
+    font-size: 12px;
+    font-weight: bold;
+    height: 34px;
+}
+.psgp-grid tfoot td {
+    color: #555555;
+    padding: 0px 8px;
+    border-bottom: solid 1px #ededed;
+}
+.psgp-grid a {
+    color: #255599;
+    text-decoration: none;
+}
+.psgp-grid a:hover {
+    text-decoration: underline;
+}
+.psgp-paging {
+    height: 39px;
+    line-height: 39px;
+    background: #e7e7e7;
+    border-bottom: 1px solid #b2b2b2;
+    position: relative;
+}
+.psgp-paging-exportcsv {
+    position: absolute;
+    cursor: pointer;
+    left: 10px;
+    height: 20px;
+    width: 20px;
+    margin: 9px 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(ns_images/export_csv_icon.png);
+}
+.psgp-paging-comp {
+    position: absolute;
+    right: 30px;
+}
+.psgp-paging-select-div {
+    display: inline-block;
+}
+.psgp-paging-btn {
+    height: 24px;
+    width: 24px;
+    border: none;
+    padding: 2px;
+    margin: 0px 5px;
+}
+.psgp-paging-btn:hover {
+    border: 1px dotted #000;
+}
+.psgp-paging-btn:disabled {
+    opacity: 0.5;
+}
+.psgp-paging-btn-prev {
+    background-image: url(ns_images/da-prevwhite.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.psgp-paging-btn-next {
+    background-image: url(ns_images/da-nextwhite.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.psgp-paging-select {
+    margin: 0px 5px;
+}
+.psgp-paging-total-label {
+    margin: 0px 5px;
+    color: #555555;
+    font-size: 14px;
+}
+.psgp-paging-total-value {
+    color: #555555;
+    font-size: 14px;
+}
+/**
+ * Paging Combo box
+ */
+.psgp-paging-select-form .ui-selectmenu-button {
+    border: 1px solid #e7e7e7;
+    background-image: none;
+    background-color: #e7e7e7;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    height: 27px;
+    top: 5px;
+}
+
+.psgp-paging-select-form .ui-selectmenu-button.ui-state-hover {
+    border-color: #e7e7e7;
+}
+
+.psgp-paging-select-form .ui-selectmenu-button.ui-state-focus {
+    border: 1px solid #e7e7e7;
+}
+
+.psgp-paging-select-form span.ui-selectmenu-text {
+    color: #262626;
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 3px;
+}
+
+.psgp-paging-select-form .ui-selectmenu-button span.ui-icon {
+    background: url(ns_images/dropdown.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    right: 0px;
+    margin-top: -10px;
+}
+
+.psgp-paging-select-form-menu .ui-menu {
+    border: 1px solid #cccccc;
+    background: none;
+    background-color: #fafafa;
+    max-height: 300px;
+}
+
+.psgp-paging-select-form-menu .ui-menu-item {
+    color: #262626;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 4px 0px;
+}
+
+.psgp-paging-select-form-menu .ui-menu-item.ui-state-focus {
+    color: #262626;
+    font-weight: bold;
+    background-image: none;
+    background-color: #fafafa;
+    border-color: #fafafa;
+}
+
+
+/**
+ * Column Panel
+ */
+
+.psgp-column-panel {
+    display: block;
+    float: left;
+}
+
+/**
+ * KPI Panel
+ */
+ 
+ .psgp-kpipanel {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+ }
+ 
+.psgp-kpipanel-item {
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */
+    flex: 1;
+    position: relative;
+    margin: 10px 0px;
+}
+
+.psgp-kpipanel-item div {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.psgp-kpipanel-item-label {
+    font-size: 14px;
+    color: #555555;
+    font-weight: bold;
+}
+
+.psgp-kpipanel-item-value {
+    font-size: 32px;
+    color: #999999;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.psgp-kpipanel-item.not-last {
+    border-right: 1px solid #dddddd;
+}
+
+/**
+ * Dialog
+ */
+.psgp-dialog.ui-dialog {
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    padding: 0px;
+    border-radius: 0px;
+    overflow: visible;
+}
+
+.psgp-dialog .ui-dialog-titlebar {
+    padding: 0px;
+    border-radius: 0px;
+    border: 0px;
+    background-color: #DDDDDD;
+    height: 28px;
+}
+
+.psgp-dialog .ui-dialog-title {
+    font-size: 13px;
+    padding: 4px 0px 0px 8px;
+    color: #ffffff;
+}
+
+.psgp-dialog .ui-dialog-titlebar-close {
+    border: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    background-image: url(ns_images/tool-sprites-x.jpg);
+    width: 15px;
+    height: 15px;
+    background-position: center center;
+    top: 17px;
+}
+
+.psgp-dialog .ui-dialog-content {
+    padding: 0px;
+}
+
+/*
+ * Loading Mask
+ */
+.psgp-loading-mask {
+  position: relative;
+  height:700px;
+}
+
+.psgp-loading-mask::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.psgp-loading-mask::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  background-image: url(ns_images/loading-ani.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+}

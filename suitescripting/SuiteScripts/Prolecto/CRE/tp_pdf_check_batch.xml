@@ -1,0 +1,8 @@
+<?xml version="1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdfset>
+{for line in DETAIL_LINES }
+{if (line.columns.custrecord_pri_cre_request_output_dlink)}
+<pdf src="${line.columns.custrecord_pri_cre_request_output_dlink.replace(/&/g, '&amp;')}"/>
+{/if}
+{/for}
+</pdfset>
