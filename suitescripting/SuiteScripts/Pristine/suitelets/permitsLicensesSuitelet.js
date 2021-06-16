@@ -38,10 +38,10 @@
 				}
 				log.debug('PermitsLicensesSuitelet invoked in ', runtime.envType);
 
-			
-
 				user = runtime.getCurrentUser();
-
+				
+			}
+				/*
 				approvalProcess.initialize(user, RECORD_TYPE, APPROVAL_STEP_FIELD, APPROVAL_LOG_RECORD_TYPE, APPROVAL_BUSINESS_PROCESS);
 				// Pass ACTION_FIELD_ID over to library
 				approvalProcess.setSubmitFieldID(ACTION_FIELD_ID);
@@ -82,7 +82,7 @@
 				 * This section applies to both GET events and POST events after updates
 				 * 
 				 */
-
+				/*
 				// Pass context across to approval process library
 				approvalProcess.setContext(context);
 
@@ -126,7 +126,7 @@
             	log.audit("remainingUSAGEafterRetrieve after retrieveAndDisplayJobStatuses: ", remainingUSAGEafterRetrieve);
 
 				/* ----------------- Is User Permitted for this step? ----- */
-
+				/*
 				userPermitted = approvalProcess.getUserPermittedFlag();
 				// log.debug('Line 335', 'userPermitted: ' + userPermitted);
 
@@ -134,6 +134,7 @@
 				storeCounts(form);
 
 				/* ----------------- SUBLIST SECTION ----------------- */
+				/*
 				// Add the Document Selection Sublist to the form 
 				addDocSelSublist(form);
 				// Get all Document Selection rows for the Deal Event
@@ -196,7 +197,7 @@
 				var searchResults = getSearchResultData(xjoinsearch);
 				return searchResults;
 			}
-			
+			*/
 
 			/**
 			 * Takes a Search.ResultSet object and grabs all the results
