@@ -13,7 +13,7 @@ define(['N/ui/serverWidget', 'N/search', 'N/task', 'N/file', 'N/url', 'N/record'
 
 			if (context.request.method === 'GET') {
 				var form = serverWidget.createForm({
-					title: 'Licenses & Permits List: ' + JSON.stringify(locations),
+					title: 'Title : Location Pair: ' + JSON.stringify(locations),
 				});
 				var list = serverWidget.createList({
 					title : 'Locations List' + JSON.stringify(locations),
@@ -72,10 +72,10 @@ define(['N/ui/serverWidget', 'N/search', 'N/task', 'N/file', 'N/url', 'N/record'
 				});
 				locationRows.run().each(function (result) {
 					listLocations.push({
-						name: result.getValue({
+						title: result.getValue({
 							'name': 'title',
 						}),	
-						location: result.getValue({
+						location: result.getText({
 							'name': 'custevent_task_location'
 						}),	
 					})
