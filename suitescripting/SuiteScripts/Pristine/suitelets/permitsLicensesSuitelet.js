@@ -9,13 +9,18 @@ define(['N/ui/serverWidget', 'N/search', 'N/task', 'N/file', 'N/url', 'N/record'
 			// GET AND POST REQUESTS
 
 			var locations = listLocations();
+			
 
 			if (context.request.method === 'GET') {
 				var form = serverWidget.createForm({
-					title: 'Number of Locations: ' + JSON.stringify(locations),
+					title: 'Licenses & Permits List: ' + JSON.stringify(locations),
 				});
+				var list = serverWidget.createList({
+					title : 'Locations List' + JSON.stringify(locations),
+				   });
+				   
 				var submitButton = form.addSubmitButton({
-					label: 'Submit'
+					label: 'Update'
 				});
 
 				context.response.writePage(form);
@@ -41,8 +46,9 @@ define(['N/ui/serverWidget', 'N/search', 'N/task', 'N/file', 'N/url', 'N/record'
 						],
 					columns:
 						[
-							search.createColumn({ name: "title", label: "Task Title" })
-							/*,
+							search.createColumn({ name: "title", label: "Task Title" }),
+							search.createColumn({name: "custevent_task_location", label: "Location"})
+						/*
 							search.createColumn({
 							   name: "formuladate",
 							   formula: "{today}",
@@ -67,14 +73,17 @@ define(['N/ui/serverWidget', 'N/search', 'N/task', 'N/file', 'N/url', 'N/record'
 				locationRows.run().each(function (result) {
 					listLocations.push({
 						name: result.getValue({
-							'name': 'title'
-						}),						
+							'name': 'title',
+						}),	
+						location: result.getValue({
+							'name': 'custevent_task_location'
+						}),	
 					})
 					return true;
 				});
 				return listLocations;
 			}}
-	
+	// TODO start creating the list search for the api call to create list and write to the page inserting search results
 
 		return {
 			onRequest: onRequest
